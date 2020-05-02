@@ -8,7 +8,7 @@ const routes: Routes = [
     pathMatch: 'full'
   },
   { path: 'login', loadChildren: () => import('./login/login.module').then(m => m.LoginModule) },
-  { path: 'courses', loadChildren: () => import('./course/course.module').then(m => m.CourseModule) }
+  { path: 'categories', loadChildren: () => import('./category/category.module').then(m => m.CategoryModule) }
 ];
 
 @NgModule({

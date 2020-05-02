@@ -1,0 +1,11 @@
+
+<h2>Categories</h2>
+<ul class="categories">
+<li *ngFor="let cat of categories"
+    [class.selected]="cat === selectedCat"> 
+    <a routerLink="/categories/courses/{{cat.id}}">  
+        <span class="badge">{{cat.id}}</span> {{cat.name}} 
+    </a>
+</li>
+
+</ul>
