@@ -2,6 +2,7 @@ import { Injectable } from '@angular/core';
 import {Category} from '../model/category.interface'
 import {Course} from '../model/course.interface'
 import {filter, find} from 'lodash';
+//import {CategoryModule} from '../category.module'
 
 @Injectable({
   providedIn: 'root',
