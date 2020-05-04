@@ -3,7 +3,7 @@ import { Routes, RouterModule } from '@angular/router';
 
 const routes: Routes = [
   { path: '',redirectTo: '',pathMatch: 'full'},
-  { path: 'auth', loadChildren: () => import('./auth/auth.module').then(m => m.AuthModule) },
+  { path: 'user', loadChildren: () => import('./user/user.module').then(m => m.UserModule) },
   { path: 'categories', loadChildren: () => import('./category/category.module').then(m => m.CategoryModule) }
   // { path: '**', component: PageNotFoundComponent },  // Wildcard route for a 404 page
 ];
