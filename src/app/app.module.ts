@@ -2,12 +2,12 @@ import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import { HttpClientModule } from '@angular/common/http';
 import { AppRoutingModule } from './app-routing.module';
-import { AppComponent } from './root/app.component';
+import { AppComponent } from './app-root/app.component';
 import {NgbModule} from '@ng-bootstrap/ng-bootstrap';
-import { HomeComponent } from './root/home/home.component';
+import { HomeComponent } from './app-root/home/home.component';
 import { JwtModule } from "@auth0/angular-jwt";
 import {tokenGetter} from './util/util';
-import { PageNotFoundComponent } from './root/page-not-found/page-not-found.component';
+import { PageNotFoundComponent } from './app-root/page-not-found/page-not-found.component';
 
 @NgModule({
   declarations: [

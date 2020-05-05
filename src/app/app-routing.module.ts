@@ -1,7 +1,7 @@
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
 import{AuthGuard} from './service/auth.guard';
-import{PageNotFoundComponent} from './root/page-not-found/page-not-found.component';
+import{PageNotFoundComponent} from './app-root/page-not-found/page-not-found.component';
 
 const routes: Routes = [
   { path: '',redirectTo: '',pathMatch: 'full'},

@@ -1,24 +1,26 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ChangeDetectorRef, AfterViewInit } from '@angular/core';
 import { Location } from "@angular/common";
 import { Router } from "@angular/router";
 import {GlobalService} from "../service/global.service";
 import {AuthService} from "../service/auth.service";
+import {Event} from "../enum/event.enum";
+import { BehaviorSubject, Observable, of as observableOf } from 'rxjs';
 
 @Component({
   selector: 'app-root',
   templateUrl: './app.component.html',
   styleUrls: ['./app.component.css']
 })
-export class AppComponent implements OnInit {
+export class AppComponent implements OnInit, AfterViewInit {
   title = 'pana-tutor';
   public isMenuCollapsed = false;
   public isHomePage = false;
-  public isLoggedIn = false;
+  authenticated$: Observable<boolean>;
 
   constructor(private location: Location, 
     private router: Router, 
     private globalService: GlobalService,
-    private authService: AuthService) {
+    private authService: AuthService, private cd: ChangeDetectorRef) { 
   }
 
   ngOnInit() {
@@ -29,7 +31,13 @@ export class AppComponent implements OnInit {
         this.isHomePage = true;
       }
     });
-    this.validateLocalToken();
+    //this.validateLocalToken();
+    this.authService.isAuthenticated$.subscribe(res => {
+      this.authenticated$ = observableOf(res);
+      this.cd.detectChanges();
+      console.log('this.authenticated$ ', res)
+    })
+
   }
 
   validateLocalToken(){
@@ -38,13 +46,18 @@ export class AppComponent implements OnInit {
       .subscribe( res => {
         console.log('validate token response', res);
         this.authService.isLoggedIn = true;
-        this.isLoggedIn = true;
+        this.authenticated$ = observableOf(true);
       }, err => {
         console.log('HTTP Error', err)
         this.authService.logout();
-        this.isLoggedIn = false;
+        this.authenticated$ = observableOf(false);
       });
     }
   }
-  
+
+  ngAfterViewInit() {
+    //this.cd.detectChanges();
+    console.log(`Parent ngAfterViewInit`)
+  }
+
 }

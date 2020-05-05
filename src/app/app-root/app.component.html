@@ -18,7 +18,7 @@
             <li class="nav-item">
               <a class="nav-link" [routerLink]="'/categories'" (click)="isMenuCollapsed = true">Lessons</a>
             </li>
-            <ng-container *ngIf="isLoggedIn">
+            <ng-container *ngIf="(authenticated$ | async); else unauthenticated">
               <li class="nav-item">
                   <a class="nav-link" [routerLink]="'/course-admin'" (click)="isMenuCollapsed = true">Manage Course</a>
               </li>
@@ -29,14 +29,14 @@
                   <a class="nav-link" [routerLink]="'/profile'" (click)="isMenuCollapsed = true">Profile</a>
               </li>
             </ng-container>
-            <ng-container *ngIf="!isLoggedIn">
+            <ng-template #unauthenticated >
               <li class="nav-item">
                 <a class="nav-link" [routerLink]="'/user/signup'" (click)="isMenuCollapsed = true">SIGN UP</a>
               </li> 
               <li class="nav-item">
                   <a class="nav-link" [routerLink]="'/user'" (click)="isMenuCollapsed = true">LOGIN</a>
               </li>
-            </ng-container>
+            </ng-template>
           </ul>
         </div>
       </div>

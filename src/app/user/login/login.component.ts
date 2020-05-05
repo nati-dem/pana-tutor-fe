@@ -4,6 +4,7 @@ import {AuthService} from '../../service/auth.service';
 import { UserLoginRequest } from './../../model/user.interface';
 import {GlobalService} from "../../service/global.service";
 import { Router } from '@angular/router';
+import { Event } from './../../enum/event.enum';
 
 @Component({
   selector: 'app-login',
@@ -34,12 +35,11 @@ export class LoginComponent implements OnInit {
       password: this.loginForm.value.password,
     };
     this.disableForm();
-    this.authService.login(userLoginReq)
+    this.authService.authenticate(userLoginReq)
       .subscribe( res => {
         console.log('HTTP response', res);
-        this.authService.token = res.token;
-        localStorage.setItem('user', JSON.stringify(res)); 
-        localStorage.setItem('user_token', res.token);
+        this.authService.saveInLocalStorage(res);
+        this.authService.notifyAuthEvt(true)
         this.router.navigate(['/profile']);
       }, err => {
         console.log('HTTP Error', err)
