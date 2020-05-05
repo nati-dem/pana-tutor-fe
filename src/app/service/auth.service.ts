@@ -66,6 +66,7 @@ export class AuthService extends BaseHttpService {
     localStorage.removeItem('user_token');
     this._isLoggedIn = false;
     this.token = null;
+    this.notifyAuthEvt(false);
   }
 
   isTokenValid(){

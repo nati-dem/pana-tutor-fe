@@ -15,7 +15,7 @@ export class AppComponent implements OnInit, AfterViewInit {
   title = 'pana-tutor';
   public isMenuCollapsed = false;
   public isHomePage = false;
-  authenticated$: Observable<boolean>;
+  
 
   constructor(private location: Location, 
     private router: Router, 
@@ -32,25 +32,20 @@ export class AppComponent implements OnInit, AfterViewInit {
       }
     });
     //this.validateLocalToken();
-    this.authService.isAuthenticated$.subscribe(res => {
-      this.authenticated$ = observableOf(res);
-      this.cd.detectChanges();
-      console.log('this.authenticated$ ', res)
-    })
 
   }
-
+  
   validateLocalToken(){
     if(this.authService.localStorageHasToken()) {
       this.authService.validateToken()
       .subscribe( res => {
         console.log('validate token response', res);
         this.authService.isLoggedIn = true;
-        this.authenticated$ = observableOf(true);
+        this.authService.notifyAuthEvt(true);
       }, err => {
         console.log('HTTP Error', err)
         this.authService.logout();
-        this.authenticated$ = observableOf(false);
+        this.authService.notifyAuthEvt(false);
       });
     }
   }

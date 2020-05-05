@@ -8,12 +8,14 @@ import { HomeComponent } from './app-root/home/home.component';
 import { JwtModule } from "@auth0/angular-jwt";
 import {tokenGetter} from './util/util';
 import { PageNotFoundComponent } from './app-root/page-not-found/page-not-found.component';
+import { NavbarComponent } from './app-root/navbar/navbar.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     HomeComponent,
-    PageNotFoundComponent
+    PageNotFoundComponent,
+    NavbarComponent
   ],
   imports: [
     BrowserModule,
