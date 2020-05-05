@@ -1,5 +1,4 @@
 <header>
-
     <nav class="navbar fixed-top navbar-expand-lg navbar-light bg-light">
       <div class="container"> 
         <a class="navbar-brand" [routerLink]="'.'">Responsive navbar</a>
@@ -19,15 +18,25 @@
             <li class="nav-item">
               <a class="nav-link" [routerLink]="'/categories'" (click)="isMenuCollapsed = true">Lessons</a>
             </li>
-            <li class="nav-item">
-              <a class="nav-link" [routerLink]="'/user/signup'" (click)="isMenuCollapsed = true">SIGN UP</a>
-            </li> 
-            <li class="nav-item">
-                <a class="nav-link" [routerLink]="'/user'" (click)="isMenuCollapsed = true">LOGIN</a>
-              </li>
+            <ng-container *ngIf="isLoggedIn">
               <li class="nav-item">
                   <a class="nav-link" [routerLink]="'/course-admin'" (click)="isMenuCollapsed = true">Manage Course</a>
-                </li>
+              </li>
+              <li class="nav-item">
+                  <a class="nav-link" [routerLink]="'/user/logout'" (click)="isMenuCollapsed = true">Logout</a>
+              </li>
+              <li class="nav-item">
+                  <a class="nav-link" [routerLink]="'/profile'" (click)="isMenuCollapsed = true">Profile</a>
+              </li>
+            </ng-container>
+            <ng-container *ngIf="!isLoggedIn">
+              <li class="nav-item">
+                <a class="nav-link" [routerLink]="'/user/signup'" (click)="isMenuCollapsed = true">SIGN UP</a>
+              </li> 
+              <li class="nav-item">
+                  <a class="nav-link" [routerLink]="'/user'" (click)="isMenuCollapsed = true">LOGIN</a>
+              </li>
+            </ng-container>
           </ul>
         </div>
       </div>

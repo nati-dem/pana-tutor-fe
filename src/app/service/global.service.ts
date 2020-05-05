@@ -5,16 +5,16 @@ import { Injectable } from '@angular/core';
 })
 export class GlobalService {
 
-  private _currentComponent;
+  private _isLoading: boolean;
 
   constructor() { }
 
-  get currentComponent(){
-    return this._currentComponent;
+  get isLoading(){
+    return this._isLoading;
   }
 
-  set currentComponent(comp){
-    this._currentComponent = comp;
+  set isLoading(loading){
+    this._isLoading = loading;
   }
 
 }

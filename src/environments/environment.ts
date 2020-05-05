@@ -3,7 +3,9 @@
 // The list of file replacements can be found in `angular.json`.
 
 export const environment = {
-  production: false
+  production: false,
+  loginUrl: 'https://abugidatech.com/tutor/wp-json/jwt-auth/v1/token',
+  tokenValidationUrl: 'https://abugidatech.com/tutor/wp-json/jwt-auth/v1/token/validate'
 };
 
 /*
