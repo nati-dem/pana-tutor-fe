@@ -5,7 +5,7 @@ import { catchError, retry } from 'rxjs/operators';
 import {BaseHttpService} from './base.http.service';
 import { HttpHeaders } from '@angular/common/http';
 import { environment } from './../../environments/environment';
-import { UserLoginRequest } from './../model/user.interface';
+import { UserLoginRequest,UserSignupRequest } from './../model/user/user-auth.interface';
 import { JwtHelperService } from '@auth0/angular-jwt';
 import { Event } from './../enum/event.enum';
 
@@ -33,11 +33,22 @@ export class AuthService extends BaseHttpService {
         'Accept': '*/*'
       })
     };
-    //return this.http.post<any>(environment.loginUrl, userLogin, httpOptions)
-    return of({
+    return this.http.post<any>(environment.loginUrl, userLogin, httpOptions)
+    /*return of({
       token: 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiIxMjM0NTY3ODkwIiwibmFtZSI6IkpvaG4gRG9lIiwiaWF0IjoxNTE2MjM5MDIyfQ.SflKxwRJSMeKKF2QT4fwpMeJf36POk6yJV_adQssw5c',
       userId: 123
-    });
+    });*/
+  }
+
+  signup (signupReq: UserSignupRequest): Observable<any> {
+    const httpOptions = {
+      headers: new HttpHeaders({
+        'Content-Type':  'application/json',
+        'Authorization': 'Bearer '+localStorage.getItem('user_token'),
+        'Accept': '*/*'
+      })
+    };
+    return this.http.post<any>(environment.signupUrl, signupReq, httpOptions)
   }
 
   saveInLocalStorage(res){

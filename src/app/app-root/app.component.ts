@@ -31,8 +31,8 @@ export class AppComponent implements OnInit, AfterViewInit {
         this.isHomePage = true;
       }
     });
-    //this.validateLocalToken();
-
+    // validate token in local storage on page refresh, clear if expired/invalid
+    this.validateLocalToken();
   }
   
   validateLocalToken(){
@@ -45,14 +45,11 @@ export class AppComponent implements OnInit, AfterViewInit {
       }, err => {
         console.log('HTTP Error', err)
         this.authService.logout();
-        this.authService.notifyAuthEvt(false);
       });
     }
   }
 
   ngAfterViewInit() {
-    //this.cd.detectChanges();
-    console.log(`Parent ngAfterViewInit`)
   }
 
 }

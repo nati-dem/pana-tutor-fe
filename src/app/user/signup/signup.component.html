@@ -1,6 +1,54 @@
 <p>Signup page..</p>
 Note: should let user to signup as either Learner or Instructor
-<form [formGroup]="signupForm"> 
+<div class="col-md-6">
+    <form [formGroup]="signupForm" (ngSubmit)="onSubmit()"> 
+        <div class="cross-validation" [class.cross-validation-error]="signupForm.errors?.identityRevealed && (signupForm.touched || signupForm.dirty)">
+
+            <div class="form-group">
+                <label for="name">Name</label>
+                <input formControlName="name" type="text" required class="form-control" id="name" placeholder="">
+                <app-form-validation-template [formControlsInp]="formControls.name" ></app-form-validation-template>
+            </div>
+            <div class="form-group">
+                <label for="email">Email ID</label>
+                <input formControlName="email" type="email" required class="form-control" id="email" placeholder="">
+                <app-form-validation-template [formControlsInp]="formControls.email" ></app-form-validation-template>
+            </div>
+            <div class="form-group">
+                <label for="password">Password</label>
+                <input formControlName="password" type="password" class="form-control" id="password" placeholder="">
+                <app-form-validation-template [formControlsInp]="formControls.password" ></app-form-validation-template>
+            </div>
+            <div class="form-group">
+                <label for="password2">Confirm Password</label>
+                <input formControlName="password2" type="password" class="form-control" id="password2" placeholder="">
+                <app-form-validation-template [formControlsInp]="formControls.password2" ></app-form-validation-template>
+            </div>
+            <div class="form-group">
+                <label for="phone">Phone number</label>
+                <input type="text" class="form-control" id="phone" placeholder="">
+            </div>
+    
+            <div class="form-group">
+                <div class="form-check">
+                <input class="form-check-input" type="checkbox" id="gridCheck">
+                <label class="form-check-label" for="gridCheck">
+                    I agree Terms & Conditions
+                </label>
+                </div>
+            </div>
+
+        </div>
+ 
+        <button class="btn btn-primary" type="submit" [disabled]="!signupForm.valid">
+            Register
+            <span *ngIf="isLoading" class="spinner-border spinner-border-sm" role="status" aria-hidden="true"></span>
+        </button>
+    </form>
+</div>
+
+
+    <!--
     <div class="form-row">
         <div class="form-group col-md-6">
         <label for="inputEmail4">Email</label>
@@ -11,6 +59,7 @@ Note: should let user to signup as either Learner or Instructor
         <input type="password" class="form-control" id="inputPassword4" placeholder="Password">
         </div>
     </div>
+    
     <div class="form-group">
         <label for="inputAddress">Address</label>
         <input type="text" class="form-control" id="inputAddress" placeholder="1234 Main St">
@@ -35,14 +84,4 @@ Note: should let user to signup as either Learner or Instructor
         <label for="inputZip">Zip</label>
         <input type="text" class="form-control" id="inputZip">
         </div>
-    </div>
-    <div class="form-group">
-        <div class="form-check">
-        <input class="form-check-input" type="checkbox" id="gridCheck">
-        <label class="form-check-label" for="gridCheck">
-            Check me out
-        </label>
-        </div>
-    </div>
-    <button type="submit" class="btn btn-primary">Sign in</button>
-</form>
+    </div> -->

@@ -1,0 +1,9 @@
+<div *ngIf="formControlsInp.invalid && (formControlsInp.dirty || formControlsInp.touched)" 
+  class="mt-2 text-danger">
+    <p *ngIf="formControlsInp.errors.required">
+        field is required.
+    </p>
+    <p *ngIf="formControlsInp.errors.minlength">
+        field must be at least 4 characters long.
+    </p>
+</div>
