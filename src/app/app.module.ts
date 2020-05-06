@@ -6,7 +6,7 @@ import { AppComponent } from './app-root/app.component';
 import {NgbModule} from '@ng-bootstrap/ng-bootstrap';
 import { HomeComponent } from './app-root/home/home.component';
 import { JwtModule } from "@auth0/angular-jwt";
-import {tokenGetter} from './util/util';
+import {tokenGetter} from './util/helper';
 import { PageNotFoundComponent } from './app-root/page-not-found/page-not-found.component';
 import { NavbarComponent } from './app-root/navbar/navbar.component';
 

@@ -4,9 +4,10 @@
 
 export const environment = {
   production: false,
-  loginUrl: 'https://abugidatech.com/tutor/wp-json/jwt-auth/v1/token',
-  signupUrl: 'https://abugidatech.com/tutor/wp-json/wp/v2/users',
-  tokenValidationUrl: 'https://abugidatech.com/tutor/wp-json/jwt-auth/v1/token/validate'
+  userApiBaseUrl: 'https://abugidatech.com/tutor',
+  loginUrl: '/wp-json/jwt-auth/v1/token',
+  signupUrl: '/wp-json/wp/v2/users',
+  tokenValidationUrl: '/wp-json/jwt-auth/v1/token/validate'
 };
 
 /*

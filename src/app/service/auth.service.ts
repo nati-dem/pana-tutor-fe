@@ -3,19 +3,18 @@ import { HttpClient, HttpErrorResponse } from '@angular/common/http';
 import { Observable, throwError, Subject, BehaviorSubject, of } from 'rxjs';
 import { catchError, retry } from 'rxjs/operators';
 import {BaseHttpService} from './base.http.service';
-import { HttpHeaders } from '@angular/common/http';
-import { environment } from './../../environments/environment';
+
+import { environment as env } from './../../environments/environment';
 import { UserLoginRequest,UserSignupRequest } from './../model/user/user-auth.interface';
 import { JwtHelperService } from '@auth0/angular-jwt';
-import { Event } from './../enum/event.enum';
+import { config } from '../enum/config.enum';
 
 @Injectable({
     providedIn: 'root',
-  })
+})
 export class AuthService extends BaseHttpService {
 
   private _token;
-  private _isLoggedIn = false;
   isAuthenticated$ = new BehaviorSubject<boolean>(false);
 
   constructor(private http: HttpClient, private  jwtHelper: JwtHelperService) {
@@ -27,13 +26,8 @@ export class AuthService extends BaseHttpService {
   }
 
   authenticate (userLogin: UserLoginRequest): Observable<any> {
-    const httpOptions = {
-      headers: new HttpHeaders({
-        'Content-Type':  'application/json',
-        'Accept': '*/*'
-      })
-    };
-    return this.http.post<any>(environment.loginUrl, userLogin, httpOptions)
+
+    return this.http.post<any>(env.userApiBaseUrl+env.loginUrl, userLogin, super.httpOptions)
     /*return of({
       token: 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiIxMjM0NTY3ODkwIiwibmFtZSI6IkpvaG4gRG9lIiwiaWF0IjoxNTE2MjM5MDIyfQ.SflKxwRJSMeKKF2QT4fwpMeJf36POk6yJV_adQssw5c',
       userId: 123
@@ -41,41 +35,30 @@ export class AuthService extends BaseHttpService {
   }
 
   signup (signupReq: UserSignupRequest): Observable<any> {
-    const httpOptions = {
-      headers: new HttpHeaders({
-        'Content-Type':  'application/json',
-        'Authorization': 'Bearer '+localStorage.getItem('user_token'),
-        'Accept': '*/*'
-      })
-    };
-    return this.http.post<any>(environment.signupUrl, signupReq, httpOptions)
+    return this.http.post<any>(env.userApiBaseUrl+env.signupUrl, signupReq, super.httpOptionsWithAuth)
   }
 
   saveInLocalStorage(res){
     this.token = res.token;
     localStorage.setItem('user', JSON.stringify(res)); 
-    localStorage.setItem('user_token', res.token);
+    localStorage.setItem(config.USER_TOKEN, res.token);
   }
 
   validateToken(){
-    const httpOptions = {
-      headers: new HttpHeaders({
-        'Content-Type':  'application/json',
-        'Authorization': 'Bearer '+localStorage.getItem('user_token'),
-        'Accept': '*/*'
-      })
-    };
-    return this.http.post<any>(environment.tokenValidationUrl, {}, httpOptions)
+    return this.http.post<any>(env.userApiBaseUrl+env.tokenValidationUrl, {}, super.httpOptionsWithAuth)
   }
 
   localStorageHasToken(){
-    return localStorage.getItem('user_token') != null;
+    return localStorage.getItem(config.USER_TOKEN) != null;
+  }
+
+  getLocalToken(){
+    return localStorage.getItem(config.USER_TOKEN);
   }
 
   logout() {
     localStorage.removeItem('user');
-    localStorage.removeItem('user_token');
-    this._isLoggedIn = false;
+    localStorage.removeItem(config.USER_TOKEN);
     this.token = null;
     this.notifyAuthEvt(false);
   }
@@ -95,13 +78,6 @@ export class AuthService extends BaseHttpService {
   }
   set token(t){
     this._token = t;
-  }
-
-  get isLoggedIn(){
-    return this._isLoggedIn;
-  }
-  set isLoggedIn(loggedIn){
-    this._isLoggedIn =  loggedIn;
   }
 
 }

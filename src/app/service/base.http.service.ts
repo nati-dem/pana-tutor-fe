@@ -1,7 +1,23 @@
 import { HttpErrorResponse } from '@angular/common/http';
 import { throwError } from 'rxjs';
+import { HttpHeaders } from '@angular/common/http';
 
 export class BaseHttpService {
+
+  protected httpOptions = {
+      headers: new HttpHeaders({
+        'Content-Type':  'application/json',
+        'Accept': '*/*'
+      })
+    };
+
+    protected httpOptionsWithAuth = {
+      headers: new HttpHeaders({
+        'Content-Type':  'application/json',
+        'Authorization': 'Bearer '+localStorage.getItem('user_token'),
+        'Accept': '*/*'
+      })
+    };
 
     protected handleError(error: HttpErrorResponse) {
         if (error.error instanceof ErrorEvent) {

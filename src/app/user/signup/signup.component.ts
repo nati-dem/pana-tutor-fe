@@ -16,7 +16,8 @@ export class SignupComponent extends BaseFormComponent implements OnInit {
     email: new FormControl('', [Validators.required, Validators.minLength(4)] ),
     password: new FormControl('', [Validators.required, Validators.minLength(4)] ),
     password2: new FormControl('', [Validators.required, Validators.minLength(4)] ),
-    name: new FormControl('', [Validators.required, Validators.minLength(4)] )
+    name: new FormControl('', [Validators.required, Validators.minLength(4)] ),
+    phone: new FormControl('', [Validators.required, Validators.minLength(4)] )
   });
 
   constructor(private authService: AuthService,
@@ -48,10 +49,10 @@ export class SignupComponent extends BaseFormComponent implements OnInit {
   mapFormData(): UserSignupRequest {
     return {
       name : this.signupForm.value.name,
-      username : (this.signupForm.value.email.split("@"))[0],
+      username : this.signupForm.value.phone,
       email : this.signupForm.value.email,
       password: this.signupForm.value.password,
-      roles: ['subscriber']
+      roles: ['subscriber'] // TODO - should be determined bsaed on signup form
     };
   }
 
