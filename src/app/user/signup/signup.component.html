@@ -1,5 +1,5 @@
 <p>Signup page..</p>
-Note: should let user to signup as either Learner or Instructor
+
 <div class="col-md-6">
     <form [formGroup]="signupForm" (ngSubmit)="onSubmit()"> 
         <div class="cross-validation" [class.cross-validation-error]="signupForm.errors?.identityRevealed && (signupForm.touched || signupForm.dirty)">
@@ -44,6 +44,11 @@ Note: should let user to signup as either Learner or Instructor
             Register
             <span *ngIf="isFormProcessing" class="spinner-border spinner-border-sm" role="status" aria-hidden="true"></span>
         </button>
+        <div *ngIf="formErrors.length > 0"  class="alert alert-danger mt-2" role="alert">
+            <li *ngFor="let formError of formErrors">
+                {{ formError }}
+            </li>
+        </div>
     </form>
 </div>
 

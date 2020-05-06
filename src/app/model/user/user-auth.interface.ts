@@ -4,7 +4,7 @@ export interface UserLoginRequest {
 }
 
 export interface UserSignupRequest {
-    username: string;
+    username?: string;
     name: string; // Display name for the user.
     first_name?: string;
     last_name?: string;

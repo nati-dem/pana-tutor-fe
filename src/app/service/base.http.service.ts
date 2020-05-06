@@ -1,22 +1,27 @@
 import { HttpErrorResponse } from '@angular/common/http';
 import { throwError } from 'rxjs';
 import { HttpHeaders } from '@angular/common/http';
+import { Config} from '../enum/config.enum';
 
 export class BaseHttpService {
 
-  protected httpOptions = {
+  protected httpOptions() {
+    return {
       headers: new HttpHeaders({
         'Content-Type':  'application/json',
         'Accept': '*/*'
       })
+    }
     };
 
-    protected httpOptionsWithAuth = {
-      headers: new HttpHeaders({
-        'Content-Type':  'application/json',
-        'Authorization': 'Bearer '+localStorage.getItem('user_token'),
-        'Accept': '*/*'
-      })
+    protected httpOptionsWithAuth() {
+      return {
+        headers: new HttpHeaders({
+          'Content-Type':  'application/json',
+          'Authorization': 'Bearer '+localStorage.getItem(Config.USER_TOKEN),
+          'Accept': '*/*'
+        })
+      }
     };
 
     protected handleError(error: HttpErrorResponse) {

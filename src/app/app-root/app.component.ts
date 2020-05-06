@@ -36,14 +36,14 @@ export class AppComponent implements OnInit, AfterViewInit {
   }
   
   validateLocalToken(){
-    console.log('@ validateLocalToken if present in local storage')
+    console.log('@ validateLocalToken if present in local storage --> ', this.authService.getLocalToken())
     if(this.authService.localStorageHasToken()) {
       this.authService.validateToken()
       .subscribe( res => {
         console.log('validate token response', res);
         console.log('@ setting token in memory')
         this.authService.token = this.authService.getLocalToken();
-        this.authService.notifyAuthEvt(true);
+        this.authService.notifyAuthObservers(true);
       }, err => {
         console.log('validateLocalToken Error', err)
         this.authService.logout();

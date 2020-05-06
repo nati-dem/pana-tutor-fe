@@ -3,11 +3,10 @@ import { HttpClient, HttpErrorResponse } from '@angular/common/http';
 import { Observable, throwError, Subject, BehaviorSubject, of } from 'rxjs';
 import { catchError, retry } from 'rxjs/operators';
 import {BaseHttpService} from './base.http.service';
-
 import { environment as env } from './../../environments/environment';
 import { UserLoginRequest,UserSignupRequest } from './../model/user/user-auth.interface';
 import { JwtHelperService } from '@auth0/angular-jwt';
-import { config } from '../enum/config.enum';
+import { Config} from '../enum/config.enum';
 
 @Injectable({
     providedIn: 'root',
@@ -21,13 +20,13 @@ export class AuthService extends BaseHttpService {
       super();
   }
 
-  notifyAuthEvt(evt: boolean) {
+  notifyAuthObservers(evt: boolean) {
     this.isAuthenticated$.next(evt);
   }
 
   authenticate (userLogin: UserLoginRequest): Observable<any> {
 
-    return this.http.post<any>(env.userApiBaseUrl+env.loginUrl, userLogin, super.httpOptions)
+    return this.http.post<any>(env.userApiBaseUrl+env.loginUrl, userLogin, super.httpOptions())
     /*return of({
       token: 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiIxMjM0NTY3ODkwIiwibmFtZSI6IkpvaG4gRG9lIiwiaWF0IjoxNTE2MjM5MDIyfQ.SflKxwRJSMeKKF2QT4fwpMeJf36POk6yJV_adQssw5c',
       userId: 123
@@ -35,38 +34,39 @@ export class AuthService extends BaseHttpService {
   }
 
   signup (signupReq: UserSignupRequest): Observable<any> {
-    return this.http.post<any>(env.userApiBaseUrl+env.signupUrl, signupReq, super.httpOptionsWithAuth)
+    return this.http.post<any>(env.userApiBaseUrl+env.signupUrl, signupReq, super.httpOptionsWithAuth())
   }
 
-  saveInLocalStorage(res){
+  saveTokenInLocal(res){
     this.token = res.token;
     localStorage.setItem('user', JSON.stringify(res)); 
-    localStorage.setItem(config.USER_TOKEN, res.token);
+    localStorage.setItem(Config.USER_TOKEN, res.token);
   }
 
   validateToken(){
-    return this.http.post<any>(env.userApiBaseUrl+env.tokenValidationUrl, {}, super.httpOptionsWithAuth)
+    return this.http.post<any>(env.userApiBaseUrl+env.tokenValidationUrl, {}, super.httpOptionsWithAuth())
   }
 
   localStorageHasToken(){
-    return localStorage.getItem(config.USER_TOKEN) != null;
+    return localStorage.getItem(Config.USER_TOKEN) != null;
   }
 
   getLocalToken(){
-    return localStorage.getItem(config.USER_TOKEN);
+    return localStorage.getItem(Config.USER_TOKEN);
   }
 
   logout() {
     localStorage.removeItem('user');
-    localStorage.removeItem(config.USER_TOKEN);
+    localStorage.removeItem(Config.USER_TOKEN);
     this.token = null;
-    this.notifyAuthEvt(false);
+    this.notifyAuthObservers(false);
   }
 
   isTokenValid(){
-    const isTokenValid = !this.jwtHelper.isTokenExpired();
+    // token should be saved in memory since it's set whenever page is refreshd
+    const isTokenValid = this.token != null && !this.jwtHelper.isTokenExpired();
     console.log('token valid..', isTokenValid);
-    return isTokenValid;
+    return  isTokenValid;
   }
 
   decodeToken(token){

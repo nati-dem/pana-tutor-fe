@@ -1,7 +1,18 @@
 
-import { config } from '../enum/config.enum';
+import { Config } from '../enum/config.enum';
 
 export function tokenGetter() {
-    //let currentUser = JSON.parse(localStorage.getItem('user'));
-    return localStorage.getItem(config.USER_TOKEN);
+    return localStorage.getItem(Config.USER_TOKEN);
+}
+
+export function randomString(length) {
+    let mask = 'abcdefghijklmnopqrstuvwxyz';
+    //msak += 'ABCDEFGHIJKLMNOPQRSTUVWXYZ;
+    //mask += '0123456789';
+    //mask += '~`!@#$%^&*()_+-={}[]:";\'<>?,./|\\';
+    let result = '';
+    for (var i = length; i > 0; --i) 
+        result += mask[Math.round(Math.random() * (mask.length - 1))];
+    console.log('randomString:', result)
+    return result;
 }

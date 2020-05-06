@@ -3,14 +3,17 @@ import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { UserSignupRequest } from './../../model/user/user-auth.interface';
 import {AuthService} from '../../service/auth.service';
 import { Router } from '@angular/router';
-import {BaseFormComponent} from '../../shared/base-form.component';
+import {BaseFormGroup} from '../../shared/base-form-group';
+import { UserRole } from './../../enum/user.enum';
+import { randomString } from './../../util/helper';
+
 
 @Component({
   selector: 'app-signup',
   templateUrl: './signup.component.html',
   styleUrls: ['./signup.component.css']
 })
-export class SignupComponent extends BaseFormComponent implements OnInit {
+export class SignupComponent extends BaseFormGroup implements OnInit {
 
   signupForm = new FormGroup({
     email: new FormControl('', [Validators.required, Validators.minLength(4)] ),
@@ -37,9 +40,10 @@ export class SignupComponent extends BaseFormComponent implements OnInit {
     this.disableForm();
     this.authService.signup(signupReq)
       .subscribe( res => {
-        console.log('HTTP response', res);
+        console.log('Signup response', res);
       }, err => {
-        console.log('HTTP Error', err)
+        console.log('Signup Error', err);
+        this.formErrors.push(err.error.message);
         this.enableForm();
       }, () => {
         this.enableForm();
@@ -47,12 +51,13 @@ export class SignupComponent extends BaseFormComponent implements OnInit {
   }
 
   mapFormData(): UserSignupRequest {
+    const email = this.signupForm.value.email.trim();
     return {
       name : this.signupForm.value.name.trim(),
-      username : this.signupForm.value.phone.trim(),
-      email : this.signupForm.value.email.trim(),
+      username : randomString(12),
+      email : email,
       password: this.signupForm.value.password.trim(),
-      roles: ['subscriber'] // TODO - should be determined bsaed on signup form
+      roles: [UserRole.SUBSCRIBER] // TODO - should be determined bsaed on signup form
     };
   }
 

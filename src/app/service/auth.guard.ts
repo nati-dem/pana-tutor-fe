@@ -17,18 +17,3 @@ export class AuthGuard implements CanActivate {
   }
   
 }
-
-@Injectable({
-  providedIn: 'root'
-})
-export class ModAuthGuard implements CanActivate {
-
-  constructor(private authService:AuthService) {}
-
-  canActivate(
-    next: ActivatedRouteSnapshot,
-    state: RouterStateSnapshot): Observable<boolean | UrlTree> | Promise<boolean | UrlTree> | boolean | UrlTree {
-     return this.authService.isTokenValid();
-  }
-  
-}

@@ -1,22 +1,23 @@
 import { Component, OnInit } from '@angular/core';
-import { FormGroup, FormControl } from '@angular/forms';
+import { FormGroup, FormControl, Validators } from '@angular/forms';
 import {AuthService} from '../../service/auth.service';
 import { UserLoginRequest } from './../../model/user/user-auth.interface';
 import {GlobalService} from "../../service/global.service";
 import { Router } from '@angular/router';
-import { Event } from './../../enum/event.enum';
-import {BaseFormComponent} from '../../shared/base-form.component';
+import { ErrorResponse } from './../../model/api-response.interface';
+import {BaseFormGroup} from '../../shared/base-form-group';
+import { ErrorMessage } from './../../enum/message.enum';
 
 @Component({
   selector: 'app-login',
   templateUrl: './login.component.html',
   styleUrls: ['./login.component.css']
 })
-export class LoginComponent extends BaseFormComponent implements OnInit {
+export class LoginComponent extends BaseFormGroup implements OnInit {
 
   loginForm = new FormGroup({
-    email: new FormControl(''),
-    password: new FormControl(''),
+    email: new FormControl('', [Validators.required]),
+    password: new FormControl('', [Validators.required]),
   });
 
   constructor(private authService: AuthService,
@@ -37,19 +38,20 @@ export class LoginComponent extends BaseFormComponent implements OnInit {
     this.disableForm();
     this.authService.authenticate(userLoginReq)
       .subscribe( res => {
-        console.log('HTTP response', res);
-        this.authService.saveInLocalStorage(res);
-        this.authService.notifyAuthEvt(true)
+        console.log('Login response', res);
+        this.authService.saveTokenInLocal(res);
+        this.authService.notifyAuthObservers(true)
         this.router.navigate(['/profile']);
       }, err => {
-        console.log('HTTP Error', err)
+        console.log('Login Error', err)
+        this.formErrors.push(ErrorMessage.LOGIN_ERROR);
         this.enableForm();
       }, () => {
         this.enableForm();
       });
   }
 
-  getFormData(){
+  getFormData(): UserLoginRequest{
     return {
       username : this.loginForm.value.email.trim(),
       password: this.loginForm.value.password.trim(),
