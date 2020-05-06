@@ -26,7 +26,7 @@ Note: should let user to signup as either Learner or Instructor
             </div>
             <div class="form-group">
                 <label for="phone">Phone number</label>
-                <input type="text" class="form-control" id="phone" placeholder="">
+                <input formControlName="phone" type="text" class="form-control" id="phone" placeholder="">
             </div>
     
             <div class="form-group">
@@ -40,9 +40,9 @@ Note: should let user to signup as either Learner or Instructor
 
         </div>
  
-        <button class="btn btn-primary" type="submit" [disabled]="!signupForm.valid">
+        <button class="btn btn-primary" type="submit" [disabled]="!signupForm.valid || isFormProcessing">
             Register
-            <span *ngIf="isLoading" class="spinner-border spinner-border-sm" role="status" aria-hidden="true"></span>
+            <span *ngIf="isFormProcessing" class="spinner-border spinner-border-sm" role="status" aria-hidden="true"></span>
         </button>
     </form>
 </div>

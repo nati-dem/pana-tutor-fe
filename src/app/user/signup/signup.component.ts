@@ -23,7 +23,7 @@ export class SignupComponent extends BaseFormComponent implements OnInit {
   constructor(private authService: AuthService,
     private router: Router) {
       super();
-      console.log('inside signupcomp cost')
+      console.log('inside signupcomp const')
       super.setForm(this.signupForm);
   }
 
@@ -31,7 +31,7 @@ export class SignupComponent extends BaseFormComponent implements OnInit {
   }
 
   onSubmit() {
-    // TODO: Use EventEmitter with form value
+    // TODO: validate password equality, phone number format
     console.warn(this.signupForm.value);
     let signupReq: UserSignupRequest = this.mapFormData();
     this.disableForm();
@@ -48,10 +48,10 @@ export class SignupComponent extends BaseFormComponent implements OnInit {
 
   mapFormData(): UserSignupRequest {
     return {
-      name : this.signupForm.value.name,
-      username : this.signupForm.value.phone,
-      email : this.signupForm.value.email,
-      password: this.signupForm.value.password,
+      name : this.signupForm.value.name.trim(),
+      username : this.signupForm.value.phone.trim(),
+      email : this.signupForm.value.email.trim(),
+      password: this.signupForm.value.password.trim(),
       roles: ['subscriber'] // TODO - should be determined bsaed on signup form
     };
   }

@@ -51,8 +51,8 @@ export class LoginComponent extends BaseFormComponent implements OnInit {
 
   getFormData(){
     return {
-      username : this.loginForm.value.email,
-      password: this.loginForm.value.password,
+      username : this.loginForm.value.email.trim(),
+      password: this.loginForm.value.password.trim(),
     };
   }
 

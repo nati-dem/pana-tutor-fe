@@ -3,7 +3,7 @@ import { FormControl, FormGroup, Validators } from '@angular/forms';
 export class BaseFormComponent {
 
   form: FormGroup;
-  isLoading = false;
+  isFormProcessing = false;
 
   constructor() {
   }
@@ -16,12 +16,12 @@ export class BaseFormComponent {
   }
 
   disableForm(){
-    this.isLoading = true;
+    this.isFormProcessing = true;
     this.form.disable;
   }
 
   enableForm(){
-    this.isLoading = false;
+    this.isFormProcessing = false;
     this.form.enable;
   }
 
