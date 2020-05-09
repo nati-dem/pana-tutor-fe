@@ -57,7 +57,10 @@ export class SignupComponent extends BaseFormGroup implements OnInit {
       username : randomString(12),
       email : email,
       password: this.signupForm.value.password.trim(),
-      roles: [UserRole.SUBSCRIBER] // TODO - should be determined bsaed on signup form
+      roles: [UserRole.SUBSCRIBER], // TODO - should be determined bsaed on signup form
+      meta: {
+        "phone_number": this.signupForm.value.phone.trim()
+      }
     };
   }
 

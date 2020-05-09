@@ -16,5 +16,5 @@ export interface UserSignupRequest {
     // slug: string;
     password: string;
     roles: Array<String>;
-    // meta
+    meta?: any;
 }
