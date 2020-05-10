@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
-import { UserSignupRequest } from './../../model/user/user-auth.interface';
+import { UserSignupRequest } from './../../../../../pana-tutor-lib/model/user/user-auth.interface';
 import {AuthService} from '../../service/auth.service';
 import { Router } from '@angular/router';
 import {BaseFormGroup} from '../../shared/base-form-group';

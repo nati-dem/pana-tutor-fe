@@ -1,10 +1,10 @@
 import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormControl, Validators } from '@angular/forms';
 import {AuthService} from '../../service/auth.service';
-import { UserLoginRequest } from './../../model/user/user-auth.interface';
+import { UserLoginRequest } from '../../../../../pana-tutor-lib/model/user/user-auth.interface';
 import {GlobalService} from "../../service/global.service";
 import { Router } from '@angular/router';
-import { ErrorResponse } from './../../model/api-response.interface';
+import { ErrorResponse } from '../../../../../pana-tutor-lib/model/api-response.interface';
 import {BaseFormGroup} from '../../shared/base-form-group';
 import { ErrorMessage } from './../../enum/message.enum';
 
