@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import {Category} from '../../model/category.interface'
+import {Category} from '../../../../../pana-tutor-lib/model/category.interface'
 import {CategoryService} from '../../service/category.service'
 
 @Component({

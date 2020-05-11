@@ -6,13 +6,13 @@ import { BaseHttpService } from "./base.http.service";
 import { environment as env } from "./../../environments/environment";
 import {
   UserLoginRequest,
-  UserSignupRequest
-} from "./../model/user/user-auth.interface";
+  UserSignupRequest,
+} from "./../../../../pana-tutor-lib/model/user/user-auth.interface";
 import { JwtHelperService } from "@auth0/angular-jwt";
 import { Config } from "../enum/config.enum";
 
 @Injectable({
-  providedIn: "root"
+  providedIn: "root",
 })
 export class AuthService extends BaseHttpService {
   private _token;

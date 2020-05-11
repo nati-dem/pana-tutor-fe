@@ -1,6 +1,6 @@
 import { Component, OnInit } from "@angular/core";
 import { FormControl, FormGroup, Validators } from "@angular/forms";
-import { UserSignupRequest } from "./../../model/user/user-auth.interface";
+import { UserSignupRequest } from "./../../../../../pana-tutor-lib/model/user/user-auth.interface";
 import { AuthService } from "../../service/auth.service";
 import { Router } from "@angular/router";
 import { BaseFormGroup } from "../../shared/base-form-group";
@@ -10,21 +10,21 @@ import { randomString } from "./../../util/helper";
 @Component({
   selector: "app-signup",
   templateUrl: "./signup.component.html",
-  styleUrls: ["./signup.component.css"]
+  styleUrls: ["./signup.component.css"],
 })
 export class SignupComponent extends BaseFormGroup implements OnInit {
   signupForm = new FormGroup({
     email: new FormControl("", [Validators.required, Validators.minLength(4)]),
     password: new FormControl("", [
       Validators.required,
-      Validators.minLength(4)
+      Validators.minLength(4),
     ]),
     password2: new FormControl("", [
       Validators.required,
-      Validators.minLength(4)
+      Validators.minLength(4),
     ]),
     name: new FormControl("", [Validators.required, Validators.minLength(4)]),
-    phone: new FormControl("", [Validators.required, Validators.minLength(4)])
+    phone: new FormControl("", [Validators.required, Validators.minLength(4)]),
   });
 
   constructor(private authService: AuthService, private router: Router) {
@@ -41,10 +41,10 @@ export class SignupComponent extends BaseFormGroup implements OnInit {
     let signupReq: UserSignupRequest = this.mapFormData();
     this.disableForm();
     this.authService.signup(signupReq).subscribe(
-      res => {
+      (res) => {
         console.log("Signup response", res);
       },
-      err => {
+      (err) => {
         console.log("Signup Error", err);
         this.formErrors.push(err.error.message);
         this.enableForm();
@@ -64,8 +64,8 @@ export class SignupComponent extends BaseFormGroup implements OnInit {
       password: this.signupForm.value.password.trim(),
       roles: [UserRole.SUBSCRIBER], // TODO - should be determined bsaed on signup form
       meta: {
-        phone_number: this.signupForm.value.phone.trim()
-      }
+        phone_number: this.signupForm.value.phone.trim(),
+      },
     };
   }
 }

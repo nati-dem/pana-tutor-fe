@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
-import {Category} from '../model/category.interface'
-import {Course} from '../model/course.interface'
+import {Category} from '../../../../pana-tutor-lib/model/category.interface'
+import {Course} from '../../../../pana-tutor-lib/model/course.interface'
 import {filter, find} from 'lodash';
 //import {CategoryModule} from '../category.module'
 
