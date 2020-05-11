@@ -23,12 +23,13 @@
     "@auth0/angular-jwt": "^4.0.0",
     "@ng-bootstrap/ng-bootstrap": "^6.1.0",
     "lodash": "^4.17.15",
+    "magic-string": "^0.25.7",
     "rxjs": "~6.5.4",
-    "tslib": "^1.10.0",
+    "tslib": "^1.11.2",
     "zone.js": "~0.10.2"
   },
   "devDependencies": {
-    "@angular-devkit/build-angular": "~0.901.2",
+    "@angular-devkit/build-angular": "^0.901.5",
     "@angular/cli": "~9.1.2",
     "@angular/compiler-cli": "~9.1.2",
     "@angular/language-service": "~9.1.2",
@@ -47,6 +48,6 @@
     "protractor": "~5.4.3",
     "ts-node": "~8.3.0",
     "tslint": "~6.1.0",
-    "typescript": "~3.8.3"
+    "typescript": "^3.8.3"
   }
 }

@@ -1,0 +1,42 @@
+.home_banner_area {
+  /* z-index: 1; */
+  /* min-height: 600px; */
+  /* position: relative; */
+  background: url("/assets/images/best-free-online-college-courses.jpg")
+    no-repeat center center;
+  -webkit-background-size: cover;
+  -moz-background-size: cover;
+  -o-background-size: cover;
+  background-size: cover;
+}
+#button1 {
+  border: 1px #333 solid;
+  padding: 10px;
+  background-color: white;
+  -webkit-border-radius: 200px;
+  -moz-border-radius: 50px;
+  border-radius: 100px;
+  color: #52aabb;
+  width: 450px;
+  font-size: 45px;
+  font-weight: bolder;
+}
+
+.container {
+  margin-top: 200px;
+  margin-left: 0px;
+}
+#txt1 {
+  color: #ed9834;
+  font-size: 70px;
+  font-weight: 900;
+  font-family: "Lucida Sans", "Lucida Sans Regular", "Lucida Grande",
+    "Lucida Sans Unicode", Geneva, Verdana, sans-serif;
+  font-style: italic;
+}
+#txt2 {
+  color: white;
+  font-size: 50px;
+  font-weight: 400;
+  margin-top: opx;
+}

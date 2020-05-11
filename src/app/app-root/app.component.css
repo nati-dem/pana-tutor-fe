@@ -1,0 +1,11 @@
+.home_banner_area {
+  /* z-index: 1; */
+  min-height: 900px;
+  /* position: relative; */
+  background: url("/assets/images/best-free-online-college-courses.jpg")
+    no-repeat center center;
+  -webkit-background-size: cover;
+  -moz-background-size: cover;
+  -o-background-size: cover;
+  background-size: cover;
+}
