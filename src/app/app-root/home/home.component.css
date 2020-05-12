@@ -2,8 +2,8 @@
   /* z-index: 1; */
   /* min-height: 600px; */
   /* position: relative; */
-  background: url("/assets/images/best-free-online-college-courses.jpg")
-    no-repeat center center;
+  background: url("/assets/images/Young_African_American_female_.png") no-repeat
+    center center;
   -webkit-background-size: cover;
   -moz-background-size: cover;
   -o-background-size: cover;
@@ -39,4 +39,138 @@
   font-size: 50px;
   font-weight: 400;
   margin-top: opx;
+}
+
+.d-flex {
+  margin-top: 30px;
+}
+.mx-auto {
+  text-align: center;
+  margin-top: 50px;
+  padding-bottom: 50px;
+  color: #ed9834;
+  font-size: 50px;
+}
+i {
+  color: #ed9834;
+  /* margin-left: 100px; */
+  margin-right: 10px;
+}
+#registertxt {
+  width: 200px;
+  text-align: justify;
+}
+
+#tutortxt {
+  width: 250px;
+  text-align: justify;
+}
+.flex-column {
+  text-align: justify;
+}
+
+#learnttxt {
+  width: 280px;
+  text-align: justify;
+}
+#learnheader {
+  margin-left: 0px;
+  text-align: justify;
+}
+
+.freetrial_area {
+  /* z-index: 1; */
+  /* min-height: 600px; */
+  /* position: relative; */
+  /* background: url("/assets/images/best-free-online-college-courses.jpg")
+    no-repeat center center; */
+  -webkit-background-size: cover;
+  -moz-background-size: cover;
+  -o-background-size: cover;
+  background-size: cover;
+  background-color: #52aabb;
+  /* opacity: 0.5; */
+  background-color: #52aabb;
+  margin-top: 150px;
+  height: 400px;
+}
+
+#button2 {
+  border: 1px #333 solid;
+  padding: 10px;
+  background-color: white;
+  -webkit-border-radius: 200px;
+  -moz-border-radius: 50px;
+  border-radius: 100px;
+  color: #ed9834;
+  width: 450px;
+  font-size: 45px;
+}
+#get_started {
+  text-align: center;
+  margin-left: 150px;
+  margin-top: 50px;
+}
+
+#freetrialtxt {
+  color: white;
+  font-size: 60px;
+  font-weight: 400;
+  margin-top: 50px;
+  margin-bottom: 50px;
+}
+
+.card {
+  border-color: #ed9834;
+  border-bottom-left-radius: 100px;
+  border-bottom-right-radius: 100px;
+}
+#subject_card1 {
+  margin-left: 300px;
+  margin-bottom: 50px;
+}
+
+#subject_card2 {
+  margin-left: 300px;
+  margin-top: 100px;
+}
+
+#it_workstxt {
+  color: #52aabb;
+}
+#yelow_bg {
+  background-color: #ed9834;
+  /* width: 900px;
+  height: 500px; */
+}
+#img-fa-kid {
+  background: url("/assets/images/Kids-Studying-from-Home-bro.png") no-repeat
+    center center;
+  -webkit-background-size: cover;
+  -moz-background-size: cover;
+  -o-background-size: cover;
+  background-size: cover;
+  width: 100%;
+}
+
+#it_works_area {
+  height: 500px;
+}
+.card-img-top {
+  height: 200px;
+  border-bottom-left-radius: 50px;
+  border-bottom-right-radius: 50px;
+}
+.card-title {
+  color: #ed9834;
+  text-align: center;
+  font-size: 50px;
+}
+#p-it-workstxt {
+  color: white;
+  font-size: 20px;
+  text-align: center;
+}
+.p-it-workstxt1 {
+  margin-top: 80px;
 }
