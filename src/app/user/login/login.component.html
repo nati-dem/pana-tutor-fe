@@ -1,4 +1,117 @@
-<div class="row">
+<div class="container" id="sign_area">
+  <div class="row">
+    <div class="col" id="signin-form-area">
+      <div id="welcom-txt" class="mx-auto" style="width: 300px;">
+        WELCOME BACK
+      </div>
+      <div class="d-flex flex-column bd-highlight mb-3">
+        <div class="p-2 bd-highlight">
+          <button class="btn btn-primary" id="btn-fb">
+            sign in with facebook
+          </button>
+        </div>
+        <div class="p-2 bd-highlight">
+          <button class="btn btn-primary" id="btn-ggl">
+            sign in with facebook
+          </button>
+        </div>
+      </div>
+      <form
+        [formGroup]="loginForm"
+        (ngSubmit)="onSubmit()"
+        class="login100-form validate-form"
+      >
+        <span class="login100-form-logo">
+          <i class="zmdi zmdi-landscape"></i>
+        </span>
+
+        <div class="login100-form-title" id="singnin_title">
+          Sign in
+        </div>
+        <div class="container" id="form_container">
+          <div class="row justify-content-between">
+            <label for="">Email Addres </label>
+          </div>
+          <div class="row justify-content-between">
+            <input type="text" placeholder="Enter email" />
+          </div>
+          <div class="row justify-content-between">
+            <label for="">Password</label>
+          </div>
+          <div class="row justify-content-between">
+            <input type="password" placeholder="Enter password" />
+          </div>
+          <div class="row justify-content-start">
+            <!-- <div class="contact100-form-checkbox"> -->
+            <div class="col">
+              <input
+                class="input-checkbox100"
+                id="ckb1"
+                type="checkbox"
+                name="remember-me"
+              />
+              Remember me
+            </div>
+
+            <!-- </div> -->
+          </div>
+          <div class="row">
+            <button class="btn btn-primary" id="submtbtn">Submit</button>
+          </div>
+          <div class="row">
+            <div class="d-flex justify-content-end"></div>
+          </div>
+        </div>
+
+        <div class="text-center p-t-90">
+          <a class="txt1" href="#">
+            Forgot Password?
+          </a>
+        </div>
+      </form>
+    </div>
+    <div class="col" id="signin-area">
+      <div class="d-flex align-items-end flex-column" style="height: 200px;">
+        <!-- <div class="p-2">Flex item</div>
+        <div class="p-2">Flex item</div> -->
+        <div class="p-2">Flex item</div>
+      </div>
+      <div class="d-flex align-self-baseline" id="signin_txt">
+        Aligned flex item
+      </div>
+    </div>
+  </div>
+</div>
+<footer class="footer_area">
+  <div class="container" id="footer_container">
+    <div class="row">
+      <div class="col-4">
+        <div class="d-flex flex-column justify-content-start">
+          <h2>Choose a Subject</h2>
+          <p>Math</p>
+          <p>English</p>
+          <p>Science</p>
+          <p>Coding</p>
+          <p>Chemistry</p>
+          <p>Physics</p>
+        </div>
+      </div>
+      <div class="col-4" id="semicircle_area">
+        <div class="d-flex align-items-end">
+          <img class="logo_footer" src="assets/Tutor-web.png" alt="" />
+        </div>
+      </div>
+      <div class="col-4">
+        <div class="d-flex flex-column justify-content-end">
+          <h2>Any Questions?</h2>
+          <p>0911180348</p>
+          <p>info@</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</footer>
+<!-- <div class="row">
 
     <div class="col-sm-6 mt-3">
 
@@ -28,4 +141,4 @@
             
     </div>
 
-</div>
+</div> -->

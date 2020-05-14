@@ -1,4 +1,110 @@
-<p>Signup page..</p>
+<div class="container" id="signup_container">
+  <div class="row">
+    <div class="col" id="column-id">
+      <div class="limiter">
+        <div id="creat-txt" class="mx-auto">
+          CREAT ACCOUNT
+        </div>
+        <div class="wrap-login100 p-l-55 p-r-55 p-t-65 p-b-54">
+          <form
+            [formGroup]="signupForm"
+            (ngSubmit)="onSubmit()"
+            class="login100-form validate-form"
+          >
+            <div
+              class="wrap-input100 validate-input m-b-23"
+              data-validate="Username is reauired"
+            >
+              <input
+                class="input100"
+                type="text"
+                name="username"
+                placeholder=" Username"
+              />
+              <span class="focus-input100" data-symbol="&#xf206;"></span>
+            </div>
+
+            <div
+              class="wrap-input100 validate-input m-b-23"
+              data-validate="Username is reauired"
+            >
+              <input
+                class="input100"
+                type="text"
+                name="username"
+                placeholder="Email id"
+              />
+              <span class="focus-input100" data-symbol="&#xf206;"></span>
+            </div>
+
+            <div class="wrap-input100 validate-input" data-validate="Password">
+              <input
+                class="input100"
+                type="password"
+                name="pass"
+                placeholder="Password"
+              />
+              <span class="focus-input100" data-symbol="&#xf190;"></span>
+            </div>
+
+            <div
+              class="wrap-input100 validate-input"
+              data-validate="Confirm Password"
+            >
+              <input
+                class="input100"
+                type="password"
+                name="pass"
+                placeholder="Confirm Password"
+              />
+              <span class="focus-input100" data-symbol="&#xf190;"></span>
+            </div>
+            <div class="container-login100-form-btn">
+              <div class="wrap-login100-form-btn">
+                <div class="login100-form-bgbtn"></div>
+                <button class="login100-form-btn">
+                  Sign up
+                </button>
+              </div>
+            </div>
+          </form>
+        </div>
+        <!-- </div> -->
+      </div>
+    </div>
+    <div class="col" id="signup-txt-area"></div>
+  </div>
+</div>
+<footer class="footer_area">
+  <div class="container" id="footer_container">
+    <div class="row">
+      <div class="col-4">
+        <div class="d-flex flex-column justify-content-start">
+          <h2>Choose a Subject</h2>
+          <p>Math</p>
+          <p>English</p>
+          <p>Science</p>
+          <p>Coding</p>
+          <p>Chemistry</p>
+          <p>Physics</p>
+        </div>
+      </div>
+      <div class="col-4" id="semicircle_area">
+        <div class="d-flex align-items-end">
+          <img class="logo_footer" src="assets/Tutor-web.png" alt="" />
+        </div>
+      </div>
+      <div class="col-4">
+        <div class="d-flex flex-column justify-content-end">
+          <h2>Any Questions?</h2>
+          <p>0911180348</p>
+          <p>info@</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</footer>
+<!-- <p>Signup page..</p>
 
 <div class="col-md-6">
     <form [formGroup]="signupForm" (ngSubmit)="onSubmit()"> 
@@ -51,9 +157,9 @@
         </div>
     </form>
 </div>
+ -->
 
-
-    <!--
+<!--
     <div class="form-row">
         <div class="form-group col-md-6">
         <label for="inputEmail4">Email</label>

@@ -4,10 +4,10 @@
 
 export const environment = {
   production: false,
-  userApiBaseUrl: 'https://abugidatech.com/tutor',
-  loginUrl: '/wp-json/jwt-auth/v1/token',
-  signupUrl: '/wp-json/wp/v2/users',
-  tokenValidationUrl: '/wp-json/jwt-auth/v1/token/validate'
+  userApiBaseUrl: "https://panalearn.com/dev/api",
+  loginUrl: "/auth/login",
+  signupUrl: "/auth/register",
+  tokenValidationUrl: "/auth/token-validate",
 };
 
 /*

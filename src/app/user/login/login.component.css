@@ -1,0 +1,87 @@
+#sign_area {
+  margin-top: 100px;
+}
+#signin-form-area {
+  background: whitesmoke;
+}
+#signin-area {
+  background: url("/assets/images/best-free-online-college-courses.jpg")
+    no-repeat center center;
+  -webkit-background-size: cover;
+  -moz-background-size: cover;
+  -o-background-size: cover;
+  background-size: cover;
+}
+
+.login100-form {
+  background: white;
+  margin: 80px;
+  margin-top: 30px;
+}
+#welcom-txt {
+  margin-top: 30px;
+  color: #52aabb;
+  font-size: 40px;
+}
+#signin_txt {
+  margin-bottom: 0 auto;
+}
+label {
+  font-weight: bold;
+}
+
+#form_container {
+  margin-left: 20px;
+  position: relative;
+}
+.login100-form-title {
+  text-align: center;
+  /* margin-top: 50px; */
+  font-size: 30px;
+  font-weight: bold;
+}
+.d-flex {
+  text-align: center;
+}
+input {
+  width: 250px;
+}
+
+#submtbtn {
+  text-align: center;
+  width: 250px;
+}
+#btn-fb {
+  /* background-color: whitesmoke; */
+  color: black;
+  border-color: whitesmoke;
+}
+#btn-ggl {
+  background: whitesmoke;
+  color: black;
+  border-color: whitesmoke;
+}
+.footer_area {
+  /* margin: 0 auto; */
+  margin-top: 100px;
+  background: #52aabb;
+  height: 400px;
+}
+
+#footer_container {
+  margin: 0 auto;
+  color: white;
+}
+
+#semicircle_area {
+  margin-top: 200px;
+  height: 200px;
+  width: 900px;
+  border-radius: 180px 180px 0 0;
+  background: white;
+}
+
+.logo_footer {
+  margin-top: 50px;
+  width: 400px;
+}
