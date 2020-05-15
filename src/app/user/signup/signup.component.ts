@@ -42,6 +42,7 @@ export class SignupComponent extends BaseFormGroup implements OnInit {
     this.disableForm();
     this.authService.signup(signupReq).subscribe(
       (res) => {
+        this.signupForm.reset();
         console.log("Signup response", res);
       },
       (err) => {
