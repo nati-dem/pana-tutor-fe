@@ -14,57 +14,56 @@
 } */
 #button1 {
   border: 1px #333 solid;
-  padding: 10px;
+  padding: 10px 20px;
   background-color: white;
   -webkit-border-radius: 200px;
   -moz-border-radius: 50px;
   border-radius: 100px;
   color: #52aabb;
-  width: 450px;
   font-size: 45px;
   font-weight: bolder;
 }
 
-.container {
-  margin-top: 200px;
+.cont {
+  margin-top: 10rem;
   margin-left: 0px;
 }
 #txt1 {
   color: #ed9834;
-  font-size: 60px;
+  font-size: 3.75em; /*60px;*/
   font-weight: 900;
   font-family: Comic Sans MS, Comic Sans, cursive;
   font-style: italic;
 }
 #txt2 {
   color: white;
-  font-size: 50px;
+  font-size: 3em; /*50px;*/
   font-weight: 400;
-  margin-top: opx;
+  margin-top: 0px;
 }
 
 .d-flex {
-  margin-top: 30px;
+  /*margin-top: 30px;*/
 }
-.mx-auto {
+.section-title {
   text-align: center;
-  margin-top: 50px;
-  padding-bottom: 50px;
+  /*margin-top: 50px;
+  padding-bottom: 50px;*/
   color: #ed9834;
   font-size: 50px;
+  margin-bottom:4rem;
 }
+
 i {
   color: #ed9834;
   /* margin-left: 100px; */
   margin-right: 10px;
 }
 #registertxt {
-  width: 200px;
   text-align: justify;
 }
 
 #tutortxt {
-  width: 250px;
   text-align: justify;
 }
 .flex-column {
@@ -72,7 +71,6 @@ i {
 }
 
 #learnttxt {
-  width: 280px;
   text-align: justify;
 }
 #learnheader {
@@ -92,11 +90,15 @@ i {
   /* position: relative; */
   /* background: url("/assets/images/best-free-online-college-courses.jpg")
     no-repeat center center; */
-  margin-top: 150px;
-  height: 400px;
+  
+  margin-top: 6.25rem; /*100 px*/
+  /*height: 400px;*/
+}
+.freetrial_area_inner{
+  padding: 5rem 0px;
 }
 
-#button2 {
+.button2 {
   border: 1px #333 solid;
   padding: 10px;
   background-color: white;
@@ -104,22 +106,21 @@ i {
   -moz-border-radius: 50px;
   border-radius: 100px;
   color: #ed9834;
-  width: 450px;
+  width:100%;
   font-size: 45px;
 }
-#get_started {
+
+.get_started {
   text-align: center;
-  /* margin-left: 150px; */
-  margin-top: 50px;
-  margin: 0 auto;
+  /* margin-left: 150px; 
+  margin-top: 50px;*/
+  margin: 5rem auto;
 }
 
-#freetrialtxt {
+.freetrialtxt {
   color: white;
   font-size: 60px;
   font-weight: 400;
-  margin-top: 50px;
-  margin-bottom: 50px;
 }
 
 .card {
@@ -128,7 +129,6 @@ i {
   border-bottom-right-radius: 100px;
   border-top-left-radius: 30px;
   border-top-right-radius: 30px;
-  width: 450px;
 }
 /* #subject_card1 {
   margin-left: 300px;
@@ -140,19 +140,17 @@ i {
   margin-top: 100px;
 } */
 
-#it_workstxt {
+.it_workstxt {
   color: #52aabb;
-  margin-bottom: 100px;
+  margin-bottom: 5rem;
 }
 .works_section {
-  margin-top: 100px;
+  margin-top: 5rem;
 }
-#yelow_bg {
+.yelow_bg {
   background-color: #ed9834;
-  /* width: 900px;
-  height: 500px; */
 }
-#img-fa-kid {
+.img-fa-kid {
   background: url("/assets/images/Kids-Studying-from-Home-bro.png") no-repeat
     center center;
   -webkit-background-size: cover;
@@ -160,14 +158,15 @@ i {
   -o-background-size: cover;
   background-size: cover;
   width: 100%;
+  padding:6.5rem;
 }
 
-#p_container_works {
+.p_container_works {
   margin: 0 auto;
+  padding:3rem 0;
 }
 
 #it_works_area {
-  height: 500px;
 }
 
 .card-img-top {
@@ -180,27 +179,28 @@ i {
 .card-title {
   color: #ed9834;
   text-align: center;
-  font-size: 35px;
+  font-size: 2.125rem;
 }
-#p-it-workstxt {
+
+.p_container_works p {
   color: white;
   font-size: 20px;
   text-align: center;
+  margin:1rem 3rem;
 }
-.p-it-workstxt1 {
-  margin-top: 80px;
-}
-#works_container {
-  margin: auto;
+
+.works_container {
+  /*margin: auto;*/
   /* width: fit-content; */
   /* padding: 0;
   width: 100%; */
 }
 
-#lesson_container {
+.lesson_container {
   margin: auto;
+  margin-top:5rem;
 }
-#first_row_sub {
+.first_row_sub {
   margin-bottom: 50px;
 }
 
@@ -212,15 +212,15 @@ i {
   -moz-border-radius: 50px;
   border-radius: 150px;
   color: #52aabb;
-  width: 700px;
+  width: 100%;
   font-size: 45px;
   margin-top: -40px;
 }
 
-#button4_area {
-  margin-top: 150px;
+.button4_warp {
+  margin-top: 5rem;
 }
-#button4 {
+.button4 {
   background: #52aabb;
   border: 1px #333 solid;
   padding: 20px;
@@ -229,22 +229,23 @@ i {
   -moz-border-radius: 50px;
   border-radius: 150px;
   color: white;
-  width: 500px;
   font-size: 45px;
-  margin-top: -40px;
 }
 
 .pana_area {
   background: whitesmoke;
+  margin-top:5rem;
 }
 
-#pana_container {
+.pana_section {
   margin: 0 auto;
+  padding:4rem 0;
 }
 .footer_area {
   /* margin: 0 auto; */
   background: #52aabb;
-  height: 500px;
+  padding-top:4rem;
+  color:#fff;
 }
 
 #footer_container {
@@ -261,9 +262,9 @@ i {
 }
 
 .logo_footer {
-  margin-top: 100px;
-  width: 400px;
+  margin-top: 5rem;
 }
+
 .joinus_area {
   background: linear-gradient(
       rgba(237, 152, 52, 1),
@@ -276,10 +277,12 @@ i {
   -o-background-size: cover;
   background-size: cover;
   margin-top: 0px;
-  height: 500px;
 }
-#joinus_container {
+.joinus_container {
   margin: 0 auto;
+  padding: 4rem 0;
+  color:#fff;
+  text-align: center;
 }
 
 .last_home_banner_area1 {
