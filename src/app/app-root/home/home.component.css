@@ -94,8 +94,8 @@ i {
   margin-top: 6.25rem; /*100 px*/
   /*height: 400px;*/
 }
-.freetrial_area_inner{
-  padding: 5rem 0px;
+.freetrial_area_container{
+  padding: 5rem 15px;
 }
 
 .button2 {
@@ -140,9 +140,8 @@ i {
   margin-top: 100px;
 } */
 
-.it_workstxt {
+.blue_color {
   color: #52aabb;
-  margin-bottom: 5rem;
 }
 .works_section {
   margin-top: 5rem;
@@ -237,9 +236,8 @@ i {
   margin-top:5rem;
 }
 
-.pana_section {
-  margin: 0 auto;
-  padding:4rem 0;
+.pana_area_container {
+  padding:4rem 15px;
 }
 .footer_area {
   /* margin: 0 auto; */
@@ -279,8 +277,7 @@ i {
   margin-top: 0px;
 }
 .joinus_container {
-  margin: 0 auto;
-  padding: 4rem 0;
+  padding: 4rem 15px;
   color:#fff;
   text-align: center;
 }
