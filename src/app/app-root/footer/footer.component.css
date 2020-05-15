@@ -1,0 +1,24 @@
+.footer_area {
+  /* margin: 0 auto; */
+  background: #52aabb;
+  padding-top: 4rem;
+  color: #fff;
+  margin-top: 50px;
+}
+
+#footer_container {
+  margin: 0 auto;
+  color: white;
+}
+
+#semicircle_area {
+  margin-top: 200px;
+  height: 300px;
+  width: 900px;
+  border-radius: 180px 180px 0 0;
+  background: white;
+}
+
+.logo_footer {
+  margin-top: 5rem;
+}
