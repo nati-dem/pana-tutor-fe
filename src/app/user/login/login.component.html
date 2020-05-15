@@ -1,87 +1,94 @@
-<div class="container" id="sign_area">
-  <div class="row">
-    <div class="col" id="signin-form-area">
-      <div id="welcom-txt" class="mx-auto" style="width: 300px;">
-        WELCOME BACK
-      </div>
-      <div class="d-flex flex-column bd-highlight mb-3">
-        <div class="p-2 bd-highlight">
-          <button class="btn btn-primary" id="btn-fb">
-            sign in with facebook
-          </button>
-        </div>
-        <div class="p-2 bd-highlight">
-          <button class="btn btn-primary" id="btn-ggl">
-            sign in with facebook
-          </button>
-        </div>
-      </div>
-      <form
-        [formGroup]="loginForm"
-        (ngSubmit)="onSubmit()"
-        class="login100-form validate-form"
-      >
-        <span class="login100-form-logo">
-          <i class="zmdi zmdi-landscape"></i>
-        </span>
-
-        <div class="login100-form-title" id="singnin_title">
-          Sign in
-        </div>
-        <div class="container" id="form_container">
-          <div class="row justify-content-between">
-            <label for="">Email Addres </label>
-          </div>
-          <div class="row justify-content-between">
-            <input type="text" placeholder="Enter email" />
-          </div>
-          <div class="row justify-content-between">
-            <label for="">Password</label>
-          </div>
-          <div class="row justify-content-between">
-            <input type="password" placeholder="Enter password" />
-          </div>
-          <div class="row justify-content-start">
-            <!-- <div class="contact100-form-checkbox"> -->
-            <div class="col">
+<section class="container-fluid">
+  <div class="row justify-content-center">
+    <div class="col-12 col-sm-6 col-md-4 form-col">
+      <div class="container form-content">
+        <h1 class="welcom-text">WELCOME BACK</h1>
+        <button type="submit" class="btn btn-primary btn-block">
+          sign in with facebook
+        </button>
+        <button type="submit" class="btn btn-primary btn-block">
+          sign in with google
+        </button>
+        <div class="form-container justify-content-around">
+          <form
+            [formGroup]="loginForm"
+            (ngSubmit)="onSubmit()"
+            class="form-inner-container justify-content-around"
+          >
+            <h2 class="text-center">Sign In</h2>
+            <div
+              *ngIf="formErrors.length > 0"
+              class="alert alert-danger"
+              role="alert"
+            >
+              <li *ngFor="let formError of formErrors">
+                {{ formError }}
+              </li>
+            </div>
+            <div class="form-group">
+              <label for="exampleInputEmail1">Email address</label>
               <input
-                class="input-checkbox100"
-                id="ckb1"
-                type="checkbox"
-                name="remember-me"
+                formControlName="email"
+                type="email"
+                class="form-control"
+                id="email"
+                placeholder="Enter email"
               />
-              Remember me
+            </div>
+            <div class="form-group">
+              <label for="exampleInputPassword1">Password</label>
+              <input
+                formControlName="password"
+                type="password"
+                class="form-control"
+                id="password"
+                placeholder="Enter password"
+              />
+            </div>
+            <div class="form-check">
+              <input
+                type="checkbox"
+                class="form-check-input"
+                id="exampleCheck1"
+              />
+              <label class="form-check-label" for="exampleCheck1"
+                >Remember me</label
+              >
             </div>
 
-            <!-- </div> -->
-          </div>
-          <div class="row">
-            <button class="btn btn-primary" id="submtbtn">Submit</button>
-          </div>
-          <div class="row">
-            <div class="d-flex justify-content-end"></div>
-          </div>
+            <button
+              class="btn btn-primary btn-block"
+              type="submit"
+              [disabled]="!loginForm.valid || isFormProcessing"
+            >
+              Submit
+              <span
+                *ngIf="isFormProcessing"
+                class="spinner-border spinner-border-sm"
+                role="status"
+                aria-hidden="true"
+              ></span>
+            </button>
+            <div class="d-flex justify-content-end">
+              <p>Forgot <a href="">password?</a></p>
+            </div>
+          </form>
         </div>
-
-        <div class="text-center p-t-90">
-          <a class="txt1" href="#">
-            Forgot Password?
-          </a>
-        </div>
-      </form>
-    </div>
-    <div class="col" id="signin-area">
-      <div class="d-flex align-items-end flex-column" style="height: 200px;">
-        <!-- <div class="p-2">Flex item</div>
-        <div class="p-2">Flex item</div> -->
-        <div class="p-2">Flex item</div>
       </div>
-      <div class="d-flex align-self-baseline" id="signin_txt">
-        Aligned flex item
+    </div>
+    <div class="col-md-4 p-col">
+      <div class="p-container">
+        <div class="d-flex justify-content-around">
+          <p class="p-text">
+            EDUCATION IS THE BEST PASSPORT FOR THE FUTURE,FOR TOMMOROW BELONGS
+            TO THOSE WHO PREPARE FOR IT TODAY.
+          </p>
+        </div>
       </div>
     </div>
   </div>
-</div>
+</section>
+
 <footer class="footer_area">
   <div class="container" id="footer_container">
     <div class="row">

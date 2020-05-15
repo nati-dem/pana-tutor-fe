@@ -51,7 +51,7 @@
   padding-bottom: 50px;*/
   color: #ed9834;
   font-size: 50px;
-  margin-bottom:4rem;
+  margin-bottom: 4rem;
 }
 
 i {
@@ -90,11 +90,11 @@ i {
   /* position: relative; */
   /* background: url("/assets/images/best-free-online-college-courses.jpg")
     no-repeat center center; */
-  
+
   margin-top: 6.25rem; /*100 px*/
   /*height: 400px;*/
 }
-.freetrial_area_container{
+.freetrial_area_container {
   padding: 5rem 15px;
 }
 
@@ -106,7 +106,7 @@ i {
   -moz-border-radius: 50px;
   border-radius: 100px;
   color: #ed9834;
-  width:100%;
+  width: 100%;
   font-size: 45px;
 }
 
@@ -157,12 +157,12 @@ i {
   -o-background-size: cover;
   background-size: cover;
   width: 100%;
-  padding:6.5rem;
+  padding: 6.5rem;
 }
 
 .p_container_works {
   margin: 0 auto;
-  padding:3rem 0;
+  padding: 3rem 0;
 }
 
 #it_works_area {
@@ -185,7 +185,7 @@ i {
   color: white;
   font-size: 20px;
   text-align: center;
-  margin:1rem 3rem;
+  margin: 1rem 3rem;
 }
 
 .works_container {
@@ -197,7 +197,7 @@ i {
 
 .lesson_container {
   margin: auto;
-  margin-top:5rem;
+  margin-top: 5rem;
 }
 .first_row_sub {
   margin-bottom: 50px;
@@ -233,17 +233,17 @@ i {
 
 .pana_area {
   background: whitesmoke;
-  margin-top:5rem;
+  margin-top: 5rem;
 }
 
 .pana_area_container {
-  padding:4rem 15px;
+  padding: 4rem 15px;
 }
 .footer_area {
   /* margin: 0 auto; */
   background: #52aabb;
-  padding-top:4rem;
-  color:#fff;
+  padding-top: 4rem;
+  color: #fff;
 }
 
 #footer_container {
@@ -278,7 +278,7 @@ i {
 }
 .joinus_container {
   padding: 4rem 15px;
-  color:#fff;
+  color: #fff;
   text-align: center;
 }
 
@@ -317,4 +317,45 @@ i {
   width: 400px;
   font-size: 45px;
   /* font-weight: bolder; */
+}
+
+.joinus-text {
+  font-size: 100px;
+  font-family: Comic Sans MS, Comic Sans, cursive;
+  font-style: italic;
+  font-weight: bolder;
+}
+
+.button5 {
+  background: transparent;
+  border: 1px white solid;
+  padding: 10px;
+  /* width: 300px; */
+  -webkit-border-radius: 200px;
+  -moz-border-radius: 50px;
+  border-radius: 100px;
+  color: white;
+  font-size: 45px;
+}
+
+.join-input {
+  border: 1px white solid;
+  padding: 25px;
+  -webkit-border-radius: 200px;
+  -moz-border-radius: 50px;
+  border-radius: 100px;
+}
+
+input::-webkit-input-placeholder {
+  color: black;
+  font-size: 20px;
+}
+input:-moz-placeholder {
+  color: black;
+}
+input::-moz-placeholder {
+  color: black;
+}
+input:-ms-input-placeholder {
+  color: black;
 }
