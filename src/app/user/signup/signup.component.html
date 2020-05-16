@@ -1,8 +1,8 @@
 <section class="container-fluid">
   <div class="row justify-content-center">
     <div class="col-md-4 col-1-container">
-      <div class="container form-content">
-        <h1 class="text-center">CREATE ACCOUNT</h1>
+      <div class="form-content">
+        <h1 class="mb-4 text-center">CREATE ACCOUNT</h1>
         <button type="submit" class="btn btn-primary btn-block">
           sign in with Facebook
         </button>
@@ -84,7 +84,7 @@
               <div class="form-check">
                 <input
                   type="radio"
-                  class="form-check-input"
+                  class="col-1 form-check-input"
                   id="exampleCheck1"
                 />
                 <label class="form-check-label" for="exampleCheck1">
@@ -94,22 +94,19 @@
             </div>
             <button
               type="submit"
-              class="btn btn-primary btn-block"
-              [disabled]="!signupForm.valid || isFormProcessing"
-            >
+              class="mt-3 btn btn-primary btn-block"
+              [disabled]="!signupForm.valid || isFormProcessing" >
               Submit
               <span
                 *ngIf="isFormProcessing"
                 class="spinner-border spinner-border-sm"
                 role="status"
-                aria-hidden="true"
-              ></span>
+                aria-hidden="true"></span>
             </button>
             <div
               *ngIf="formErrors.length > 0"
               class="alert alert-danger mt-2"
-              role="alert"
-            >
+              role="alert">
               <li *ngFor="let formError of formErrors">
                 {{ formError }}
               </li>
@@ -118,42 +115,14 @@
         </div>
       </div>
     </div>
-    <div class="col-md-4 col-2-container">
+    <div class="col-md-4 col-2-container d-flex align-items-end">
       <p class="p-text">
         THE ONLY PERSON WHO IS EDUCATED IS THE ONE WHO HAS LEARNED HOW TO LEARN
       </p>
     </div>
   </div>
 </section>
-<footer class="footer_area">
-  <div class="container" id="footer_container">
-    <div class="row">
-      <div class="col-4">
-        <div class="d-flex flex-column justify-content-start">
-          <h2>Choose a Subject</h2>
-          <p>Math</p>
-          <p>English</p>
-          <p>Science</p>
-          <p>Coding</p>
-          <p>Chemistry</p>
-          <p>Physics</p>
-        </div>
-      </div>
-      <div class="col-4" id="semicircle_area">
-        <div class="d-flex align-items-end">
-          <img class="logo_footer" src="assets/Tutor-web.png" alt="" />
-        </div>
-      </div>
-      <div class="col-4">
-        <div class="d-flex flex-column justify-content-end">
-          <h2>Any Questions?</h2>
-          <p>0911180348</p>
-          <p>info@</p>
-        </div>
-      </div>
-    </div>
-  </div>
-</footer>
+
 <!-- <p>Signup page..</p>
 
 <div class="col-md-6">

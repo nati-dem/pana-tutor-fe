@@ -3,7 +3,6 @@
   background: #52aabb;
   padding-top: 4rem;
   color: #fff;
-  margin-top: 50px;
 }
 
 #footer_container {
@@ -11,11 +10,11 @@
   color: white;
 }
 
-#semicircle_area {
-  margin-top: 200px;
-  height: 300px;
-  width: 900px;
-  border-radius: 180px 180px 0 0;
+.semicircle_area {
+  margin-top: 100px;
+  height: 250px;
+  width: 100%;
+  border-radius: 300px 300px 0 0;
   background: white;
 }
 

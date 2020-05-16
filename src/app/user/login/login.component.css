@@ -24,7 +24,7 @@ label {
 
 .p-text {
   color: white;
-  margin-top: 350px;
+  /*margin-top: 350px;*/
   font-size: 30px;
 }
 .p-col {
@@ -35,29 +35,4 @@ label {
   -moz-background-size: cover;
   -o-background-size: cover;
   background-size: cover;
-}
-
-.footer_area {
-  /* margin: 0 auto; */
-  margin-top: 100px;
-  background: #52aabb;
-  height: 400px;
-}
-
-#footer_container {
-  margin: 0 auto;
-  color: white;
-}
-
-#semicircle_area {
-  margin-top: 200px;
-  height: 200px;
-  width: 900px;
-  border-radius: 180px 180px 0 0;
-  background: white;
-}
-
-.logo_footer {
-  margin-top: 50px;
-  width: 400px;
 }
