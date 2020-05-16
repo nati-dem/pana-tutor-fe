@@ -1,0 +1,88 @@
+.container-fluid {
+  margin-top: 60px;
+}
+label {
+  font-weight: bold;
+}
+.welcom-text {
+  color: #52aabb;
+  text-align: center;
+  margin-bottom: 2rem;
+}
+.form-col {
+  background: whitesmoke;
+}
+.form-container {
+  background: white;
+  /* margin: 0px; */
+}
+.form-inner-container {
+  margin: 20px;
+}
+.form-content {
+  padding: 50px;
+}
+
+.p-col {
+  background: linear-gradient(rgb(80, 175, 180), rgba(0, 0, 0, 0.5)),
+    url("/assets/images/best-free-online-college-courses.jpg") no-repeat center
+      center;
+  -webkit-background-size: cover;
+  -moz-background-size: cover;
+  -o-background-size: cover;
+  background-size: cover;
+}
+
+.container-fluid {
+  margin-top: 60px;
+}
+.col-1-container {
+  background: whitesmoke;
+}
+
+.col-2-container {
+  background: linear-gradient(rgba(237, 152, 52, 1), rgba(0, 0, 0, 0.5)),
+    url("/assets/images/edtech7.png") no-repeat center center;
+  -webkit-background-size: cover;
+  -moz-background-size: cover;
+  -o-background-size: cover;
+  background-size: cover;
+}
+
+.signup-title {
+  color: rgba(237, 152, 52, 1);
+  /* margin-top: 0px; */
+  margin-bottom: 2rem;
+  text-align: center;
+}
+
+.p-text {
+  color: white;
+  font-size: 30px;
+  margin-top: 25rem;
+  margin-left: 2rem;
+  /* text-align: justify; */
+  /* line-height: 1.6; */
+  /* text-align: center; */
+  /* width: 500px; */
+}
+
+.signup-form input {
+  outline: none;
+  border: none;
+  width: 100%;
+  position: relative;
+  border-bottom: 0.5px solid blue;
+  margin: 8px 0px;
+  padding: 10px;
+}
+div.signup-form {
+  margin-bottom: 3rem;
+}
+
+app-form-validation-template {
+  position: absolute;
+  /* top: 100%;
+  left: 0;
+  width: 100%; */
+}

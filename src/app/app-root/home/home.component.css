@@ -42,9 +42,6 @@
   margin-top: 0px;
 }
 
-.d-flex {
-  /*margin-top: 30px;*/
-}
 .section-title {
   text-align: center;
   /*margin-top: 50px;
@@ -91,9 +88,9 @@ i {
   /* background: url("/assets/images/best-free-online-college-courses.jpg")
     no-repeat center center; */
 
-  margin-top: 6.25rem; /*100 px*/
-  /*height: 400px;*/
+  margin-top: 6.25rem;
 }
+
 .freetrial_area_container {
   padding: 5rem 15px;
 }
@@ -165,9 +162,6 @@ i {
   padding: 3rem 0;
 }
 
-#it_works_area {
-}
-
 .card-img-top {
   height: 200px;
   border-bottom-left-radius: 50px;
@@ -186,13 +180,6 @@ i {
   font-size: 20px;
   text-align: center;
   margin: 1rem 3rem;
-}
-
-.works_container {
-  /*margin: auto;*/
-  /* width: fit-content; */
-  /* padding: 0;
-  width: 100%; */
 }
 
 .lesson_container {

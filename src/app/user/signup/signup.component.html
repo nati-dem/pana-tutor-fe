@@ -2,7 +2,7 @@
   <div class="row justify-content-center">
     <div class="col-md-4 col-1-container">
       <div class="container form-content">
-        <h1 class="text-center">CREATE ACCOUNT</h1>
+        <h1 class="signup-title">CREATE ACCOUNT</h1>
         <button type="submit" class="btn btn-primary btn-block">
           sign in with Facebook
         </button>
@@ -13,7 +13,7 @@
           <form
             [formGroup]="signupForm"
             (ngSubmit)="onSubmit()"
-            class="form-container-inner justify-content-around"
+            class="form-inner-container signup-form justify-content-around"
           >
             <div
               class="cross-validation"
@@ -22,7 +22,7 @@
                 (signupForm.touched || signupForm.dirty)
               "
             >
-              <div class="form-group">
+              <div class="form-group signup-form inputWithIcon">
                 <input
                   formControlName="name"
                   type="text"
@@ -31,11 +31,12 @@
                   id="name"
                   placeholder="User name"
                 />
+
                 <app-form-validation-template
                   [formControlsInp]="formControls.name"
                 ></app-form-validation-template>
               </div>
-              <div class="form-group">
+              <div class="form-group signup-form">
                 <input
                   formControlName="email"
                   type="email"
@@ -48,7 +49,7 @@
                   [formControlsInp]="formControls.email"
                 ></app-form-validation-template>
               </div>
-              <div class="form-group">
+              <div class="form-group signup-form">
                 <input
                   formControlName="password"
                   type="password"
@@ -60,7 +61,7 @@
                   [formControlsInp]="formControls.password"
                 ></app-form-validation-template>
               </div>
-              <div class="form-group">
+              <div class="form-group signup-form">
                 <input
                   formControlName="password2"
                   type="password"
@@ -72,7 +73,7 @@
                   [formControlsInp]="formControls.password2"
                 ></app-form-validation-template>
               </div>
-              <div class="form-group">
+              <div class="form-group signup-form">
                 <input
                   formControlName="phone"
                   type="text"
@@ -125,35 +126,7 @@
     </div>
   </div>
 </section>
-<footer class="footer_area">
-  <div class="container" id="footer_container">
-    <div class="row">
-      <div class="col-4">
-        <div class="d-flex flex-column justify-content-start">
-          <h2>Choose a Subject</h2>
-          <p>Math</p>
-          <p>English</p>
-          <p>Science</p>
-          <p>Coding</p>
-          <p>Chemistry</p>
-          <p>Physics</p>
-        </div>
-      </div>
-      <div class="col-4" id="semicircle_area">
-        <div class="d-flex align-items-end">
-          <img class="logo_footer" src="assets/Tutor-web.png" alt="" />
-        </div>
-      </div>
-      <div class="col-4">
-        <div class="d-flex flex-column justify-content-end">
-          <h2>Any Questions?</h2>
-          <p>0911180348</p>
-          <p>info@</p>
-        </div>
-      </div>
-    </div>
-  </div>
-</footer>
+
 <!-- <p>Signup page..</p>
 
 <div class="col-md-6">

@@ -11,7 +11,7 @@ import { ErrorMessage } from "./../../enum/message.enum";
 @Component({
   selector: "app-login",
   templateUrl: "./login.component.html",
-  styleUrls: ["./login.component.css"],
+  styleUrls: ["../../shared/shared-css.css"],
 })
 export class LoginComponent extends BaseFormGroup implements OnInit {
   loginForm = new FormGroup({

@@ -9,13 +9,15 @@ import { JwtModule } from "@auth0/angular-jwt";
 import {tokenGetter} from './util/helper';
 import { PageNotFoundComponent } from './app-root/page-not-found/page-not-found.component';
 import { NavbarComponent } from './app-root/navbar/navbar.component';
+import { FooterComponent } from './app-root/footer/footer.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     HomeComponent,
     PageNotFoundComponent,
-    NavbarComponent
+    NavbarComponent,
+    FooterComponent
   ],
   imports: [
     BrowserModule,

@@ -10,7 +10,7 @@ import { randomString } from "./../../util/helper";
 @Component({
   selector: "app-signup",
   templateUrl: "./signup.component.html",
-  styleUrls: ["./signup.component.css"],
+  styleUrls: ["../../shared/shared-css.css"],
 })
 export class SignupComponent extends BaseFormGroup implements OnInit {
   signupForm = new FormGroup({
