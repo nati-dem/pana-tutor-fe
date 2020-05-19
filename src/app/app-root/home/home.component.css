@@ -1,17 +1,20 @@
-.home_banner_area {
-  /* z-index: 1; */
-  /* height: 800px; */
-  /* position: relative; */
-  background: url("/assets/images/Young_African_American_female_.png") no-repeat
-    center center;
-  -webkit-background-size: cover;
-  -moz-background-size: cover;
-  -o-background-size: cover;
-  background-size: cover;
+img {
+  background: linear-gradient(rgba(0, 0, 0, 0.3), rgba(0, 0, 0, 0.7));
 }
-/* .banner_inner {
-  margin-top: 350px;
+/* .my-carousel {
+  position: absolute;
+  top: 0;
 } */
+
+.my-nav {
+  position: absolute;
+  width: 100%;
+  z-index: 999;
+  background: none;
+  border: 0;
+  border-radius: 0;
+}
+
 #button1 {
   border: 1px #333 solid;
   padding: 10px 20px;

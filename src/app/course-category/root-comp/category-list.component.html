@@ -1,79 +1,130 @@
-
-<h2>Topics</h2>
-<ul class="">
-<li *ngFor="let cat of categories"
-    [class.selected]="cat === selectedCat"> 
-    <a routerLink="/categories/{{cat.id}}">  
-        <span class="badge">{{cat.id}}</span> {{cat.name}} 
+<!-- <h2>Topics</h2>
+<ul class="wraper">
+  <li *ngFor="let cat of categories" [class.selected]="cat === selectedCat">
+    <a routerLink="/categories/{{ cat.id }}">
+      <span class="badge">{{ cat.id }}</span> {{ cat.name }}
     </a>
-</li>
+  </li>
+</ul> -->
 
-</ul>
+<div class="lesson-banner">
+  <h1 class="lesson-text">Lessons</h1>
+</div>
+<section>
+  <div class="container">
+    <h3>What subject or grade are you looking for</h3>
+    <input type="text" placeholder="Search for a subject" />
+  </div>
+</section>
 
-<div class="row">
+<div class="container">
+  <h1>POPULAR SUBJECTS</h1>
+  <div class="row">
     <div class="col-lg-4 mb-4 grid-margin">
-        <div class="card h-100">
+      <div class="card h-95">
+        <img src="/assets//images/math.jpg" class="card-img-top" alt="..." />
 
-            <h4 class="card-header">Card Title</h4>
-
-            <div class="card-body">
-
-            <p class="card-text">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Sapiente esse necessitatibus neque.</p>
-
-            </div>
-
-            <div class="card-footer">
-
-            <Button class="btn btn-primary">Learn More</Button>
-
-            </div>
-
+        <div class="card-body">
+          <h2 class="card-title">
+            MATHEMATICs
+          </h2>
+          <h3>GRADE 5</h3>
+          <p>10 Tutors Availabel</p>
         </div>
-
+      </div>
+      <div class="row">
+        <button>Find tutor</button>
+      </div>
     </div>
 
     <div class="col-lg-4 mb-4 grid-margin">
+      <div class="card h-100">
+        <h4 class="card-header">Card Title</h4>
 
-        <div class="card h-100">
-
-            <h4 class="card-header">Card Title</h4>
-
-            <div class="card-body">
-
-            <p class="card-text">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Reiciendis ipsam eos, nam perspiciatis natus commodi similique totam consectetur praesentium molestiae atque exercitationem ut consequuntur, sed eveniet, magni nostrum sint fuga.</p>
-
-            </div>
-
-            <div class="card-footer">
-
-            <Button class="btn btn-primary">Learn More</Button>
-
-            </div>
-
+        <div class="card-body">
+          <p class="card-text">
+            Lorem ipsum dolor sit amet, consectetur adipisicing elit. Reiciendis
+            ipsam eos, nam perspiciatis natus commodi similique totam
+            consectetur praesentium molestiae atque exercitationem ut
+            consequuntur, sed eveniet, magni nostrum sint fuga.
+          </p>
         </div>
 
+        <div class="card-footer">
+          <Button class="btn btn-primary">Learn More</Button>
+        </div>
+      </div>
     </div>
 
     <div class="col-lg-4 mb-4 grid-margin">
+      <div class="card h-100">
+        <h4 class="card-header">Card Title</h4>
 
-        <div class="card h-100">
-
-            <h4 class="card-header">Card Title</h4>
-
-            <div class="card-body">
-
-            <p class="card-text">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Sapiente esse necessitatibus neque.</p>
-
-            </div>
-
-            <div class="card-footer">
-
-            <Button class="btn btn-primary">Learn More</Button>
-
-            </div>
-
+        <div class="card-body">
+          <p class="card-text">
+            Lorem ipsum dolor sit amet, consectetur adipisicing elit. Sapiente
+            esse necessitatibus neque.
+          </p>
         </div>
 
+        <div class="card-footer">
+          <Button class="btn btn-primary">Learn More</Button>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-lg-4 mb-4 grid-margin">
+      <div class="card h-95">
+        <img src="/assets//images/math.jpg" class="card-img-top" alt="..." />
+
+        <div class="card-body">
+          <h2 class="card-title">
+            MATHEMATICs
+          </h2>
+          <h3>GRADE 5</h3>
+          <p>10 Tutors Availabel</p>
+        </div>
+      </div>
+      <div class="row">
+        <button>Find tutor</button>
+      </div>
     </div>
 
+    <div class="col-lg-4 mb-4 grid-margin">
+      <div class="card h-100">
+        <h4 class="card-header">Card Title</h4>
+
+        <div class="card-body">
+          <p class="card-text">
+            Lorem ipsum dolor sit amet, consectetur adipisicing elit. Reiciendis
+            ipsam eos, nam perspiciatis natus commodi similique totam
+            consectetur praesentium molestiae atque exercitationem ut
+            consequuntur, sed eveniet, magni nostrum sint fuga.
+          </p>
+        </div>
+
+        <div class="card-footer">
+          <Button class="btn btn-primary">Learn More</Button>
+        </div>
+      </div>
+    </div>
+
+    <div class="col-lg-4 mb-4 grid-margin">
+      <div class="card h-100">
+        <h4 class="card-header">Card Title</h4>
+
+        <div class="card-body">
+          <p class="card-text">
+            Lorem ipsum dolor sit amet, consectetur adipisicing elit. Sapiente
+            esse necessitatibus neque.
+          </p>
+        </div>
+
+        <div class="card-footer">
+          <Button class="btn btn-primary">Learn More</Button>
+        </div>
+      </div>
+    </div>
+  </div>
 </div>

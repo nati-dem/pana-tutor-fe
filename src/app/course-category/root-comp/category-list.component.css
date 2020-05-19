@@ -1,0 +1,8 @@
+.lesson-banner {
+  background-image: url("/assets/images/best-free-online-college-courses.jpg");
+  height: 100%;
+  -webkit-background-size: cover;
+  -moz-background-size: cover;
+  -o-background-size: cover;
+  background-size: cover;
+}

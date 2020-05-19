@@ -21,6 +21,7 @@ export class AppComponent implements OnInit, AfterViewInit {
   public isMenuCollapsed = false;
   public isHomePage = false;
   public isNotHomePage = true;
+  public isNotLessonPage = true;
 
   constructor(
     private location: Location,
@@ -34,9 +35,11 @@ export class AppComponent implements OnInit, AfterViewInit {
     this.router.events.subscribe((val) => {
       if (this.location.path() != "") {
         this.isNotHomePage = true;
+        this.isNotLessonPage = true;
         this.isHomePage = false;
       } else {
         this.isNotHomePage = false;
+        this.isNotLessonPage = false;
         this.isHomePage = true;
       }
     });

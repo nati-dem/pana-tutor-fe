@@ -1,82 +1,83 @@
-<header>
-  <nav class="navbar navbar-expand-lg navbar-light">
-    <a [routerLink]="'.'" class="navbar-brand logo_h"
-      ><img class="logo_image" src="assets/Tutor-web.png" alt=""
-    /></a>
-    <div class="container">
-      <button
-        class="navbar-toggler"
-        type="button"
-        (click)="isMenuCollapsed = !isMenuCollapsed"
-      >
-        &#9776;
-      </button>
+<nav class="navbar my-nav navbar-expand-lg navbar-light">
+  <!-- <div class="container"> -->
+  <a [routerLink]="'.'" class="navbar-brand logo_h"
+    ><img class="logo_image" src="assets/Tutor-web.png" alt=""
+  /></a>
+  <button
+    class="navbar-toggler"
+    type="button"
+    data-toggle="collapse"
+    data-target="#navbarSupportedContent"
+    aria-controls="navbarSupportedContent"
+    aria-expanded="false"
+    aria-label="Toggle navigation"
+  >
+    <span class="navbar-toggler-icon"></span>
+  </button>
 
-      <!-- Step 2: Add the ngbCollapse directive to the element below. -->
+  <div class="collapse navbar-collapse" id="navbarSupportedContent">
+    <ul class="navbar-nav ml-auto">
+      <li class="nav-item active">
+        <!-- <a class="nav-link" href="">Home</a> -->
+        <a
+          class="nav-link"
+          id="link1"
+          routerLinkActive="active"
+          [routerLink]="'.'"
+          (click)="isMenuCollapsed = true"
+          >Home</a
+        >
+      </li>
+      <li class="nav-item">
+        <a
+          class="nav-link"
+          id="link1"
+          routerLinkActive="active"
+          [routerLink]="'/categories'"
+          (click)="isMenuCollapsed = true"
+          >Lessons</a
+        >
+      </li>
+      <li class="nav-item">
+        <a
+          class="nav-link"
+          routerLinkActive="active"
+          [routerLink]="'.'"
+          (click)="isMenuCollapsed = true"
+          id="link1"
+          >Contact</a
+        >
+      </li>
+      <li class="nav-item">
+        <a
+          class="nav-link"
+          routerLinkActive="active"
+          [routerLink]="'/user/signup'"
+          (click)="isMenuCollapsed = true"
+          id="link2"
+          >SIGN UP</a
+        >
+      </li>
 
-      <div [ngbCollapse]="isMenuCollapsed" class="collapse navbar-collapse">
-        <ul class="nav navbar-nav menu_nav ml-auto">
-          <li class="nav-item active">
-            <!-- <a class="nav-link" href="">Home</a> -->
-            <a
-              class="nav-link"
-              id="link1"
-              routerLinkActive="active"
-              [routerLink]="'.'"
-              (click)="isMenuCollapsed = true"
-              >Home</a
-            >
-          </li>
-          <li class="nav-item">
-            <a
-              class="nav-link"
-              id="link1"
-              routerLinkActive="active"
-              [routerLink]="'/categories'"
-              (click)="isMenuCollapsed = true"
-              >Lessons</a
-            >
-          </li>
-          <li class="nav-item">
-            <a
-              class="nav-link"
-              routerLinkActive="active"
-              [routerLink]="'.'"
-              (click)="isMenuCollapsed = true"
-              id="link1"
-              >Contact</a
-            >
-          </li>
-          <li class="nav-item">
-            <a
-              class="nav-link"
-              routerLinkActive="active"
-              [routerLink]="'/user/signup'"
-              (click)="isMenuCollapsed = true"
-              id="link2"
-              >SIGN UP</a
-            >
-          </li>
+      <li class="nav-item">
+        <a
+          class="nav-link"
+          routerLinkActive="active"
+          [routerLink]="'/user'"
+          (click)="isMenuCollapsed = true"
+          id="link2"
+          >LOG IN</a
+        >
+      </li>
+    </ul>
+  </div>
+  <!-- </div> -->
+</nav>
 
-          <li class="nav-item">
-            <a
-              class="nav-link"
-              routerLinkActive="active"
-              [routerLink]="'/user'"
-              (click)="isMenuCollapsed = true"
-              id="link2"
-              >LOG IN</a
-            >
-          </li>
-        </ul>
-      </div>
-    </div>
-  </nav>
-
-  <!-- <nav class="navbar navbar-expand-lg navbar-light">
+<!-- <nav class="navbar navbar-expand-lg navbar-light">
     <div class="container">
      Brand and toggle get grouped for better mobile display -->
-  <!-- <a class="navbar-brand logo_h"
+<!-- <a class="navbar-brand logo_h"
         ><img src="assets/Tutor-web.png" alt=""
       /></a>
       <button
@@ -91,12 +92,12 @@
         <span class="icon-bar"></span> <span class="icon-bar"></span>
         <span class="icon-bar"></span>
       </button> -->
-  <!-- Collect the nav links, forms, and other content for toggling -->
-  <!-- <div class="collapse navbar-collapse offset" id="navbarSupportedContent">
+<!-- Collect the nav links, forms, and other content for toggling -->
+<!-- <div class="collapse navbar-collapse offset" id="navbarSupportedContent">
         <ul class="nav navbar-nav menu_nav ml-auto">
           <li class="nav-item active"> -->
-  <!-- <a class="nav-link" href="">Home</a> -->
-  <!-- <a
+<!-- <a class="nav-link" href="">Home</a> -->
+<!-- <a
               class="nav-link"
               id="link1"
               routerLinkActive="active"
@@ -123,9 +124,9 @@
     </div>
   </nav> -->
 
-  <!-- below is older -->
+<!-- below is older -->
 
-  <!--
+<!--
   <nav class="navbar navbar-expand-lg navbar-light bg-primary">
 
     <a class="navbar-brand" href="#">Navbar</a>
@@ -183,4 +184,4 @@
     </div>
 
   </nav>
---></header>
+-->
