@@ -18,6 +18,8 @@ label {
 }
 .form-inner-container {
   margin: 20px;
+  padding-bottom: 15px;
+  padding-top:5px;
 }
 .form-content {
   padding: 50px;
@@ -69,15 +71,16 @@ label {
   width: 100%;
   position: relative;
   border-bottom: 0.5px solid blue;
-  margin: 8px 0px;
+  margin: 8px 0px 0px 0px;
   padding: 10px;
 }
 div.signup-form {
-  margin-bottom: 3rem;
+  margin-bottom: 2.5rem;
 }
 
 app-form-validation-template {
   position: absolute;
+  font-size: 0.85rem;
   /* top: 100%;
   left: 0;
   width: 100%; */
