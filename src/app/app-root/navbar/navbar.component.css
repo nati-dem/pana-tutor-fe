@@ -51,6 +51,11 @@
   .header_area .navbar .nav .nav-item .nav-link {
     color: #ffffff;
   }
+
+  .logo_image {
+    height: 3rem;
+    width: 3rem;
+  }
 }
 .header_area .navbar .nav .nav-item .nav-link:after {
   display: none;
