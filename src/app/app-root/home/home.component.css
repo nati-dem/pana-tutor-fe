@@ -6,6 +6,10 @@ img {
   top: 0;
 } */
 
+.slider-row {
+  background-color: rgba(219, 34, 34, 0.5);
+  width: 100%;
+}
 .my-nav {
   position: absolute;
   width: 100%;
@@ -72,7 +76,11 @@ img {
   padding-bottom: 50px;*/
   color: #ed9834;
   font-size: 50px;
-  margin-bottom: 4rem;
+  margin-bottom: 3rem;
+}
+.choose-title {
+  font-size: 2rem;
+  font-weight: 400;
 }
 
 i {
@@ -82,14 +90,21 @@ i {
 }
 #registertxt {
   text-align: justify;
+  width: 20rem;
+  line-height: 1rem;
+  word-spacing: 0.2rem;
 }
 
+.choose-row {
+  /* line-height: 10rem; */
+  margin-bottom: 5rem;
+}
 #tutortxt {
   text-align: justify;
 }
-.flex-column {
+/* .flex-column {
   text-align: justify;
-}
+} */
 
 #learnttxt {
   text-align: justify;
@@ -100,8 +115,7 @@ i {
 }
 
 .freetrial_area {
-  background: linear-gradient(rgb(82, 170, 187), rgba(0, 0, 0, 0)),
-    url("/assets/images/online_tutoring_woman_laptop_1.png");
+  background: url("/assets/images/online_tutoring_woman_laptop_1.png");
   -webkit-background-size: cover;
   -moz-background-size: cover;
   -o-background-size: cover;
@@ -116,7 +130,13 @@ i {
 }
 
 .freetrial_area_container {
-  padding: 5rem 15px;
+  padding: 5rem 10px;
+}
+
+.my-row {
+  background-color: rgba(8, 195, 228, 0.479);
+
+  /* width: 100%; */
 }
 
 .button2 {
@@ -253,12 +273,7 @@ i {
 }
 
 .joinus_area {
-  background: linear-gradient(
-      rgba(237, 152, 52, 1),
-      rgba(0, 0, 0, 0.5),
-      rgba(237, 152, 52, 1)
-    ),
-    url("/assets/images/AdobeStock_79333393_860x420.png");
+  background: url("/assets/images/AdobeStock_79333393_860x420.png");
   -webkit-background-size: cover;
   -moz-background-size: cover;
   -o-background-size: cover;
@@ -277,6 +292,10 @@ i {
   padding: 4rem 15px;
   color: #fff;
   text-align: center;
+}
+
+.join-row {
+  background-color: rgba(237, 151, 52, 0.795);
 }
 
 .last_home_banner_area1 {

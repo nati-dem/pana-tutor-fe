@@ -8,17 +8,25 @@
 </ul> -->
 
 <div class="lesson-banner">
-  <h1 class="lesson-text">Lessons</h1>
+  <div class="row my-row justify-content-center">
+    <h1 class="lesson-text">Lessons</h1>
+  </div>
 </div>
 <section>
   <div class="container">
-    <h3>What subject or grade are you looking for</h3>
-    <input type="text" placeholder="Search for a subject" />
+    <h3 class="search-title">What subject or grade are you looking for</h3>
+    <div class="row justify-content-center">
+      <input
+        type="text"
+        class="search-input"
+        placeholder="Search for a subject"
+      />
+    </div>
   </div>
 </section>
 
-<div class="container">
-  <h1>POPULAR SUBJECTS</h1>
+<div class="container popular-sub-container">
+  <h1 class="popular-title">POPULAR SUBJECTS</h1>
   <div class="row">
     <div class="col-lg-4 mb-4 grid-margin">
       <div class="card h-95">
@@ -128,3 +136,32 @@
     </div>
   </div>
 </div>
+
+<section class="joinus_area">
+  <div class="row join-row">
+    <div class="container joinus_container">
+      <div class="row">
+        <h2 class="mx-auto joinus-text">
+          JOIN US ! <i class="fa fa-heart-o" style="color: white;"></i>
+        </h2>
+      </div>
+      <div class="row">
+        <p class="mx-auto join-p-text">
+          Recieve discounts,helpful tips, extra learning resources, and more.
+        </p>
+      </div>
+      <div class="row mt-5">
+        <input
+          class="mx-auto w-50 join-input"
+          type="text"
+          name=""
+          id=""
+          placeholder="Email Address"
+        />
+      </div>
+      <div class="row mt-5">
+        <button class="mx-auto w-25 button5">JOIN</button>
+      </div>
+    </div>
+  </div>
+</section>

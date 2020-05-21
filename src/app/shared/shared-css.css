@@ -19,7 +19,7 @@ label {
 .form-inner-container {
   margin: 20px;
   padding-bottom: 15px;
-  padding-top:5px;
+  padding-top: 5px;
 }
 .form-content {
   padding: 50px;
@@ -84,4 +84,16 @@ app-form-validation-template {
   /* top: 100%;
   left: 0;
   width: 100%; */
+}
+
+@media (max-width: 440px) {
+  .welcom-text {
+    font-size: 1.5rem;
+  }
+}
+
+@media (min-width: 780) {
+  .signup-title {
+    font-size: 1.5rem;
+  }
 }
