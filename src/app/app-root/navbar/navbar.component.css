@@ -53,8 +53,7 @@
   }
 
   .logo_image {
-    height: 3rem;
-    width: 3rem;
+    width: 8rem;
   }
 }
 .header_area .navbar .nav .nav-item .nav-link:after {
