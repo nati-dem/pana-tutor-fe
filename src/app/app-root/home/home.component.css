@@ -1,9 +1,8 @@
 img {
   background: linear-gradient(rgba(0, 0, 0, 0.3), rgba(0, 0, 0, 0.7));
 }
-/* .my-carousel {
-  position: absolute;
-  top: 0;
+/* .home_banner_area {
+  position: relative;
 } */
 
 .slider-row {
@@ -17,6 +16,51 @@ img {
   background: none;
   border: 0;
   border-radius: 0;
+}
+
+ngb-carousel {
+  width: 100%;
+  /* margin: 50px auto; */
+}
+
+ngb-carousel img {
+  width: 100%;
+  outline: none;
+}
+
+ngb-carousel {
+  width: inherit;
+  height: inherit;
+}
+
+.carousel-inner {
+  overflow: visible;
+}
+
+.carousel-item {
+  display: flex !important;
+  opacity: 0;
+  visibility: hidden;
+  transition: opacity 1.2s ease-in-out, visibility 1.2s;
+  z-index: -1;
+}
+
+.carousel-item.active {
+  opacity: 1;
+  visibility: visible;
+  z-index: 10;
+}
+
+.carousel-control-prev {
+  z-index: 20;
+}
+
+.carousel-control-next {
+  z-index: 20;
+}
+
+.carousel-indicators {
+  z-index: 20;
 }
 
 #button1 {
@@ -35,10 +79,10 @@ img {
   background-color: rgba(0, 0, 0, 1);
 }
 
-.carousel-caption {
+/* .carousel-caption {
   margin-bottom: -2rem;
   background-color: rgba(0, 0, 0, 0.3);
-}
+} */
 .home_banner_area {
   background: rgba(0, 0, 0, 0.5);
   -webkit-background-size: cover;
@@ -85,33 +129,42 @@ img {
 
 i {
   color: #ed9834;
-  /* margin-left: 100px; */
-  margin-right: 10px;
 }
-#registertxt {
+.registertxt {
   text-align: justify;
-  width: 20rem;
-  line-height: 1rem;
-  word-spacing: 0.2rem;
 }
 
-.choose-row {
-  /* line-height: 10rem; */
-  margin-bottom: 5rem;
+.choose-text {
+  text-align: justify;
+  /* word-spacing: 0rem; */
+  width: 300px;
+  line-height: 1rem;
 }
-#tutortxt {
+
+.tutortxt {
   text-align: justify;
 }
 /* .flex-column {
   text-align: justify;
 } */
 
-#learnttxt {
+.learnttxt {
   text-align: justify;
 }
 #learnheader {
   /* margin-left: 0px; */
   text-align: justify;
+}
+
+.register-header {
+  text-align: justify;
+}
+.find-header {
+  text-align: justify;
+}
+
+.icon-col {
+  margin-right: 1rem;
 }
 
 .freetrial_area {
@@ -440,9 +493,6 @@ input:-ms-input-placeholder {
     /* font-weight: bolder; */
   }
 
-  .carousel-caption {
-    margin-bottom: -2rem;
-  }
   .section-title {
     font-size: 25px;
   }

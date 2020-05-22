@@ -1,12 +1,12 @@
 .lesson-banner {
-  background: url("/assets/images/lesson2.jpg");
+  background: url("/assets/images/image (1).png");
   height: 500px;
 
   -webkit-background-size: cover;
   -moz-background-size: cover;
   -o-background-size: cover;
   background-size: cover;
-  margin-top: -6rem;
+  /* margin-top: -6rem; */
 }
 
 .lesson-text {
@@ -16,7 +16,7 @@
   font-family: Comic Sans MS, Comic Sans, cursive;
   font-weight: bolder;
 }
-.my-row {
+.lesson-content {
   background-color: rgba(0, 0, 0, 0.3);
   height: 100%;
 }

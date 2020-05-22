@@ -1,5 +1,53 @@
-<div class="home_banner_area">
-  <app-navbar class="my-nav"></app-navbar>
+<!-- <app-navbar class="my-nav"></app-navbar> -->
+<ngb-carousel class="my-carousel">
+  <ng-template ngbSlide>
+    <div class="picsum-img-wrapper">
+      <img
+        src="/assets/images/Young_African_American_female_.png"
+        alt="Random first slide"
+      />
+    </div>
+    <div class="carousel-caption">
+      <h1 id="txt1" class="align-self-start">ONLINE TUTORING</h1>
+      <div id="txt2" class="p-3">
+        <p>FOR YOUR KIDS</p>
+      </div>
+      <button id="button1">START FREE TRIAL</button>
+    </div>
+  </ng-template>
+  <ng-template ngbSlide>
+    <div class="picsum-img-wrapper">
+      <img
+        src="/assets/images/image_2020-05-12_18-12-32.png"
+        alt="Random second slide"
+      />
+    </div>
+    <div class="carousel-caption">
+      <h1 id="txt1" class="align-self-start">EXPERIENCED</h1>
+      <div id="txt2" class="p-3">
+        <p>TUTORS</p>
+      </div>
+      <button id="button6">START FREE TRIAL</button>
+    </div>
+  </ng-template>
+  <ng-template ngbSlide>
+    <div class="picsum-img-wrapper">
+      <img
+        src="/assets/images/image_2020-05-12_18-12-44.png"
+        alt="Random third slide"
+      />
+    </div>
+    <div class="carousel-caption">
+      <h1 id="txt1" class="align-self-start">VERY EASY</h1>
+      <div id="txt2" class="p-3">
+        <p>TO USE</p>
+      </div>
+      <button id="button6">START FREE TRIAL</button>
+    </div>
+  </ng-template>
+</ngb-carousel>
+
+<!-- <div class="home_banner_area">
   <div
     id="carouselExampleControls"
     class="my-carousel carousel slide"
@@ -103,7 +151,7 @@
       <span class="sr-only">Next</span>
     </a>
   </div>
-</div>
+</div> -->
 
 <div class="container get_started">
   <p class="section-title">
@@ -111,39 +159,39 @@
   </p>
   <div class="row justify-content-around mt-5">
     <div class="d-flex flex-row col-md-4">
-      <div class="flex-column">
+      <div class="flex-column icon-col">
         <i class="fa fa-check-square-o fa-5x" aria-hidden="true"></i>
       </div>
 
       <div class="flex-column">
-        <h2 class="p-1">REGISTER</h2>
-        <p class="p-1" id="registertxt">
+        <h2 class="p-1 register-header">REGISTER</h2>
+        <p class="p-1 registertxt">
           To browse through availabel tutors and courses,register.it will only
           take a minute
         </p>
       </div>
     </div>
     <div class="d-flex flex-row col-md-4">
-      <div class="flex-column">
+      <div class="flex-column icon-col">
         <i class="fa fa-user-o fa-5x" aria-hidden="true"></i>
       </div>
 
       <div class="flex-column">
-        <h2 class="p-1">FIND A TUTOR</h2>
-        <p class="p-1" id="tutortxt">
+        <h2 class="p-1 find-header">FIND A TUTOR</h2>
+        <p class="p-1 tutortxt">
           find a tutor who meets your requirment. All our tutors have been
           selected carfully to provide the best service for you.
         </p>
       </div>
     </div>
     <div class="d-flex flex-row col-md-4">
-      <div class="flex-column">
+      <div class="flex-column icon-col">
         <i class="fa fa-leanpub fa-5x" aria-hidden="true"></i>
       </div>
 
       <div class="flex-column">
         <h2 class="p-1" id="learnheader">LEARN</h2>
-        <p class="p-1" id="learnttxt">
+        <p class="p-1 learnttxt">
           Introduce your child to the platform and help them learn. We will be
           here to guid you every step of your way
         </p>
@@ -268,26 +316,26 @@
     <div class="section-title mx-auto">WHY CHOOSE PANA</div>
     <div class="row">
       <div class="d-flex flex-row choose-row col-md-6">
-        <div class="">
+        <div class="p-1">
           <i class="fa fa-clock-o fa-5x" aria-hidden="true"></i>
         </div>
 
-        <div class="">
+        <div class="p-1">
           <h3 class="p-1 choose-title">LEARN FROM THE BEST</h3>
-          <p class="p-1" id="registertxt">
+          <p class="p-2 choose-text">
             To browse through availabel tutors and courses,register.it will only
             take a minute
           </p>
         </div>
       </div>
-      <div class="d-flex flex-row choose-row col-md-6">
-        <div class="">
+      <div class="d-flex flex-row col-md-6">
+        <div class="p-1">
           <i class="fa fa-leanpub fa-5x" aria-hidden="true"></i>
         </div>
 
-        <div class="">
-          <h3 class="p-1 choose-title">WE COVER LOTS OF SUBJECTS</h3>
-          <p class="p-1" id="registertxt">
+        <div class="p-1">
+          <h3 class="choose-title">WE COVER LOTS OF SUBJECTS</h3>
+          <p class="p-2 choose-text">
             To browse through availabel tutors and courses,register.it will only
             take a minute
           </p>
@@ -296,26 +344,26 @@
     </div>
     <div class="row">
       <div class="d-flex flex-row choose-row col-md-6">
-        <div class="">
+        <div class="p-1">
           <i class="fa fa-clock-o fa-5x" aria-hidden="true"></i>
         </div>
 
-        <div class="">
+        <div class="p-1">
           <h2 class="p-1 choose-title">QUICK RESPONSE</h2>
-          <p class="p-1" id="registertxt">
+          <p class="p-1 choose-text">
             To browse through availabel tutors and courses,register.it will only
             take a minute
           </p>
         </div>
       </div>
       <div class="d-flex flex-row choose-row col-md-6">
-        <div class="">
+        <div class="p-1">
           <i class="fa fa-user-o fa-5x" aria-hidden="true"></i>
         </div>
 
-        <div class="">
+        <div class="p-1">
           <h2 class="p-1 choose-title">EASY TO USE</h2>
-          <p class="p-1" id="registertxt">
+          <p class="p-1 choose-text">
             To browse through availabel tutors and courses,register.it will only
             take a minute
           </p>
