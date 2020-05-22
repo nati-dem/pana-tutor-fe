@@ -88,9 +88,8 @@ i {
   /* margin-left: 100px; */
   margin-right: 10px;
 }
-#registertxt {
+.registertxt {
   text-align: justify;
-  width: 20rem;
   line-height: 1rem;
   word-spacing: 0.2rem;
 }
