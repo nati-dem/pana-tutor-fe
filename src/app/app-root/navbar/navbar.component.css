@@ -58,6 +58,9 @@
     width: 50%;
     justify-items: start;
   }
+  .logo_image {
+    width: 8rem;
+  }
   #link1 {
     color: white;
     /* font-size: 0.5rem; */

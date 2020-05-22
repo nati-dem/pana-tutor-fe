@@ -132,6 +132,8 @@ i {
 }
 .registertxt {
   text-align: justify;
+  line-height: 1rem;
+  word-spacing: 0.2rem;
 }
 
 .choose-text {
