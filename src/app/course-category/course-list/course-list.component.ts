@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import {Course} from '../../../../../pana-tutor-lib/model/course.interface'
+import {Course} from '../../../../../pana-tutor-lib/model/course/course.interface'
 import { ActivatedRoute } from '@angular/router';
 import { Location } from '@angular/common';
 import {CategoryService} from '../../service/category.service'

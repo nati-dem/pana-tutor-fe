@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import {Category} from '../../../../../pana-tutor-lib/model/category.interface'
+import {CourseCategory} from '../../../../../pana-tutor-lib/model/course/category.interface'
 import {CategoryService} from '../../service/category.service'
 
 @Component({
@@ -10,7 +10,7 @@ import {CategoryService} from '../../service/category.service'
 export class CategoryListComponent implements OnInit {
 
   categories = [];
-  selectedCat: Category;
+  selectedCat: CourseCategory;
 
   constructor(private categoryService: CategoryService) { }
 
@@ -22,7 +22,7 @@ export class CategoryListComponent implements OnInit {
     this.categories = this.categoryService.findCategories();
   }
 
-  onSelect(cat: Category): void {
+  onSelect(cat: CourseCategory): void {
     this.selectedCat = cat;
   }
 
