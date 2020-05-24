@@ -55,8 +55,8 @@
     background: #163967;
     /* color: white; */
     /* margin: ; */
-    width: 50%;
-    justify-items: start;
+    width: 55%;
+    /* justify-items: start; */
   }
   .logo_image {
     width: 8rem;
@@ -65,10 +65,12 @@
     color: white;
     /* font-size: 0.5rem; */
     font-weight: 200;
+    text-align: right;
   }
   #link2 {
     color: white;
     font-size: 1rem;
     font-weight: 200;
+    text-align: right;
   }
 }
