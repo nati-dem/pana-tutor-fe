@@ -136,8 +136,8 @@ i {
 
 .choose-text {
   text-align: justify;
-  /* word-spacing: 0rem; */
-  width: 300px;
+  /* word-spacing: 0rem; 
+  width: 300px;*/
   line-height: 1rem;
 }
 
@@ -324,32 +324,6 @@ i {
   padding: 4rem 15px;
 }
 
-.joinus_area {
-  background: url("/assets/images/AdobeStock_79333393_860x420.png");
-  -webkit-background-size: cover;
-  -moz-background-size: cover;
-  -o-background-size: cover;
-  background-size: cover;
-  margin-top: 0px;
-}
-
-.join-p-text {
-  font-size: 1.5rem;
-  /* width: 3rem; */
-  width: 350px;
-  font-family: "Roboto";
-  /* font-size: 1.5rem; */
-}
-.joinus_container {
-  padding: 4rem 15px;
-  color: #fff;
-  text-align: center;
-}
-
-.join-row {
-  background-color: rgba(237, 151, 52, 0.795);
-}
-
 .last_home_banner_area1 {
   /* background: url("/assets/images/image_2020-05-12_18-12-32.png") no-repeat
     center center; */
@@ -385,33 +359,6 @@ i {
   width: 400px;
   font-size: 45px;
   /* font-weight: bolder; */
-}
-
-.joinus-text {
-  font-size: 6rem;
-  font-family: Comic Sans MS, Comic Sans, cursive;
-  font-style: italic;
-  font-weight: bolder;
-}
-
-.button5 {
-  background: transparent;
-  border: 1px white solid;
-  padding: 10px;
-  /* width: 300px; */
-  -webkit-border-radius: 200px;
-  -moz-border-radius: 50px;
-  border-radius: 100px;
-  color: white;
-  font-size: 45px;
-}
-
-.join-input {
-  border: 1px white solid;
-  padding: 25px;
-  -webkit-border-radius: 200px;
-  -moz-border-radius: 50px;
-  border-radius: 100px;
 }
 
 input::-webkit-input-placeholder {
@@ -538,33 +485,6 @@ input:-ms-input-placeholder {
     -webkit-border-radius: 200px;
     -moz-border-radius: 50px;
     border-radius: 150px;
-    color: white;
-    font-size: 1.5rem;
-  }
-
-  .joinus-text {
-    font-size: 3rem;
-    font-family: Comic Sans MS, Comic Sans, cursive;
-    font-style: italic;
-    font-weight: bolder;
-  }
-  .join-input {
-    border: 1px white solid;
-    padding: 15px;
-    -webkit-border-radius: 100px;
-    -moz-border-radius: 50px;
-    border-radius: 100px;
-    width: 300px;
-  }
-
-  .button5 {
-    background: transparent;
-    border: 1px white solid;
-    padding: 5px;
-    width: 300px;
-    -webkit-border-radius: 200px;
-    -moz-border-radius: 50px;
-    border-radius: 100px;
     color: white;
     font-size: 1.5rem;
   }
