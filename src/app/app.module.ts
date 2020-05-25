@@ -1,15 +1,15 @@
-import { BrowserModule } from '@angular/platform-browser';
-import { NgModule } from '@angular/core';
-import { HttpClientModule } from '@angular/common/http';
-import { AppRoutingModule } from './app-routing.module';
-import { AppComponent } from './app-root/app.component';
-import {NgbModule} from '@ng-bootstrap/ng-bootstrap';
-import { HomeComponent } from './app-root/home/home.component';
+import { BrowserModule } from "@angular/platform-browser";
+import { NgModule } from "@angular/core";
+import { HttpClientModule } from "@angular/common/http";
+import { AppRoutingModule } from "./app-routing.module";
+import { AppComponent } from "./app-root/app.component";
+import { NgbModule } from "@ng-bootstrap/ng-bootstrap";
+import { HomeComponent } from "./app-root/home/home.component";
 import { JwtModule } from "@auth0/angular-jwt";
-import {tokenGetter} from './util/helper';
-import { PageNotFoundComponent } from './app-root/page-not-found/page-not-found.component';
-import { NavbarComponent } from './app-root/navbar/navbar.component';
-import { FooterComponent } from './app-root/footer/footer.component';
+import { tokenGetter } from "./util/helper";
+import { PageNotFoundComponent } from "./app-root/page-not-found/page-not-found.component";
+import { NavbarComponent } from "./app-root/navbar/navbar.component";
+import { FooterComponent } from "./app-root/footer/footer.component";
 
 @NgModule({
   declarations: [
@@ -17,8 +17,9 @@ import { FooterComponent } from './app-root/footer/footer.component';
     HomeComponent,
     PageNotFoundComponent,
     NavbarComponent,
-    FooterComponent
+    FooterComponent,
   ],
+  exports: [NavbarComponent],
   imports: [
     BrowserModule,
     AppRoutingModule,
@@ -29,11 +30,11 @@ import { FooterComponent } from './app-root/footer/footer.component';
         tokenGetter: tokenGetter,
         //whitelistedDomains: ["example.com"],
         //blacklistedRoutes: ["example.com/examplebadroute/"],
-        skipWhenExpired: true
-      }
-    })
+        skipWhenExpired: true,
+      },
+    }),
   ],
   providers: [],
-  bootstrap: [AppComponent]
+  bootstrap: [AppComponent],
 })
-export class AppModule { }
+export class AppModule {}

@@ -8,6 +8,9 @@ export const environment = {
   loginUrl: "/auth/login",
   signupUrl: "/auth/register",
   tokenValidationUrl: "/auth/token-validate",
+  categoryUrl: "/categories",
+  courseByCategoryIdUrl: "/categories/courses",
+  featureMediaUrl: "/media",
 };
 
 /*

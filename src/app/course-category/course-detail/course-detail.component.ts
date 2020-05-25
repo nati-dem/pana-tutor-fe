@@ -1,5 +1,5 @@
 import { Component, OnInit, Input } from '@angular/core';
-import {Course} from '../../../../../pana-tutor-lib/model/course.interface'
+import {Course} from '../../../../../pana-tutor-lib/model/course/course.interface'
 
 @Component({
   selector: 'app-course-detail',

@@ -1,6 +1,6 @@
 <section class="container-fluid">
   <div class="row justify-content-center">
-    <div class="col-12 col-sm-6 col-md-4 form-col">
+    <div class="col-lg-4 col-sm-10 col-xs-12 col-md-6 form-col">
       <div class="container form-content">
         <h1 class="mb-4 welcom-text">WELCOME BACK</h1>
         <button type="submit" class="btn btn-primary btn-block">
@@ -13,7 +13,8 @@
           <form
             [formGroup]="loginForm"
             (ngSubmit)="onSubmit()"
-            class="pt-2 form-inner-container justify-content-around">
+            class="pt-2 form-inner-container justify-content-around"
+          >
             <h2 class="text-center">Sign In</h2>
             <div
               *ngIf="formErrors.length > 0"
@@ -41,21 +42,21 @@
                 type="password"
                 class="form-control"
                 id="password"
-                placeholder="Enter password"/>
+                placeholder="Enter password"
+              />
             </div>
             <div class="form-check">
-              <input
-                type="checkbox"
-                class="form-check-input"
-                id="rememberMe"/>
+              <input type="checkbox" class="form-check-input" id="rememberMe" />
               <label class="form-check-label" for="rememberMe"
-                >Remember me</label>
+                >Remember me</label
+              >
             </div>
 
             <button
               class="mt-3 btn btn-primary btn-block"
               type="submit"
-              [disabled]="!loginForm.valid || isFormProcessing">
+              [disabled]="!loginForm.valid || isFormProcessing"
+            >
               Submit
               <span
                 *ngIf="isFormProcessing"
@@ -71,8 +72,10 @@
         </div>
       </div>
     </div>
-    <div class="col-md-4 p-col d-flex align-items-end">
-      <div class="p-container ">
+    <div
+      class="col-lg-4 col-sm-10 col-xs-12 col-md-6 p-col d-flex align-items-end"
+    >
+      <div class="p-container">
         <div class="">
           <p class="p-text">
             EDUCATION IS THE BEST PASSPORT FOR THE FUTURE,FOR TOMMOROW BELONGS

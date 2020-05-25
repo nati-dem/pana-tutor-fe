@@ -1,6 +1,10 @@
 .container-fluid {
   margin-top: 60px;
 }
+
+.icon {
+  margin-bottom: -10rem;
+}
 label {
   font-weight: bold;
 }
@@ -19,7 +23,7 @@ label {
 .form-inner-container {
   margin: 20px;
   padding-bottom: 15px;
-  padding-top:5px;
+  padding-top: 5px;
 }
 .form-content {
   padding: 50px;
@@ -61,12 +65,8 @@ label {
 .p-text {
   color: white;
   font-size: 30px;
-  margin-top: 25rem;
+  /* margin-top: 10rem; */
   margin-left: 2rem;
-  /* text-align: justify; */
-  /* line-height: 1.6; */
-  /* text-align: center; */
-  /* width: 500px; */
 }
 
 .signup-form input {
@@ -88,4 +88,20 @@ app-form-validation-template {
   /* top: 100%;
   left: 0;
   width: 100%; */
+}
+
+@media (max-width: 440px) {
+  .welcom-text {
+    font-size: 1.5rem;
+  }
+}
+@media (max-width: 768px) {
+  .form-content {
+    padding: 20px;
+  }
+}
+@media (min-width: 769px) {
+  .signup-title {
+    font-size: 1.5rem;
+  }
 }

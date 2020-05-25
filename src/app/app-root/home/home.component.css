@@ -1,17 +1,68 @@
-.home_banner_area {
-  /* z-index: 1; */
-  /* height: 800px; */
-  /* position: relative; */
-  background: url("/assets/images/Young_African_American_female_.png") no-repeat
-    center center;
-  -webkit-background-size: cover;
-  -moz-background-size: cover;
-  -o-background-size: cover;
-  background-size: cover;
+img {
+  background: linear-gradient(rgba(0, 0, 0, 0.3), rgba(0, 0, 0, 0.7));
 }
-/* .banner_inner {
-  margin-top: 350px;
+/* .home_banner_area {
+  position: relative;
 } */
+
+.slider-row {
+  background-color: rgba(219, 34, 34, 0.5);
+  width: 100%;
+}
+.my-nav {
+  position: absolute;
+  width: 100%;
+  z-index: 999;
+  background: none;
+  border: 0;
+  border-radius: 0;
+}
+
+ngb-carousel {
+  width: 100%;
+  /* margin: 50px auto; */
+}
+
+ngb-carousel img {
+  width: 100%;
+  outline: none;
+}
+
+ngb-carousel {
+  width: inherit;
+  height: inherit;
+}
+
+.carousel-inner {
+  overflow: visible;
+}
+
+.carousel-item {
+  display: flex !important;
+  opacity: 0;
+  visibility: hidden;
+  transition: opacity 1.2s ease-in-out, visibility 1.2s;
+  z-index: -1;
+}
+
+.carousel-item.active {
+  opacity: 1;
+  visibility: visible;
+  z-index: 10;
+}
+
+.carousel-control-prev {
+  z-index: 20;
+}
+
+.carousel-control-next {
+  z-index: 20;
+}
+
+.carousel-indicators {
+  z-index: 20;
+}
+
 #button1 {
   border: 1px #333 solid;
   padding: 10px 20px;
@@ -24,12 +75,33 @@
   font-weight: bolder;
 }
 
+.carousel-item {
+  background-color: rgba(0, 0, 0, 1);
+}
+
+/* .carousel-caption {
+  margin-bottom: -2rem;
+  background-color: rgba(0, 0, 0, 0.3);
+} */
+.home_banner_area {
+  background: rgba(0, 0, 0, 0.5);
+  -webkit-background-size: cover;
+  -moz-background-size: cover;
+  -o-background-size: cover;
+  background-size: cover;
+}
+
+.my-flex {
+  margin-top: 8rem;
+}
+
 .cont {
   margin-top: 10rem;
   margin-left: 0px;
 }
 #txt1 {
   color: #ed9834;
+  margin-top: 5rem;
   font-size: 3.75em; /*60px;*/
   font-weight: 900;
   font-family: Comic Sans MS, Comic Sans, cursive;
@@ -48,36 +120,54 @@
   padding-bottom: 50px;*/
   color: #ed9834;
   font-size: 50px;
-  margin-bottom: 4rem;
+  margin-bottom: 3rem;
+}
+.choose-title {
+  font-size: 2rem;
+  font-weight: 400;
 }
 
 i {
   color: #ed9834;
-  /* margin-left: 100px; */
-  margin-right: 10px;
 }
-#registertxt {
+.registertxt {
   text-align: justify;
 }
 
-#tutortxt {
+.choose-text {
+  text-align: justify;
+  /* word-spacing: 0rem; 
+  width: 300px;*/
+  line-height: 1rem;
+}
+
+.tutortxt {
   text-align: justify;
 }
-.flex-column {
+/* .flex-column {
+  text-align: justify;
+} */
+
+.learnttxt {
+  text-align: justify;
+}
+.learnheader {
   text-align: justify;
 }
 
-#learnttxt {
+.register-header {
   text-align: justify;
 }
-#learnheader {
-  margin-left: 0px;
+.find-header {
   text-align: justify;
+}
+
+.icon-col {
+  margin-right: 1rem;
 }
 
 .freetrial_area {
-  background: linear-gradient(rgb(82, 170, 187), rgba(0, 0, 0, 0)),
-    url("/assets/images/online_tutoring_woman_laptop_1.png");
+  background: url("/assets/images/online_tutoring_woman_laptop_1.png");
   -webkit-background-size: cover;
   -moz-background-size: cover;
   -o-background-size: cover;
@@ -92,7 +182,13 @@ i {
 }
 
 .freetrial_area_container {
-  padding: 5rem 15px;
+  padding: 5rem 10px;
+}
+
+.my-row {
+  background-color: rgba(8, 195, 228, 0.479);
+
+  /* width: 100%; */
 }
 
 .button2 {
@@ -154,7 +250,8 @@ i {
   -o-background-size: cover;
   background-size: cover;
   width: 100%;
-  padding: 6.5rem;
+  padding: 10rem;
+  /* margin-left: -5rem; */
 }
 
 .p_container_works {
@@ -191,7 +288,7 @@ i {
 }
 
 #button3 {
-  border: 1px #333 solid;
+  border: 1px whitesmoke solid;
   padding: 40px;
   background-color: white;
   -webkit-border-radius: 200px;
@@ -225,25 +322,6 @@ i {
 
 .pana_area_container {
   padding: 4rem 15px;
-}
-
-.joinus_area {
-  background: linear-gradient(
-      rgba(237, 152, 52, 1),
-      rgba(0, 0, 0, 0.5),
-      rgba(237, 152, 52, 1)
-    ),
-    url("/assets/images/AdobeStock_79333393_860x420.png");
-  -webkit-background-size: cover;
-  -moz-background-size: cover;
-  -o-background-size: cover;
-  background-size: cover;
-  margin-top: 0px;
-}
-.joinus_container {
-  padding: 4rem 15px;
-  color: #fff;
-  text-align: center;
 }
 
 .last_home_banner_area1 {
@@ -283,33 +361,6 @@ i {
   /* font-weight: bolder; */
 }
 
-.joinus-text {
-  font-size: 6rem;
-  font-family: Comic Sans MS, Comic Sans, cursive;
-  font-style: italic;
-  font-weight: bolder;
-}
-
-.button5 {
-  background: transparent;
-  border: 1px white solid;
-  padding: 10px;
-  /* width: 300px; */
-  -webkit-border-radius: 200px;
-  -moz-border-radius: 50px;
-  border-radius: 100px;
-  color: white;
-  font-size: 45px;
-}
-
-.join-input {
-  border: 1px white solid;
-  padding: 25px;
-  -webkit-border-radius: 200px;
-  -moz-border-radius: 50px;
-  border-radius: 100px;
-}
-
 input::-webkit-input-placeholder {
   color: black;
   font-size: 20px;
@@ -322,4 +373,119 @@ input::-moz-placeholder {
 }
 input:-ms-input-placeholder {
   color: black;
+}
+/* Here is the code for Responsive Footer */
+/* You can remove below code if you don't want Footer to be responsive */
+/* */
+@media (max-width: 999px) {
+  .my-flex {
+    align-content: center;
+  }
+  #txt1 {
+    color: #ed9834;
+    text-align: center;
+    /* margin-top: 100px; */
+    font-size: 1.5em; /*60px;*/
+    font-weight: 900;
+    font-family: Comic Sans MS, Comic Sans, cursive;
+    font-style: italic;
+    margin-bottom: 0 !important;
+    line-height: 1rem;
+  }
+  #txt2 {
+    color: white;
+    text-align: center;
+    font-size: 1em; /*50px;*/
+    font-weight: 400;
+    margin-top: 0rem;
+    line-height: 0rem;
+    margin-bottom: 0rem;
+  }
+  #button1 {
+    justify-self: center;
+    border: 1px #333 solid;
+    margin-top: 0rem;
+    padding: 5px 10px;
+    background-color: white;
+    -webkit-border-radius: 100px;
+    -moz-border-radius: 25px;
+    border-radius: 50px;
+    color: #52aabb;
+    font-size: 1rem;
+  }
+
+  #button6 {
+    justify-self: center;
+    border: 1px #333 solid;
+    margin-top: 0rem;
+    padding: 5px 10px;
+    background-color: white;
+    -webkit-border-radius: 100px;
+    -moz-border-radius: 25px;
+    border-radius: 50px;
+    color: #ed9834;
+    font-size: 1rem;
+    width: 150px;
+
+    /* border: 1px #333 solid;
+    padding: 10px;
+    background-color: white;
+    -webkit-border-radius: 100px;
+    -moz-border-radius: 25px;
+    border-radius: 50px;
+    color: #ed9834;
+    width: 200px;
+    font-size: 1rem; */
+    /* font-weight: bolder; */
+  }
+
+  .section-title {
+    font-size: 25px;
+  }
+  .freetrialtxt {
+    font-size: 2.5rem;
+  }
+
+  .button2 {
+    border: 1px #333 solid;
+    padding: 6px;
+    background-color: white;
+    -webkit-border-radius: 200px;
+    -moz-border-radius: 50px;
+    border-radius: 100px;
+    color: #ed9834;
+    width: 100%;
+    font-size: 2rem;
+  }
+
+  #button3 {
+    border: 1px whitesmoke solid;
+    padding: 10px;
+    background-color: white;
+    -webkit-border-radius: 100px;
+    -moz-border-radius: 25px;
+    border-radius: 100px;
+    color: #52aabb;
+    width: 100%;
+    font-size: 2rem;
+    margin-top: -20px;
+    margin-bottom: 2rem;
+  }
+  .card-title {
+    font-size: 1.5rem;
+  }
+}
+
+@media (max-width: 530px) {
+  .button4 {
+    background: #52aabb;
+    border: 1px #333 solid;
+    padding: 20px;
+
+    -webkit-border-radius: 200px;
+    -moz-border-radius: 50px;
+    border-radius: 150px;
+    color: white;
+    font-size: 1.5rem;
+  }
 }

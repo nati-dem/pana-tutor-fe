@@ -1,12 +1,12 @@
 <!-- <section class="home_banner_area"> -->
-<app-navbar *ngIf="isNotHomePage"></app-navbar>
+<app-navbar></app-navbar>
 <!-- <div class="container" style="margin-top: 5rem !important;">
   <div class="row">
     <div class="container"> -->
 <router-outlet></router-outlet>
 <!-- <div class="p-2 bd-highlight"> -->
 <app-home *ngIf="isHomePage"></app-home>
-<app-footer></app-footer>
+<app-footer [showJoinUsSectionInp]="showJoinUsSection"></app-footer>
 <!-- </div> -->
 <!-- </div> -->
 
