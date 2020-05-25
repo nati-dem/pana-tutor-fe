@@ -25,8 +25,12 @@ export class CourseListComponent implements OnInit {
   }
 
   getCoursesByCategory(id) {
-    this.courses = this.categoryService.findCoursesByCategory(id);
-    console.log(this.courses);
+    console.log('getting courses by cat-id: ', id)
+    this.categoryService.findCoursesByCategory(id)
+    .subscribe(res => {
+      this.courses = res;
+      console.log(this.courses);
+    });
   }
 
   onSelect(course: Course): void {
