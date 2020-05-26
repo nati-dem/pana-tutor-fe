@@ -15,10 +15,8 @@ import { catchError } from "rxjs/operators";
 export class CategoryService {
   constructor(private http: HttpClient) {}
 
-  findCategories(): Observable<CourseCategory[]> {
-    return this.http.get<CourseCategory[]>(
-      env.userApiBaseUrl + env.categoryUrl
-    );
+  findCategories(): Observable<any> {
+    return this.http.get<any>(env.userApiBaseUrl + env.categoryUrl);
   }
 
   findCoursesByCategory(id: number) {
@@ -33,18 +31,14 @@ export class CategoryService {
   //   );
   // }
 
-  getService(id: number): Observable<CourseCategory[]> {
+  getService(id: number): Observable<any> {
     const url = `${env.userApiBaseUrl + env.courseByCategoryIdUrl}/${id}`;
-    return this.http.get<CourseCategory[]>(url);
+    return this.http.get<any>(url);
   }
 
-  getImages(imageId: number): Observable<File> {
-    let result: Observable<any> = this.http.get(
-      env.userApiBaseUrl + env.featureMediaUrl + imageId,
-      { responseType: "blob" }
-    );
-
-    return result;
+  getImages(id: number): Observable<any> {
+    const url = `${env.userApiBaseUrl + env.featureMediaUrl}/${id}`;
+    return this.http.get<any>(url);
   }
 }
 export const sampleCategories: CourseCategory[] = [

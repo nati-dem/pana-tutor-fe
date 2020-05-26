@@ -1,10 +1,17 @@
 <div *ngIf="selectedCourseInp">
-    <hr/>
-    <h2>{{selectedCourseInp.name | uppercase}} Details</h2>
-    <div><span>id: </span>{{selectedCourseInp.id}}</div>
-    <div>
-        <label>name:
-        <input [(ngModel)]="selectedCourseInp.name" placeholder="name"/>
-        </label>
-    </div>
+  <hr />
+  <h2>{{ selectedCourseInp.name | uppercase }} Details</h2>
+  <div><span>id: </span>{{ selectedCourseInp.id }}</div>
+  <div><span>status: </span>{{ selectedCourseInp.status }}</div>
+  <div><span>type: </span>{{ selectedCourseInp.type }}</div>
+
+  <div>
+    <label
+      >name:
+      <input
+        [(ngModel)]="selectedCourseInp.title.rendered"
+        placeholder="name"
+      />
+    </label>
+  </div>
 </div>

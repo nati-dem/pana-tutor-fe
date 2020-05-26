@@ -3,6 +3,7 @@ import { Course } from "../../../../../pana-tutor-lib/model/course/course.interf
 import { ActivatedRoute } from "@angular/router";
 import { Location } from "@angular/common";
 import { CategoryService } from "../../service/category.service";
+import { CourseCategory } from "../../../../../pana-tutor-lib/model/course/category.interface";
 
 @Component({
   selector: "app-course-list",
@@ -11,7 +12,7 @@ import { CategoryService } from "../../service/category.service";
 })
 export class CourseListComponent implements OnInit {
   courses = [];
-  selectedCourse: Course;
+  selectedCourse: any;
 
   constructor(
     private route: ActivatedRoute,
@@ -25,7 +26,9 @@ export class CourseListComponent implements OnInit {
   }
 
   getCoursesByCategory(id) {
-    this.courses = this.categoryService.findCoursesByCategory(id);
+    this.categoryService.getService(id).subscribe((data) => {
+      this.courses = data;
+    });
     console.log(this.courses);
   }
 
