@@ -40,7 +40,7 @@ export class CategoryListComponent implements OnInit {
   }
   findCategory(id) {
     this.categoryService
-      .getService(id)
+      .findCoursesByCategory(id)
       .subscribe((category) => category.find((category) => category.id == id));
   }
   onSelect(cat: CourseCategory): void {

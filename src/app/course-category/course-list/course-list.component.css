@@ -1,0 +1,33 @@
+.logo_image {
+  height: 2rem;
+}
+
+.card-title {
+  color: #52aabb;
+  margin-top: 1rem;
+}
+.my-row {
+  margin-left: 5rem;
+}
+.course-banner {
+  background: #163967;
+
+  height: 100px;
+  position: sticky;
+  position: sticky; /* Required for Safari */
+  position: sticky;
+  width: 100%;
+  color: white;
+  z-index: 1;
+}
+.my-container {
+  margin-top: 2rem;
+}
+
+.title {
+  position: sticky; /* Required for Safari */
+  position: sticky;
+  height: 50px;
+  text-align: center;
+  top: 0;
+}

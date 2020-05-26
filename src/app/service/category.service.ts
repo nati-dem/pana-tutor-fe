@@ -20,9 +20,12 @@ export class CategoryService {
   }
 
   findCoursesByCategory(id: number) {
-    return filter(sampleCourses, (o) => {
+    /*return filter(sampleCourses, (o) => {
       if (o.category == id) return o;
-    });
+    });*/
+    return this.http.get<Course[]>(
+      `${env.userApiBaseUrl}${env.courseByCategoryIdUrl}/${id}`
+    );
   }
 
   // findCoursByCategoryid(id: number): Observable<Course[]> {

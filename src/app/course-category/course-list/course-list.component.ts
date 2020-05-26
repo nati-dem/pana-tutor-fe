@@ -12,7 +12,9 @@ import { CourseCategory } from "../../../../../pana-tutor-lib/model/course/categ
 })
 export class CourseListComponent implements OnInit {
   courses = [];
+  categories = [];
   selectedCourse: any;
+  selectedCategory: any;
 
   constructor(
     private route: ActivatedRoute,
@@ -23,17 +25,26 @@ export class CourseListComponent implements OnInit {
   ngOnInit() {
     const id = +this.route.snapshot.paramMap.get("cat-id");
     this.getCoursesByCategory(id);
+    this.getCategory();
   }
 
   getCoursesByCategory(id) {
-    this.categoryService.getService(id).subscribe((data) => {
-      this.courses = data;
+    console.log("getting courses by cat-id: ", id);
+    this.categoryService.getService(id).subscribe((res) => {
+      this.courses = res;
+      console.log(this.courses);
     });
-    console.log(this.courses);
+  }
+
+  getCategory() {
+    this.categoryService.findCategories().subscribe((res) => {
+      this.categories = res;
+    });
   }
 
   onSelect(course: Course): void {
     this.selectedCourse = course;
+    this.selectedCategory = this.categories;
   }
 
   goBack(): void {
