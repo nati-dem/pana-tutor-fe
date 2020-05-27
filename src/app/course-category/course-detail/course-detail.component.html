@@ -1,5 +1,10 @@
-<div class="container">
+<div class="content">
   <div *ngIf="selectedCourseInp">
+    <div class="course-banner title">
+      <div class="inner-banner">
+        <h1 class="title">{{ selectedCourseInp.title.rendered }}</h1>
+      </div>
+    </div>
     <div class="container">
       <div class="row">
         <div class="col-4 my-col">
@@ -176,3 +181,4 @@
     </div>
   </div>
 </div>
+<p>{{ selectedCourse | json }}`</p>
