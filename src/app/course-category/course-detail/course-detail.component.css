@@ -1,0 +1,57 @@
+.my-col {
+  overflow-y: scroll;
+}
+
+hr {
+  width: 100%;
+}
+
+.yello-hr {
+  background-color: #ed9834;
+  width: 100%;
+}
+p {
+  color: #52aabb;
+}
+.card {
+  margin: 1rem;
+}
+.card-title {
+  color: #52aabb;
+
+  margin: 1rem;
+}
+
+.modal-title {
+  color: #52aabb;
+}
+.course-title {
+  color: #52aabb;
+  text-align: center;
+  margin: 1rem;
+}
+.sidebar-title {
+  color: #52aabb;
+  text-align: center;
+  margin: 2rem;
+}
+
+.sub-course {
+  color: #52aabb;
+  /* margin: 2rem; */
+  text-align: center;
+}
+
+.button1 {
+  justify-self: center;
+  border: 2px #ed9834 solid;
+  margin-top: -3rem;
+  padding: 10px 15px;
+  background-color: white;
+  -webkit-border-radius: 50px;
+  -moz-border-radius: 50px;
+  border-radius: 50px;
+  color: #52aabb;
+  font-size: 2rem;
+  width: 50%;
+}

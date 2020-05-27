@@ -1,19 +1,21 @@
-import { Component, OnInit, Input } from '@angular/core';
-import {Course} from '../../../../../pana-tutor-lib/model/course/course.interface'
+import { Component, OnInit, Input } from "@angular/core";
+import { NgbModal } from "@ng-bootstrap/ng-bootstrap";
+import { Course } from "../../../../../pana-tutor-lib/model/course/course.interface";
 
 @Component({
-  selector: 'app-course-detail',
-  templateUrl: './course-detail.component.html',
-  styleUrls: ['./course-detail.component.css']
+  selector: "app-course-detail",
+  templateUrl: "./course-detail.component.html",
+  styleUrls: ["./course-detail.component.css"],
 })
 export class CourseDetailComponent implements OnInit {
-
   @Input() selectedCourseInp: Course;
 
-  constructor() { }
+  constructor(private modalService: NgbModal) {}
 
-  ngOnInit(): void {
+  ngOnInit(): void {}
+  closeResult: string;
+
+  openVerticallyCentered(content) {
+    this.modalService.open(content, { centered: true });
   }
-
 }
-

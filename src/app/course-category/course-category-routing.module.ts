@@ -3,10 +3,12 @@ import { Routes, RouterModule } from "@angular/router";
 
 import { CategoryListComponent } from "./root-comp/category-list.component";
 import { CourseListComponent } from "./course-list/course-list.component";
+import { CourseDetailComponent } from "./course-detail/course-detail.component";
 
 const routes: Routes = [
   { path: "", component: CategoryListComponent },
   { path: "courses/:cat-id", component: CourseListComponent },
+  { path: "detail", component: CourseDetailComponent },
 ];
 
 @NgModule({
