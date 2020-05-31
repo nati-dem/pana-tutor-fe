@@ -1,0 +1,125 @@
+.my-col {
+  overflow-y: scroll;
+  margin-top: 2rem;
+}
+.content {
+  margin-top: 5rem;
+}
+i {
+  text-align: end;
+  justify-content: flex-end;
+}
+
+hr {
+  width: 100%;
+}
+
+.yello-hr {
+  background-color: #ed9834;
+  width: 100%;
+}
+p {
+  color: #52aabb;
+}
+.card {
+  margin: 1rem;
+}
+.card-title {
+  color: #52aabb;
+
+  margin: 1rem;
+}
+
+.modal-title {
+  color: #52aabb;
+}
+.course-title {
+  color: #52aabb;
+  text-align: center;
+  margin: 1rem;
+}
+.sidebar-title {
+  color: #52aabb;
+  text-align: center;
+  margin: 2rem;
+}
+
+.sub-course {
+  color: #52aabb;
+  /* margin: 2rem; */
+  text-align: center;
+}
+
+.button1 {
+  justify-self: center;
+  border: 2px #ed9834 solid;
+  margin-top: -3rem;
+  padding: 10px 15px;
+  background-color: white;
+  -webkit-border-radius: 50px;
+  -moz-border-radius: 50px;
+  border-radius: 50px;
+  color: #52aabb;
+  font-size: 2rem;
+  width: 50%;
+}
+
+.cos {
+  background: #163967;
+  margin-top: 0rem;
+  /* height: 100px; */
+  position: sticky;
+  position: sticky; /* Required for Safari */
+  position: sticky;
+  width: 100%;
+  color: white;
+  z-index: 1;
+}
+
+.course-banner {
+  background: url("/assets/images/image (1).png");
+  /*height: 500px;*/
+  -webkit-background-size: cover;
+  -moz-background-size: cover;
+  -o-background-size: cover;
+  background-size: cover;
+  margin-top: -2rem;
+  position: sticky;
+  position: sticky; /* Required for Safari */
+  position: sticky;
+  width: 100%;
+  z-index: 1;
+}
+
+.course-text {
+  margin-top: 10rem;
+  margin-bottom: 12rem;
+  color: white;
+  font-size: 5rem;
+  font-family: Comic Sans MS, Comic Sans, cursive;
+  font-weight: bolder;
+}
+.course-content {
+  background-color: rgba(0, 0, 0, 0.3);
+  height: 100%;
+}
+
+.title {
+  position: sticky; /* Required for Safari */
+  position: sticky;
+  height: 50px;
+  text-align: center;
+  top: 0;
+}
+
+@media (max-width: 720) {
+  .my-col {
+    display: none;
+    overflow: hidden;
+    overflow-y: hidden;
+    overflow-x: hidden;
+  }
+  .sub-course {
+    display: none;
+  }
+}

@@ -1,10 +1,19 @@
-<div class="content">
-  <div *ngIf="selectedCourseInp">
-    <div class="course-banner title">
-      <div class="inner-banner">
-        <h1 class="title">{{ selectedCourseInp.title.rendered }}</h1>
-      </div>
+<!-- <div class="course-banner title">
+  <div class="inner-banner">
+    <h1 class="title">{{ selectedCourseInp.title.rendered }}</h1>
+  </div>
+</div> -->
+
+<div *ngIf="selectedCourseInp" class="course-banner">
+  <div class="course-content">
+    <div class="row my-row justify-content-center">
+      <h5 class="course-text">{{ selectedCourseInp.title.rendered }}</h5>
     </div>
+  </div>
+</div>
+
+<div class="container content">
+  <div *ngIf="selectedCourseInp">
     <div class="container">
       <div class="row">
         <div class="col-4 my-col">
@@ -14,15 +23,17 @@
             </h2>
             <hr />
           </div>
-          <div class="row sub-course justify-content-justify">
-            <h5>
+          <div class="row sub-course">
+            <h5 class="justify-content-justify">
               Counting
+              <i class="fa fa-check-circle-o" aria-hidden="true"></i>
             </h5>
             <hr />
           </div>
-          <div class="row sub-course justify-content-justify">
-            <h5>
+          <div class="row sub-course">
+            <h5 class="justify-content-justify">
               Counting Objects
+              <i class="fa fa-check-circle-o" aria-hidden="true"></i>
             </h5>
             <hr />
           </div>
@@ -165,20 +176,19 @@
       </div>
     </div>
     <hr />
-    <h2>{{ selectedCourseInp.name | uppercase }} Details</h2>
+    <h2>{{ selectedCourseInp.name }} Details</h2>
     <div><span>id: </span>{{ selectedCourseInp.id }}</div>
     <div><span>status: </span>{{ selectedCourseInp.status }}</div>
     <div><span>type: </span>{{ selectedCourseInp.type }}</div>
 
-    <div>
+    <!-- <div>
       <label
         >name:
         <input
-          [(ngModel)]="selectedCourseInp.title.rendered"
+         [(ngModel)]="selectedCourseInp.title.rendered"
           placeholder="name"
         />
       </label>
-    </div>
+    </div> -->
   </div>
 </div>
-<p>{{ selectedCourse | json }}`</p>

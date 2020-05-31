@@ -1,6 +1,7 @@
 import { Component, OnInit, Input } from "@angular/core";
 import { ActivatedRoute, Router, NavigationStart } from "@angular/router";
 import { NgbModal } from "@ng-bootstrap/ng-bootstrap";
+
 import { Course } from "../../../../../pana-tutor-lib/model/course/course.interface";
 
 @Component({
