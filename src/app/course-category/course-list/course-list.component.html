@@ -9,19 +9,16 @@
     <div
       *ngFor="let course of courses"
       [class.selected]="course === selectedCourse"
-      class="card mb-4"
-    >
+      class="card mb-4">
       <div class="row">
         <img
           class="rounded-circle logo_image m-3"
           src="/assets/images/Tutor-web.png"
-          alt=""
-        />
+          alt=""/>
 
         <div class="card-title">
-          <a (click)="onSelect(course)">
-            <h3>{{ course.title.rendered }}</h3></a
-          >
+          <span class="pointer"  routerLink="/categories/course-summary/{{ course.id }}">
+            <h3>{{ course.title.rendered }}</h3></span>
         </div>
       </div>
       <div class="row my-row">
@@ -49,7 +46,8 @@
       </div>
     </div>
   </div>
-
+</div>
+  <!--
   <div *ngIf="notSelected" class="card mb-4">
     <div class="row">
       <img
@@ -86,7 +84,7 @@
       </div>
     </div>
   </div>
-</div>
+</div> -->
 
 <!-- the first code  -->
 
@@ -102,5 +100,6 @@
     </li>
   </ul> -->
 
-<!-- <app-course-detail [selectedCourseInp]="selectedCourse"></app-course-detail> -->
+<!-- <app-course-detail [selectedCourseInp]="selectedCourse"></app-course-detail> 
 <app-course-summary [selectedCourseInp]="selectedCourse"></app-course-summary>
+-->

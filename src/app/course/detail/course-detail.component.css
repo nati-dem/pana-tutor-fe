@@ -83,7 +83,7 @@ p {
   -moz-background-size: cover;
   -o-background-size: cover;
   background-size: cover;
-  margin-top: -2rem;
+  /*margin-top: -2rem;*/
   position: sticky;
   position: sticky; /* Required for Safari */
   position: sticky;

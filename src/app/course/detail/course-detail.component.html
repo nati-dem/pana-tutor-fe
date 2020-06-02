@@ -1,36 +1,12 @@
-
-<div class="course-banner title">
-    <div class="inner-banner">
-      <h1 class="title">Course Summary</h1>
-    </div>
-</div>
-
-<div class="container my-container">
-    <div *ngIf="course" class="inner mb-4">
-        <div class="row">
-          <img
-            class="rounded-circle logo_image m-3"
-            src="/assets/images/Tutor-web.png"
-            alt=""/>
-  
-          <div class="card-title">
-            <span class="pointer"  >
-              <h3>{{ course.title.rendered }}</h3></span>
-          </div>
-        </div>
-        <div class="">
-            <span [innerHtml]="course.content.rendered"></span>
-        </div>
-        <div class="">
-            <p>Price: {{ course.acf.price }} </p>
-            <button routerLink="/course/view/{{ course.id }}" 
-            class="btn btn-info">Go To Course</button>
-        </div>
-    </div>
-</div>
-
-<!--
-<div *ngIf="selectedCourseInp" class="course-banner">
+<!-- <div class="course-banner title">
+  <div class="inner-banner">
+    <h1 class="title">{{ selectedCourseInp.title.rendered }}</h1>
+  </div>
+</div> 
+*ngIf="selectedCourseInp"
+-->
+<div *ngIf="selectedCourseInp" >
+  <div class="course-banner">
     <div class="course-content">
       <div class="row my-row justify-content-center">
         <h5 class="course-text">{{ selectedCourseInp.title.rendered }}</h5>
@@ -39,7 +15,7 @@
   </div>
 
   <div class="container content">
-    <div *ngIf="selectedCourseInp">
+    <div >
       <div class="container">
         <div class="row">
           <div class="col-4 my-col">
@@ -116,7 +92,7 @@
                     </button>
                   </div>
                 </ng-template>
-  
+
                 <p (click)="openVerticallyCentered(content2)">
                   <i class="fa fa-play" aria-hidden="true"></i> Counting Objects
                 </p>
@@ -156,7 +132,7 @@
                 </button>
               </div>
             </ng-template>
-  
+
             <div class="card">
               <div class="card-title">
                 <h2>
@@ -202,20 +178,20 @@
         </div>
       </div>
       <hr />
-      <h2>{{ selectedCourseInp.name | uppercase }} Details</h2>
+      <h2>{{ selectedCourseInp.name }} Details</h2>
       <div><span>id: </span>{{ selectedCourseInp.id }}</div>
       <div><span>status: </span>{{ selectedCourseInp.status }}</div>
       <div><span>type: </span>{{ selectedCourseInp.type }}</div>
-  
-      <div>
+
+      <!-- <div>
         <label
           >name:
           <input
-            [(ngModel)]="selectedCourseInp.title.rendered"
+          [(ngModel)]="selectedCourseInp.title.rendered"
             placeholder="name"
           />
         </label>
-      </div>
+      </div> -->
     </div>
   </div>
--->
+</div>

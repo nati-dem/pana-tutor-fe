@@ -21,8 +21,7 @@ export class CourseListComponent implements OnInit {
     private route: ActivatedRoute,
     public router: Router,
     private location: Location,
-    private categoryService: CategoryService
-  ) {}
+    private categoryService: CategoryService) {}
 
   ngOnInit() {
     const id = +this.route.snapshot.paramMap.get("cat-id");
@@ -34,6 +33,7 @@ export class CourseListComponent implements OnInit {
     console.log("getting courses by cat-id: ", id);
     this.categoryService.getService(id).subscribe((res) => {
       this.courses = res;
+      this.categoryService.storeInCahce(res);
       console.log(this.courses);
     });
   }

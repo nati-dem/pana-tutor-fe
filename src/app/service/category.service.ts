@@ -7,6 +7,7 @@ import { Complexity } from "../../../../pana-tutor-lib/enum/common.enum";
 import { environment as env } from "./../../environments/environment";
 import { filter, find, tap } from "lodash";
 import { catchError } from "rxjs/operators";
+
 //import {CategoryModule} from '../category.module'
 
 @Injectable({
@@ -37,6 +38,22 @@ export class CategoryService {
   getService(id: number): Observable<any> {
     const url = `${env.userApiBaseUrl + env.courseByCategoryIdUrl}/${id}`;
     return this.http.get<any>(url);
+  }
+
+  storeInCahce(courses){
+    courses.forEach(course => {
+      localStorage.setItem("course_"+course.id, JSON.stringify(course));
+    });
+  }
+
+  getFromCahce(id){
+    return JSON.parse(localStorage.getItem("course_"+id));
+  }
+
+  getCourseSummary(id: number): Observable<any> {
+    return of(this.getFromCahce(id));
+    //const url = `${env.userApiBaseUrl + env.courseSummary}/${id}`;
+    //return this.http.get<any>(url);
   }
 
   getImages(id: number): Observable<any> {
