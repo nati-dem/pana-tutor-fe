@@ -1,9 +1,105 @@
-<h2>Courses</h2>
-<ul class="courses">
-<li *ngFor="let course of courses"
-    [class.selected]="course === selectedCourse">
-    <a (click)="onSelect(course)"><span class="badge">{{course.id}}</span> {{course.name}} </a>
-</li>
-</ul>
+<div *ngIf="notSelected" class="course-banner title">
+  <div class="inner-banner">
+    <h1 class="title">Courses</h1>
+  </div>
+</div>
 
-<app-course-detail [selectedCourseInp]="selectedCourse"></app-course-detail>
+<div class="container my-container">
+  <div *ngIf="notSelected" class="inner">
+    <div
+      *ngFor="let course of courses"
+      [class.selected]="course === selectedCourse"
+      class="card mb-4">
+      <div class="row">
+        <img
+          class="rounded-circle logo_image m-3"
+          src="/assets/images/Tutor-web.png"
+          alt=""/>
+
+        <div class="card-title">
+          <span class="pointer"  routerLink="/categories/course-summary/{{ course.id }}">
+            <h3>{{ course.title.rendered }}</h3></span>
+        </div>
+      </div>
+      <div class="row my-row">
+        <div class="col-4">
+          <div class="card-body">
+            <p>course subtitle</p>
+            <p>course subtitle</p>
+            <p>course subtitle</p>
+          </div>
+        </div>
+        <div class="col-4">
+          <div class="card-body">
+            <p>course subtitle</p>
+            <p>course subtitle</p>
+            <p>course subtitle</p>
+          </div>
+        </div>
+        <div class="col-4">
+          <div class="card-body">
+            <p>course subtitle</p>
+            <p>course subtitle</p>
+            <p>course subtitle</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+  <!--
+  <div *ngIf="notSelected" class="card mb-4">
+    <div class="row">
+      <img
+        class="rounded-circle logo_image m-3"
+        src="/assets/images/Tutor-web.png"
+        alt=""
+      />
+
+      <div class="card-title">
+        <a> <h3>Math</h3></a>
+      </div>
+    </div>
+    <div class="row my-row">
+      <div class="col-4">
+        <div class="card-body">
+          <p>course subtitle</p>
+          <p>course subtitle</p>
+          <p>course subtitle</p>
+        </div>
+      </div>
+      <div class="col-4">
+        <div class="card-body">
+          <p>course subtitle</p>
+          <p>course subtitle</p>
+          <p>course subtitle</p>
+        </div>
+      </div>
+      <div class="col-4">
+        <div class="card-body">
+          <p>course subtitle</p>
+          <p>course subtitle</p>
+          <p>course subtitle</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</div> -->
+
+<!-- the first code  -->
+
+<!-- <h2 *ngFor="let cat of categories">{{ cat.title.raw }}</h2> -->
+<!-- <ul class="courses">
+    <li
+      *ngFor="let course of courses"
+      [class.selected]="course === selectedCourse"
+    >
+      <a (click)="onSelect(course)"
+        ><span class="badge">{{ course.id }}</span> {{ course.title.rendered }}
+      </a>
+    </li>
+  </ul> -->
+
+<!-- <app-course-detail [selectedCourseInp]="selectedCourse"></app-course-detail> 
+<app-course-summary [selectedCourseInp]="selectedCourse"></app-course-summary>
+-->

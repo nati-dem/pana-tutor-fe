@@ -6,5 +6,6 @@ export const environment = {
   tokenValidationUrl: "/auth/token-validate",
   categoryUrl: "/categories",
   courseByCategoryIdUrl: "/categories/courses",
+  courseSummary: "/courses",
   featureMediaUrl: "/media",
 };

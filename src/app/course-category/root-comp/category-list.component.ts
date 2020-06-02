@@ -32,12 +32,15 @@ export class CategoryListComponent implements OnInit {
       .findCategories()
       .subscribe((data) => (this.categories = data));
   }
-  // getImage() {
-  //   this.categoryService.getImages(this.id).subscribe((media)=>media.fin);
-  // }
+  getImage() {
+    const id = this.category.featured_media;
+    this.categoryService
+      .getImages(this.id)
+      .subscribe((media) => media.find((media) => media.id == id));
+  }
   findCategory(id) {
     this.categoryService
-      .getService(id)
+      .findCoursesByCategory(id)
       .subscribe((category) => category.find((category) => category.id == id));
   }
   onSelect(cat: CourseCategory): void {

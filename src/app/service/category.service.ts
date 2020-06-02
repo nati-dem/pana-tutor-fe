@@ -7,6 +7,7 @@ import { Complexity } from "../../../../pana-tutor-lib/enum/common.enum";
 import { environment as env } from "./../../environments/environment";
 import { filter, find, tap } from "lodash";
 import { catchError } from "rxjs/operators";
+
 //import {CategoryModule} from '../category.module'
 
 @Injectable({
@@ -15,10 +16,8 @@ import { catchError } from "rxjs/operators";
 export class CategoryService {
   constructor(private http: HttpClient) {}
 
-  findCategories(): Observable<CourseCategory[]> {
-    return this.http.get<CourseCategory[]>(
-      env.userApiBaseUrl + env.categoryUrl
-    );
+  findCategories(): Observable<any> {
+    return this.http.get<any>(env.userApiBaseUrl + env.categoryUrl);
   }
 
   findCoursesByCategory(id: number) {
@@ -36,18 +35,30 @@ export class CategoryService {
   //   );
   // }
 
-  getService(id: number): Observable<CourseCategory[]> {
+  getService(id: number): Observable<any> {
     const url = `${env.userApiBaseUrl + env.courseByCategoryIdUrl}/${id}`;
-    return this.http.get<CourseCategory[]>(url);
+    return this.http.get<any>(url);
   }
 
-  getImages(imageId: number): Observable<File> {
-    let result: Observable<any> = this.http.get(
-      env.userApiBaseUrl + env.featureMediaUrl + imageId,
-      { responseType: "blob" }
-    );
+  storeInCahce(courses){
+    courses.forEach(course => {
+      localStorage.setItem("course_"+course.id, JSON.stringify(course));
+    });
+  }
 
-    return result;
+  getFromCahce(id){
+    return JSON.parse(localStorage.getItem("course_"+id));
+  }
+
+  getCourseSummary(id: number): Observable<any> {
+    return of(this.getFromCahce(id));
+    //const url = `${env.userApiBaseUrl + env.courseSummary}/${id}`;
+    //return this.http.get<any>(url);
+  }
+
+  getImages(id: number): Observable<any> {
+    const url = `${env.userApiBaseUrl + env.featureMediaUrl}/${id}`;
+    return this.http.get<any>(url);
   }
 }
 export const sampleCategories: CourseCategory[] = [
