@@ -1,0 +1,22 @@
+.card {
+    margin: 1rem;
+}
+.card-title {
+color: #52aabb;
+
+margin: 1rem;
+}
+
+.button1 {
+    justify-self: center;
+    border: 2px #ed9834 solid;
+    margin-top: -3rem;
+    padding: 10px 15px;
+    background-color: white;
+    -webkit-border-radius: 50px;
+    -moz-border-radius: 50px;
+    border-radius: 50px;
+    color: #52aabb;
+    font-size: 2rem;
+    width: 50%;
+  }
