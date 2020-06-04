@@ -4,6 +4,7 @@
 
 export const environment = {
   production: false,
+  //userApiBaseUrl: "http://localhost:5000/dev/api",
   userApiBaseUrl: "https://panalearn.com/dev/api",
   loginUrl: "/auth/login",
   signupUrl: "/auth/register",
@@ -12,6 +13,8 @@ export const environment = {
   courseByCategoryIdUrl: "/categories/courses",
   courseSummary: "/courses",
   featureMediaUrl: "/media",
+  courseSectionUrl:"/courses/<courseId>/chapter",
+  localCoursePrefix: "pana_course_"
 };
 
 /*

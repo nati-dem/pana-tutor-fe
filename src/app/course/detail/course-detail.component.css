@@ -1,6 +1,6 @@
 .my-col {
   overflow-y: scroll;
-  margin-top: 2rem;
+  margin-top: 1rem;
 }
 .content {
   margin-top: 5rem;
@@ -41,13 +41,13 @@ p {
 .sidebar-title {
   color: #52aabb;
   text-align: center;
-  margin: 2rem;
+  margin: 1rem;
 }
 
 .sub-course {
   color: #52aabb;
-  /* margin: 2rem; */
-  text-align: center;
+  /* margin: 2rem; 
+  text-align: center; */
 }
 
 .button1 {

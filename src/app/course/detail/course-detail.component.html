@@ -1,15 +1,8 @@
-<!-- <div class="course-banner title">
-  <div class="inner-banner">
-    <h1 class="title">{{ selectedCourseInp.title.rendered }}</h1>
-  </div>
-</div> 
-*ngIf="selectedCourseInp"
--->
-<div *ngIf="selectedCourseInp" >
+<div *ngIf="selectedCourse" >
   <div class="course-banner">
     <div class="course-content">
       <div class="row my-row justify-content-center">
-        <h5 class="course-text">{{ selectedCourseInp.title.rendered }}</h5>
+        <h5 class="course-text">{{ selectedCourse.title.rendered }}</h5>
       </div>
     </div>
   </div>
@@ -18,20 +11,162 @@
     <div >
       <div class="container">
         <div class="row">
-          <div class="col-4 my-col">
+
+          <div class="col-md-9">
+              <div class="card">
+                <div class="card-title course-title">
+                  <h3>
+                    ADDITION AND SUBSTRACTION
+                    <hr class="yello-hr" />
+                  </h3>
+                </div>
+                <div class="card-body">
+
+                  
+                  <span *ngIf="selectedSection">
+                    <div  *ngFor="let lesson of selectedSection.acf.lessons"  >
+                       <p (click)="openVerticallyCentered(lesson_container, lesson)" class="pointer"> 
+                          <i class="fa fa-play" aria-hidden="true"></i> {{ lesson.post_title }} 
+                        </p>
+                    </div>
+                  </span>
+
+                  <ng-template #lesson_container let-modal>
+                    <div class="modal-header">
+                      <h4 class="modal-title">{{ selectedLesson.post_title }}</h4>
+                      <button
+                        type="button"
+                        class="close"
+                        aria-label="Close"
+                        (click)="modal.dismiss('Cross click')"
+                      >
+                        <span aria-hidden="true">&times;</span>
+                      </button>
+                    </div>
+                    <div class="modal-body">
+                      <iframe
+                        id="Geeks3"
+                        class="modal-video"
+                        width="450"
+                        height="350"
+                        src="https://www.youtube.com/embed/V5he1JXiQbg"
+                        frameborder="0"
+                        allowfullscreen
+                      >
+                      </iframe>
+                    </div>
+                    <div class="modal-footer">
+                      <button
+                        type="button"
+                        class="btn btn-light"
+                        (click)="modal.close('Close click')"
+                      >
+                        Close
+                      </button>
+                    </div>
+                  </ng-template>
+                  
+                  <!--
+                  <p (click)="openVerticallyCentered(content)">
+                    <i class="fa fa-play" aria-hidden="true"></i> Counting
+                  </p>
+                  <ng-template #content let-modal>
+                    <div class="modal-header">
+                      <h4 class="modal-title">Counting</h4>
+                      <button
+                        type="button"
+                        class="close"
+                        aria-label="Close"
+                        (click)="modal.dismiss('Cross click')"
+                      >
+                        <span aria-hidden="true">&times;</span>
+                      </button>
+                    </div>
+                    <div class="modal-body">
+                      <iframe
+                        id="Geeks3"
+                        class="modal-video"
+                        width="450"
+                        height="350"
+                        src="https://www.youtube.com/embed/V5he1JXiQbg"
+                        frameborder="0"
+                        allowfullscreen
+                      >
+                      </iframe>
+                    </div>
+                    <div class="modal-footer">
+                      <button
+                        type="button"
+                        class="btn btn-light"
+                        (click)="modal.close('Close click')"
+                      >
+                        Close
+                      </button>
+                    </div>
+                  </ng-template> -->
+  
+                </div>
+              </div>
+              
+              <div class="card">
+                <div class="card-title">
+                  <h2>
+                    Quizes
+                  </h2>
+                  <hr class="yello-hr" />
+                </div>
+                <div class="card-body">
+                  <button
+                    class="button1"
+                    (click)="openVerticallyCentered(content3)"
+                  >
+                    Start Quiz
+                  </button>
+                </div>
+                <ng-template #content3 let-modal>
+                  <div class="modal-header">
+                    <h4 class="modal-title">Quiz</h4>
+                    <button
+                      type="button"
+                      class="close"
+                      aria-label="Close"
+                      (click)="modal.dismiss('Cross click')"
+                    >
+                      <span aria-hidden="true">&times;</span>
+                    </button>
+                  </div>
+                  <div class="modal-body">
+                    <p>Question</p>
+                  </div>
+                  <div class="modal-footer">
+                    <button
+                      type="button"
+                      class="btn btn-light"
+                      (click)="modal.close('Close click')"
+                    >
+                      Close
+                    </button>
+                  </div>
+                </ng-template>
+              </div>
+          </div>
+
+          <div class="col-3 my-col">
             <div class="row">
               <h2 class="sidebar-title">
                 Progress
               </h2>
               <hr />
             </div>
-            <div class="row sub-course">
-              <h5 class="justify-content-justify">
-                Counting
-                <i class="fa fa-check-circle-o" aria-hidden="true"></i>
-              </h5>
-              <hr />
+
+            <div *ngFor="let section of sections" class=" sub-course pointer" > <!-- [class.selected]="course === selectedCourse" -->
+              <h5 class="" (click)="selectSection($event, section)">
+                  {{ section.title.raw }}
+                  <i class="fa fa-check-circle-o" aria-hidden="true"></i>
+                </h5>
+                <hr />
             </div>
+            <!-- 
             <div class="row sub-course">
               <h5 class="justify-content-justify">
                 Counting Objects
@@ -44,150 +179,17 @@
                 Quizes
               </h5>
               <hr />
-            </div>
+            </div> -->
           </div>
-          <div class="col-md-8">
-            <div class="card">
-              <div class="card-title course-title">
-                <h3>
-                  ADDITION AND SUBSTRACTION
-                  <hr class="yello-hr" />
-                </h3>
-              </div>
-              <div class="card-body">
-                <p (click)="openVerticallyCentered(content)">
-                  <i class="fa fa-play" aria-hidden="true"></i> Counting
-                </p>
-                <ng-template #content let-modal>
-                  <div class="modal-header">
-                    <h4 class="modal-title">Counting</h4>
-                    <button
-                      type="button"
-                      class="close"
-                      aria-label="Close"
-                      (click)="modal.dismiss('Cross click')"
-                    >
-                      <span aria-hidden="true">&times;</span>
-                    </button>
-                  </div>
-                  <div class="modal-body">
-                    <iframe
-                      id="Geeks3"
-                      class="modal-video"
-                      width="450"
-                      height="350"
-                      src="https://www.youtube.com/embed/V5he1JXiQbg"
-                      frameborder="0"
-                      allowfullscreen
-                    >
-                    </iframe>
-                  </div>
-                  <div class="modal-footer">
-                    <button
-                      type="button"
-                      class="btn btn-light"
-                      (click)="modal.close('Close click')"
-                    >
-                      Close
-                    </button>
-                  </div>
-                </ng-template>
-
-                <p (click)="openVerticallyCentered(content2)">
-                  <i class="fa fa-play" aria-hidden="true"></i> Counting Objects
-                </p>
-              </div>
-            </div>
-            <ng-template #content2 let-modal>
-              <div class="modal-header">
-                <h4 class="modal-title">Counting Objects</h4>
-                <button
-                  type="button"
-                  class="close"
-                  aria-label="Close"
-                  (click)="modal.dismiss('Cross click')"
-                >
-                  <span aria-hidden="true">&times;</span>
-                </button>
-              </div>
-              <div class="modal-body">
-                <iframe
-                  id="Geeks3"
-                  class="modal-video"
-                  width="450"
-                  height="350"
-                  src="https://www.youtube.com/embed/V5he1JXiQbg"
-                  frameborder="0"
-                  allowfullscreen
-                >
-                </iframe>
-              </div>
-              <div class="modal-footer">
-                <button
-                  type="button"
-                  class="btn btn-light"
-                  (click)="modal.close('Close click')"
-                >
-                  Close
-                </button>
-              </div>
-            </ng-template>
-
-            <div class="card">
-              <div class="card-title">
-                <h2>
-                  Quizes
-                </h2>
-                <hr class="yello-hr" />
-              </div>
-              <div class="card-body">
-                <button
-                  class="button1"
-                  (click)="openVerticallyCentered(content3)"
-                >
-                  Start Quiz
-                </button>
-              </div>
-              <ng-template #content3 let-modal>
-                <div class="modal-header">
-                  <h4 class="modal-title">Quiz</h4>
-                  <button
-                    type="button"
-                    class="close"
-                    aria-label="Close"
-                    (click)="modal.dismiss('Cross click')"
-                  >
-                    <span aria-hidden="true">&times;</span>
-                  </button>
-                </div>
-                <div class="modal-body">
-                  <p>Question</p>
-                </div>
-                <div class="modal-footer">
-                  <button
-                    type="button"
-                    class="btn btn-light"
-                    (click)="modal.close('Close click')"
-                  >
-                    Close
-                  </button>
-                </div>
-              </ng-template>
-            </div>
-          </div>
+          
         </div>
       </div>
-      <hr />
-      <h2>{{ selectedCourseInp.name }} Details</h2>
-      <div><span>id: </span>{{ selectedCourseInp.id }}</div>
-      <div><span>status: </span>{{ selectedCourseInp.status }}</div>
-      <div><span>type: </span>{{ selectedCourseInp.type }}</div>
 
       <!-- <div>
         <label
           >name:
           <input
-          [(ngModel)]="selectedCourseInp.title.rendered"
+          [(ngModel)]="selectedCourse.title.rendered"
             placeholder="name"
           />
         </label>

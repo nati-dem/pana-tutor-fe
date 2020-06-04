@@ -3,6 +3,7 @@ import { ActivatedRoute, Router, NavigationStart } from "@angular/router";
 import { NgbModal } from "@ng-bootstrap/ng-bootstrap";
 import { Course } from "../../../../../pana-tutor-lib/model/course/course.interface";
 import { CategoryService } from "../../service/category.service";
+import { CourseService } from "../../service/course.service";
 
 @Component({
   selector: "app-course-detail",
@@ -10,15 +11,19 @@ import { CategoryService } from "../../service/category.service";
   styleUrls: ["./course-detail.component.css"],
 })
 export class CourseDetailComponent implements OnInit {
-  //@Input() selectedCourseInp: Course;
-  selectedCourseInp: Course;
+  //@Input() selectedCourse: Course;
+  selectedCourse: Course;
   closeResult: string;
+  sections:any;
+  selectedSection:any;
+  selectedLesson:any;
+
   constructor(
     private modalService: NgbModal,
     private router: Router,
     private route: ActivatedRoute,
-    private categoryService: CategoryService
-  ) {
+    private categoryService: CategoryService,
+    private courseService:CourseService) {
     //console.log(this.router.getCurrentNavigation().extras.state);
   }
 
@@ -29,16 +34,32 @@ export class CourseDetailComponent implements OnInit {
   }
 
   getCourseSummary(id) {
-    console.log("getting course summary by course-id: ", id);
+    console.log("get course detail by course-id: ", id);
     this.categoryService.getCourseSummary(id)
     .subscribe((res) => {
-      console.log("course summary resp: ", res);
-      this.selectedCourseInp = res;
+      console.log("course detail resp: ", res);
+      this.selectedCourse = res;
+      this.getSections(id,this.selectedCourse.acf.course_sections)
       //console.log(this.courses);
     });
   }
 
-  openVerticallyCentered(content) {
-    this.modalService.open(content, { centered: true });
+  getSections(id, sectionIds){
+    this.courseService.getSections(id,sectionIds)
+    .subscribe((res) => {
+      console.log('getSections resp:: ', res)
+      this.sections = res;
+      this.selectedSection = res[0];
+    });
+  }
+
+  selectSection(evt,f){
+    console.log('selectSection::: ', f)
+    this.selectedSection = f;
+  }
+
+  openVerticallyCentered(content, lesson?) {
+    this.selectedLesson = lesson;
+    this.modalService.open(content, { centered: true, size:'xl'  }); //scrollable:true
   }
 }

@@ -40,18 +40,18 @@ export class CategoryService {
     return this.http.get<any>(url);
   }
 
-  storeInCahce(courses){
+  storeCourseInCahce(courses){
     courses.forEach(course => {
-      localStorage.setItem("course_"+course.id, JSON.stringify(course));
+      localStorage.setItem(env.localCoursePrefix+course.id, JSON.stringify(course));
     });
   }
 
-  getFromCahce(id){
-    return JSON.parse(localStorage.getItem("course_"+id));
+  getCourseFromCahce(id){
+    return JSON.parse(localStorage.getItem(env.localCoursePrefix+id));
   }
 
   getCourseSummary(id: number): Observable<any> {
-    return of(this.getFromCahce(id));
+    return of(this.getCourseFromCahce(id));
     //const url = `${env.userApiBaseUrl + env.courseSummary}/${id}`;
     //return this.http.get<any>(url);
   }
