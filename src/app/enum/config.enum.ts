@@ -1,3 +1,3 @@
 export enum Config {
-    USER_TOKEN = 'user_token'
+    USER_TOKEN = 'pana_user_token'
 }

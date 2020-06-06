@@ -1,6 +1,6 @@
 .my-col {
   overflow-y: scroll;
-  margin-top: 2rem;
+  margin-top: 1rem;
 }
 .content {
   margin-top: 5rem;
@@ -22,11 +22,10 @@ p {
   color: #52aabb;
 }
 .card {
-  margin: 1rem;
+  margin: 1rem 0.5rem;
 }
 .card-title {
   color: #52aabb;
-
   margin: 1rem;
 }
 
@@ -41,27 +40,13 @@ p {
 .sidebar-title {
   color: #52aabb;
   text-align: center;
-  margin: 2rem;
+  margin: 1rem;
 }
 
 .sub-course {
   color: #52aabb;
-  /* margin: 2rem; */
-  text-align: center;
-}
-
-.button1 {
-  justify-self: center;
-  border: 2px #ed9834 solid;
-  margin-top: -3rem;
-  padding: 10px 15px;
-  background-color: white;
-  -webkit-border-radius: 50px;
-  -moz-border-radius: 50px;
-  border-radius: 50px;
-  color: #52aabb;
-  font-size: 2rem;
-  width: 50%;
+  /* margin: 2rem; 
+  text-align: center; */
 }
 
 .cos {
@@ -92,10 +77,10 @@ p {
 }
 
 .course-text {
-  margin-top: 10rem;
-  margin-bottom: 12rem;
+  margin-top: 7rem;
+  margin-bottom: 7rem;
   color: white;
-  font-size: 5rem;
+  font-size: 4rem;
   font-family: Comic Sans MS, Comic Sans, cursive;
   font-weight: bolder;
 }
@@ -112,7 +97,15 @@ p {
   top: 0;
 }
 
-@media (max-width: 720) {
+.selected{
+  color:#28a745;
+}
+
+.pointer:hover{
+  color:#28a745;
+}
+
+@media (max-width: 768px) {
   .my-col {
     display: none;
     overflow: hidden;
@@ -121,5 +114,13 @@ p {
   }
   .sub-course {
     display: none;
+  }
+  .course-text {
+    margin-top: 3rem;
+    margin-bottom: 3rem;
+    font-size: 2rem;
+  }
+  .content{
+    margin-top: 1rem;
   }
 }
