@@ -14,7 +14,7 @@ export class CourseListComponent implements OnInit {
   courses = [];
   categories = [];
   selectedCourse: any;
-  notSelected: boolean = true;
+  //notSelected: boolean = true;
   selectedCategory: any;
 
   constructor(
@@ -47,7 +47,7 @@ export class CourseListComponent implements OnInit {
   onSelect(course: Course): void {
     // id = course.id;
     this.selectedCourse = course;
-    this.notSelected = false;
+    //this.notSelected = false;
     // this.router.navigateByUrl("/detail/`${id}`", {
     //   state: this.selectedCourse,
     // });

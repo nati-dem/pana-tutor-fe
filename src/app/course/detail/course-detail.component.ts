@@ -60,6 +60,7 @@ export class CourseDetailComponent implements OnInit {
 
   openVerticallyCentered(content, lesson?) {
     this.selectedLesson = lesson;
+    console.log('lesson:: ', lesson)
     this.modalService.open(content, { centered: true, size:'xl'  }); //scrollable:true
   }
 }

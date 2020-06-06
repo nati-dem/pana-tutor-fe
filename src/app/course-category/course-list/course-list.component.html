@@ -1,52 +1,60 @@
-<div *ngIf="notSelected" class="course-banner title">
+<div class="course-banner title">
   <div class="inner-banner">
     <h1 class="title">Courses</h1>
   </div>
 </div>
 
-<div class="container my-container">
-  <div *ngIf="notSelected" class="inner">
-    <div
-      *ngFor="let course of courses"
-      [class.selected]="course === selectedCourse"
-      class="card mb-4">
-      <div class="row">
-        <img
-          class="rounded-circle logo_image m-3"
-          src="/assets/images/Tutor-web.png"
-          alt=""/>
-
-        <div class="card-title">
-          <span class="pointer"  routerLink="/categories/course-summary/{{ course.id }}">
-            <h3>{{ course.title.rendered }}</h3></span>
-        </div>
-      </div>
-      <div class="row my-row">
-        <div class="col-4">
-          <div class="card-body">
-            <p>course subtitle</p>
-            <p>course subtitle</p>
-            <p>course subtitle</p>
+<div *ngIf="courses.length == 0; else showCourses" class="d-flex justify-content-center py-5">
+  <div class="spinner-border spinner-border-sm text-secondary" role="status">
+    <span class="sr-only">Loading...</span>
+  </div>
+</div>
+<ng-template #showCourses>
+  <div class="container my-container">
+    <div class="inner">
+      <div
+        *ngFor="let course of courses"
+        [class.selected]="course === selectedCourse"
+        class="card mb-4">
+        <div class="row">
+          <img
+            class="rounded-circle logo_image m-3"
+            src="/assets/images/Tutor-web.png"
+            alt=""/>
+  
+          <div class="card-title">
+            <span class="pointer"  routerLink="/categories/course-summary/{{ course.id }}">
+              <h3>{{ course.title.rendered }}</h3></span>
           </div>
         </div>
-        <div class="col-4">
-          <div class="card-body">
-            <p>course subtitle</p>
-            <p>course subtitle</p>
-            <p>course subtitle</p>
+        <div class="row my-row">
+          <div class="col-4">
+            <div class="card-body">
+              <p>course subtitle</p>
+              <p>course subtitle</p>
+              <p>course subtitle</p>
+            </div>
           </div>
-        </div>
-        <div class="col-4">
-          <div class="card-body">
-            <p>course subtitle</p>
-            <p>course subtitle</p>
-            <p>course subtitle</p>
+          <div class="col-4">
+            <div class="card-body">
+              <p>course subtitle</p>
+              <p>course subtitle</p>
+              <p>course subtitle</p>
+            </div>
+          </div>
+          <div class="col-4">
+            <div class="card-body">
+              <p>course subtitle</p>
+              <p>course subtitle</p>
+              <p>course subtitle</p>
+            </div>
           </div>
         </div>
       </div>
     </div>
   </div>
-</div>
+</ng-template>
+
   <!--
   <div *ngIf="notSelected" class="card mb-4">
     <div class="row">
