@@ -14,7 +14,7 @@ export class CourseListComponent implements OnInit {
   courses = [];
   categories = [];
   selectedCourse: any;
-  notSelected: boolean = true;
+  //notSelected: boolean = true;
   selectedCategory: any;
 
   constructor(
@@ -33,7 +33,7 @@ export class CourseListComponent implements OnInit {
     console.log("getting courses by cat-id: ", id);
     this.categoryService.getService(id).subscribe((res) => {
       this.courses = res;
-      this.categoryService.storeInCahce(res);
+      this.categoryService.storeCourseInCahce(res);
       console.log(this.courses);
     });
   }
@@ -47,7 +47,7 @@ export class CourseListComponent implements OnInit {
   onSelect(course: Course): void {
     // id = course.id;
     this.selectedCourse = course;
-    this.notSelected = false;
+    //this.notSelected = false;
     // this.router.navigateByUrl("/detail/`${id}`", {
     //   state: this.selectedCourse,
     // });

@@ -1,0 +1,26 @@
+.card {
+    margin: 1rem 0.5rem;
+}
+.card-title {
+    color: #52aabb;
+    margin: 1rem;
+}
+
+.button1 {
+    justify-self: center;
+    border: 2px #ed9834 solid;
+    margin-top: -3rem;
+    padding: 10px 2rem;
+    background-color: white;
+    -webkit-border-radius: 50px;
+    -moz-border-radius: 50px;
+    border-radius: 50px;
+    color: #52aabb;
+    font-size: 1.5rem;
+
+}
+@media (max-width: 768px) {
+    .button1 {
+        font-size: 1rem;
+    }
+}
