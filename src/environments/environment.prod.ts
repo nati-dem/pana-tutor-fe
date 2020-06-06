@@ -8,4 +8,8 @@ export const environment = {
   courseByCategoryIdUrl: "/categories/courses",
   courseSummary: "/courses",
   featureMediaUrl: "/media",
+  courseSectionUrl:"/courses/<courseId>/chapter",
+  courseQuizUrl:"/courses/<courseId>/quiz",
+  courseQueUrl:"/courses/que",
+  localCoursePrefix: "pana_course_"
 };

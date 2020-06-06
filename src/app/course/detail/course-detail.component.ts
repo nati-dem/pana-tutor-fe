@@ -17,6 +17,7 @@ export class CourseDetailComponent implements OnInit {
   sections:any;
   selectedSection:any;
   selectedLesson:any;
+  apiError:any;
 
   constructor(
     private modalService: NgbModal,
@@ -50,7 +51,11 @@ export class CourseDetailComponent implements OnInit {
       console.log('getSections resp:: ', res)
       this.sections = res;
       this.selectedSection = res[0];
-    });
+      }, err => {
+        console.log(err)
+        this.apiError = err;
+      }
+    );
   }
 
   selectSection(evt,f){
