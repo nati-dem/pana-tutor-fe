@@ -8,11 +8,12 @@ import { CategoryListComponent } from "./root-comp/category-list.component";
 import { CourseSummaryComponent } from "./course-summary/course-summary.component";
 import { CourseListComponent } from "./course-list/course-list.component";
 import { JoinComponent } from "./join/join.component";
+import { CourseSearchComponent } from "./course-search/course-search.component";
 
 @NgModule({
   declarations: [
     CourseListComponent,
-
+    CourseSearchComponent,
     CategoryListComponent,
     JoinComponent,
     CourseSummaryComponent,

@@ -4,8 +4,8 @@
 
 export const environment = {
   production: false,
-  //userApiBaseUrl: "http://localhost:5000/dev/api",
-  userApiBaseUrl: "https://panalearn.com/dev/api",
+  userApiBaseUrl: "http://localhost:5000/dev/api",
+  //userApiBaseUrl: "https://panalearn.com/dev/api",
   loginUrl: "/auth/login",
   signupUrl: "/auth/register",
   tokenValidationUrl: "/auth/token-validate",

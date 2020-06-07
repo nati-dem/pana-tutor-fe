@@ -13,7 +13,7 @@ export class ProfileDashboardComponent implements OnInit {
   ngOnInit(): void {
     console.log(this.authService.isTokenValid())
     //let currentUser = JSON.parse(localStorage.getItem('user'));
-    console.log(this.authService.decodeToken(localStorage.getItem('user_token')))
+    console.log(this.authService.decodeToken(localStorage.getItem('pana_user_token')))
   }
 
 }

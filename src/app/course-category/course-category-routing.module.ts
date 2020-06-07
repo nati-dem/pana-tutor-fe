@@ -5,9 +5,11 @@ import { CategoryListComponent } from "./root-comp/category-list.component";
 import { CourseListComponent } from "./course-list/course-list.component";
 // import { CourseDetailComponent } from "../course/course-detail/course-detail.component";
 import { CourseSummaryComponent } from "./course-summary/course-summary.component";
+import { CourseSearchComponent } from "./course-search/course-search.component";
 
 const routes: Routes = [
-  { path: "", component: CategoryListComponent },
+  { path: "", component: CourseSearchComponent },
+  //{ path: "", component: CategoryListComponent },
   { path: "courses/:cat-id", component: CourseListComponent },
   { path: "course-summary/:course-id", component: CourseSummaryComponent },
   // { path: "detail/:cat-id", component: CourseDetailComponent },
