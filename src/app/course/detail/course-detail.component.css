@@ -3,7 +3,9 @@
   margin-top: 1rem;
 }
 .content {
-  margin-top: 5rem;
+  margin-top: 3.5rem;
+  padding-right: 0px;
+  padding-left: 0px;
 }
 i {
   text-align: end;

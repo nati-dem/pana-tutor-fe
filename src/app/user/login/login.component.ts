@@ -33,12 +33,12 @@ export class LoginComponent extends BaseFormGroup implements OnInit {
 
   onSubmit() {
     // TODO: Use EventEmitter with form value
-    console.warn(this.loginForm.value);
+    //console.warn(this.loginForm.value);
     let userLoginReq: UserLoginRequest = this.getFormData();
     this.disableForm();
     this.authService.authenticate(userLoginReq).subscribe(
       (res) => {
-        console.log("Login response", res);
+        //console.log("Login response", res);
         this.authService.saveTokenInLocal(res);
         this.authService.notifyAuthObservers(true);
         this.router.navigate(["/profile"]);

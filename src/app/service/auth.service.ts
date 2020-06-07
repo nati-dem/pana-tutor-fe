@@ -48,7 +48,7 @@ export class AuthService extends BaseHttpService {
 
   saveTokenInLocal(res) {
     this.token = res.token;
-    localStorage.setItem("user", JSON.stringify(res));
+    //localStorage.setItem("user", JSON.stringify(res));
     localStorage.setItem(Config.USER_TOKEN, res.token);
   }
 
@@ -77,7 +77,8 @@ export class AuthService extends BaseHttpService {
 
   isTokenValid() {
     // token should be saved in memory since it's set whenever page is refreshd
-    const isTokenValid = this.token != null && !this.jwtHelper.isTokenExpired();
+    console.log('inMemoryToken::', this.token)
+    const isTokenValid = localStorage.getItem(Config.USER_TOKEN) && !this.jwtHelper.isTokenExpired();
     console.log("token valid..", isTokenValid);
     return isTokenValid;
   }

@@ -1,0 +1,148 @@
+.lesson-banner {
+  background: url("/assets/images/image (1).png");
+  /*height: 500px;*/
+  -webkit-background-size: cover;
+  -moz-background-size: cover;
+  -o-background-size: cover;
+  background-size: cover;
+  /* margin-top: -6rem; */
+}
+
+.lesson-text {
+  margin-top: 10rem;
+  margin-bottom: 12rem;
+  color: white;
+  font-size: 5rem;
+  font-family: Comic Sans MS, Comic Sans, cursive;
+  font-weight: bolder;
+}
+.lesson-content {
+  background-color: rgba(0, 0, 0, 0.3);
+  height: 100%;
+}
+
+.popular-sub-container {
+  margin-top: 5rem;
+}
+.popular-title {
+  text-align: center;
+  color: #52aabb;
+  font-size: 3rem;
+  margin-bottom: 3rem;
+}
+.joinus-text {
+  font-size: 6rem;
+  font-family: Comic Sans MS, Comic Sans, cursive;
+  font-style: italic;
+  font-weight: bolder;
+}
+
+.button5 {
+  background: transparent;
+  border: 1px white solid;
+  padding: 10px;
+  /* width: 300px; */
+  -webkit-border-radius: 200px;
+  -moz-border-radius: 50px;
+  border-radius: 100px;
+  color: white;
+  font-size: 45px;
+}
+
+.join-input {
+  border: 1px white solid;
+  padding: 25px;
+  -webkit-border-radius: 200px;
+  -moz-border-radius: 50px;
+  border-radius: 100px;
+}
+
+input::-webkit-input-placeholder {
+  color: black;
+  font-size: 20px;
+}
+input:-moz-placeholder {
+  color: black;
+}
+input::-moz-placeholder {
+  color: black;
+}
+input:-ms-input-placeholder {
+  color: black;
+}
+
+.search-input {
+  border: 1px #ed9834 solid;
+  padding: 25px;
+  -webkit-border-radius: 200px;
+  -moz-border-radius: 50px;
+  border-radius: 100px;
+  width: 60%;
+}
+.search-title {
+  text-align: center;
+  margin-top: 7rem;
+  color: black;
+  font-weight: 200;
+}
+
+.card {
+  /* border-color: #ed9834; */
+  border-bottom-left-radius: 70px;
+  border-bottom-right-radius: 70px;
+  border-top-left-radius: 30px;
+  border-top-right-radius: 30px;
+  margin: 1rem;
+}
+
+.card-img-top {
+  /* height: 5%; */
+  /* border-bottom-left-radius: 50px;
+  border-bottom-right-radius: 50px; */
+  border-top-left-radius: 50px;
+  border-top-right-radius: 50px;
+}
+.card-title {
+  color: #ed9834;
+  text-align: center;
+}
+.grade {
+  color: #52aabb;
+  text-align: center;
+  line-height: 0.5rem;
+}
+
+.avalbl-tutor {
+  text-align: center;
+  line-height: 6rem;
+  font-size: 1.5rem;
+  font-weight: 400;
+}
+.findtutor-btn {
+  border: 1px whitesmoke solid;
+  padding: 5px;
+  background-color: #52aabb;
+  -webkit-border-radius: 200px;
+  -moz-border-radius: 50px;
+  border-radius: 150px;
+  color: white;
+  width: 100%;
+  font-size: 40px;
+  margin-top: 1rem;
+  /* margin-left: 2rem; */
+  margin-right: 2rem;
+}
+
+@media (max-width: 530px) {
+  .button4 {
+    background: #52aabb;
+    border: 1px #333 solid;
+    padding: 20px;
+
+    -webkit-border-radius: 200px;
+    -moz-border-radius: 50px;
+    border-radius: 150px;
+    color: white;
+    font-size: 1.5rem;
+  }
+}
