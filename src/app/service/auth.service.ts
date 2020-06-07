@@ -48,7 +48,7 @@ export class AuthService extends BaseHttpService {
 
   saveTokenInLocal(res) {
     this.token = res.token;
-    localStorage.setItem("user", JSON.stringify(res));
+    //localStorage.setItem("user", JSON.stringify(res));
     localStorage.setItem(Config.USER_TOKEN, res.token);
   }
 
