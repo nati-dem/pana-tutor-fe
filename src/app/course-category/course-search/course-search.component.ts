@@ -4,6 +4,7 @@ import { Course } from "../../../../../pana-tutor-lib/model/course/course.interf
 import { MediaModel } from "../../../../../pana-tutor-lib/model/media-model.interface";
 import { CategoryService } from "../../service/category.service";
 import { from } from "rxjs";
+import { EntityType } from "../../../../../pana-tutor-lib/enum/constants";
 
 @Component({
   selector: "app-course-search",
@@ -19,6 +20,9 @@ export class CourseSearchComponent implements OnInit {
   imageToShow: any;
   isImageLoading: boolean;
   id: any;
+  searchResult: Course[] = [];
+  isSearchLoading = false;
+  searchSubmit = false;
 
   constructor(private categoryService: CategoryService) {}
 
@@ -46,4 +50,25 @@ export class CourseSearchComponent implements OnInit {
   onSelect(cat: CourseCategory): void {
     this.selectedCat = cat;
   }
+
+  onEnter(value: string) { 
+    if(value.length >= 4) {
+      this.isSearchLoading = true;
+      console.log(value)
+      this.searchSubmit = false;
+      this.categoryService.search(EntityType.courses, value)
+      .subscribe(res => {
+        console.log("search res::", res)
+        this.searchResult = res;
+        this.searchSubmit = true;
+        this.isSearchLoading = false;
+      }, err => {
+        this.searchResult = [];
+        this.searchSubmit = true;
+        this.isSearchLoading = false;
+      });
+    }
+
+   }
+
 }

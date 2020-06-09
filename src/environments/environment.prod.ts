@@ -11,5 +11,6 @@ export const environment = {
   courseSectionUrl:"/courses/<courseId>/chapter",
   courseQuizUrl:"/courses/<courseId>/quiz",
   courseQueUrl:"/courses/que",
-  localCoursePrefix: "pana_course_"
+  localCoursePrefix: "pana_course_",
+  searchUrl: "/search",
 };

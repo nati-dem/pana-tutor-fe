@@ -60,6 +60,12 @@ export class CategoryService {
     const url = `${env.userApiBaseUrl + env.featureMediaUrl}/${id}`;
     return this.http.get<any>(url);
   }
+
+  search(e,q): Observable<any> {
+    const url = `${env.searchUrl}?entity=${e}&q=${q}`
+    return this.http.get<any>(env.userApiBaseUrl + url);
+  }
+
 }
 export const sampleCategories: CourseCategory[] = [
   {
