@@ -21,14 +21,15 @@
   color: #52aabb;
   font-size: 1.5rem;
 }
+.timer {
+  color: #ed9834;
+  float: left;
+}
 .btnprev,
 .btnnex {
   background-color: #52aabb;
 }
-
-ul {
-  list-style-type: none;
-  text-decoration: none;
+label {
   color: #52aabb;
 }
 @media (max-width: 768px) {

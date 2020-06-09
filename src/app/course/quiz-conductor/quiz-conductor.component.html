@@ -12,9 +12,21 @@
   </div>
   <ng-template #quizContent let-modal class="modal">
     <div class="modal-header">
-      <h4 class="modal-title">{{ quiz?.title.raw }}</h4>
-      <h5>{{ quiz?.acf.time_limit }}</h5>
+      <div class="col">
+        <h4 class="modal-title">{{ quiz?.title.raw }}</h4>
+      </div>
+      <div class="col">
+        <countdown
+          class="m-2 flex-end timer"
+          [config]="{ leftTime: quiz?.acf.time_limit }"
+        ></countdown>
+      </div>
 
+      <!-- <h5>{{ quiz?.acf.time_limit }}</h5> -->
+      <!-- <countdown
+        class="m-2 flex-end timer"
+        [config]="{ leftTime: quiz?.acf.time_limit }"
+      ></countdown> -->
       <button
         type="button"
         class="close"
@@ -29,25 +41,61 @@
       <div class="quiz">
         <div class="question">
           <span [innerHtml]="questions[index].content.rendered"></span>
+          <!-- <span>{{ questions[index].content.rendered }}</span> -->
         </div>
-        <ul>
-          <li>
-            <input class="m-3" type="radio" name="choice_1" id="" />
-            <label for="choice_1">{{ questions[index].acf.choice_1 }}</label>
-          </li>
-          <li>
-            <input class="m-3" type="radio" name="choice_2" id="" />
-            <label for="choice_2">{{ questions[index].acf.choice_2 }}</label>
-          </li>
-          <li>
-            <input class="m-3" type="radio" name="choice_3" id="" />
-            <label for="choice_3">{{ questions[index].acf.choice_3 }}</label>
-          </li>
-          <li>
-            <input class="m-3" type="radio" name="choice_4" id="choice_4" />
-            <label for="choice_4">{{ questions[index].acf.choice_4 }}</label>
-          </li>
-        </ul>
+        <div class="container">
+          <form class="form-group m-3">
+            <div class="form-check">
+              <input
+                class="form-check-input"
+                type="radio"
+                name="exampleRadios"
+                id="exampleRadios1"
+                value="option1"
+                checked
+              />
+              <label class="form-check-label" for="exampleRadios1">
+                {{ questions[index].acf.choice_1 }}
+              </label>
+            </div>
+            <div class="form-check">
+              <input
+                class="form-check-input"
+                type="radio"
+                name="exampleRadios"
+                id="exampleRadios2"
+                value="option2"
+              />
+              <label class="form-check-label" for="exampleRadios2">
+                {{ questions[index].acf.choice_2 }}
+              </label>
+            </div>
+            <div class="form-check">
+              <input
+                class="form-check-input"
+                type="radio"
+                name="exampleRadios"
+                id="exampleRadios3"
+                value="option3"
+              />
+              <label class="form-check-label" for="exampleRadios3">
+                {{ questions[index].acf.choice_3 }}
+              </label>
+            </div>
+            <div class="form-check">
+              <input
+                class="form-check-input"
+                type="radio"
+                name="exampleRadios"
+                id="exampleRadios4"
+                value="option4"
+              />
+              <label class="form-check-label" for="exampleRadios2">
+                {{ questions[index].acf.choice_4 }}
+              </label>
+            </div>
+          </form>
+        </div>
       </div>
     </div>
     <hr />

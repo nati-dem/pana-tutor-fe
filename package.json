@@ -28,6 +28,7 @@
     "font-awesome": "^4.7.0",
     "lodash": "^4.17.15",
     "magic-string": "^0.25.7",
+    "ngx-countdown": "^9.0.1",
     "rxjs": "~6.5.4",
     "tslib": "^1.11.2",
     "zone.js": "~0.10.2"

@@ -14,17 +14,18 @@ export class CourseDetailComponent implements OnInit {
   //@Input() selectedCourse: Course;
   selectedCourse: Course;
   closeResult: string;
-  sections:any;
-  selectedSection:any;
-  selectedLesson:any;
-  apiError:any;
+  sections: any;
+  selectedSection: any;
+  selectedLesson: any;
+  apiError: any;
 
   constructor(
     private modalService: NgbModal,
     private router: Router,
     private route: ActivatedRoute,
     private categoryService: CategoryService,
-    private courseService:CourseService) {
+    private courseService: CourseService
+  ) {
     //console.log(this.router.getCurrentNavigation().extras.state);
   }
 
@@ -36,36 +37,41 @@ export class CourseDetailComponent implements OnInit {
 
   getCourseSummary(id) {
     console.log("get course detail by course-id: ", id);
-    this.categoryService.getCourseSummary(id)
-    .subscribe((res) => {
+    this.categoryService.getCourseSummary(id).subscribe((res) => {
       console.log("course detail resp: ", res);
       this.selectedCourse = res;
-      this.getSections(id,this.selectedCourse.acf.course_sections)
+      this.getSections(id, this.selectedCourse.acf.course_sections);
       //console.log(this.courses);
     });
   }
 
-  getSections(id, sectionIds){
-    this.courseService.getSections(id,sectionIds)
-    .subscribe((res) => {
-      console.log('getSections resp:: ', res)
-      this.sections = res;
-      this.selectedSection = res[0];
-      }, err => {
-        console.log(err)
+  getSections(id, sectionIds) {
+    this.courseService.getSections(id, sectionIds).subscribe(
+      (res) => {
+        console.log("getSections resp:: ", res);
+        this.sections = res;
+        this.selectedSection = res[0];
+      },
+      (err) => {
+        console.log(err);
         this.apiError = err;
       }
     );
   }
 
-  selectSection(evt,f){
-    console.log('selectSection::: ', f)
+  selectSection(evt, f) {
+    console.log("selectSection::: ", f);
     this.selectedSection = f;
   }
 
   openVerticallyCentered(content, lesson?) {
     this.selectedLesson = lesson;
-    console.log('lesson:: ', lesson)
-    this.modalService.open(content, { centered: true, size:'xl'  }); //scrollable:true
+    console.log("lesson:: ", lesson);
+    this.modalService.open(content, {
+      centered: true,
+      size: "xl",
+      backdrop: "static",
+      keyboard: false,
+    }); //scrollable:true
   }
 }

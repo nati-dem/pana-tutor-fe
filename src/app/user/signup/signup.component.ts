@@ -4,8 +4,9 @@ import { UserSignupRequest } from "./../../../../../pana-tutor-lib/model/user/us
 import { AuthService } from "../../service/auth.service";
 import { Router } from "@angular/router";
 import { BaseFormGroup } from "../../shared/base-form-group";
-import { UserRole } from "./../../../../../pana-tutor-lib/enum/user.enum";
+import { UserRole } from "../../../../../pana-tutor-lib/enum/user.enum";
 import { randomString } from "./../../util/helper";
+import { from } from "rxjs";
 
 @Component({
   selector: "app-signup",
