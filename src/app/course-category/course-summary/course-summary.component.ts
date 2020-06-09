@@ -11,7 +11,7 @@ import { CategoryService } from "../../service/category.service";
 })
 export class CourseSummaryComponent implements OnInit {
   //@Input() selectedCourseInp: Course;
-  course:Course;
+  course: Course;
   constructor(
     private modalService: NgbModal,
     private router: Router,
@@ -26,8 +26,7 @@ export class CourseSummaryComponent implements OnInit {
 
   getCourseSummary(id) {
     console.log("getting course summary by course-id: ", id);
-    this.categoryService.getCourseSummary(id)
-    .subscribe((res) => {
+    this.categoryService.getCourseSummary(id).subscribe((res) => {
       console.log("course summary resp: ", res);
       this.course = res;
       //console.log(this.courses);

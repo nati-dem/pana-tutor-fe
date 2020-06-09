@@ -1,42 +1,74 @@
-
 <div class="card">
-    <div class="card-title">
-      <h2>
-        Quizes
-      </h2>
-      <hr class="yello-hr" />
-    </div>
-    <div class="card-body">
+  <div class="card-title">
+    <h2>
+      Quizes
+    </h2>
+    <hr class="yello-hr" />
+  </div>
+  <div class="card-body">
+    <button class="button1" (click)="openVerticallyCentered(quizContent)">
+      Start Quiz
+    </button>
+  </div>
+  <ng-template #quizContent let-modal class="modal">
+    <div class="modal-header">
+      <h4 class="modal-title">{{ quiz?.title.raw }}</h4>
+      <h5>{{ quiz?.acf.time_limit }}</h5>
+
       <button
-        class="button1"
-        (click)="openVerticallyCentered(quizContent)">
-        Start Quiz
+        type="button"
+        class="close"
+        aria-label="Close"
+        (click)="modal.dismiss()"
+      >
+        <span aria-hidden="true">&times;</span>
       </button>
     </div>
-    <ng-template #quizContent let-modal>
-      <div class="modal-header">
-        <h4 class="modal-title">{{quiz?.title.raw}}</h4>
-        <button
-          type="button"
-          class="close"
-          aria-label="Close"
-          (click)="modal.dismiss('Cross click')"
-        >
-          <span aria-hidden="true">&times;</span>
-        </button>
+    <hr />
+    <div class="modal-body">
+      <div class="quiz">
+        <div class="question">
+          <span [innerHtml]="questions[index].content.rendered"></span>
+        </div>
+        <ul>
+          <li>
+            <input class="m-3" type="radio" name="choice_1" id="" />
+            <label for="choice_1">{{ questions[index].acf.choice_1 }}</label>
+          </li>
+          <li>
+            <input class="m-3" type="radio" name="choice_2" id="" />
+            <label for="choice_2">{{ questions[index].acf.choice_2 }}</label>
+          </li>
+          <li>
+            <input class="m-3" type="radio" name="choice_3" id="" />
+            <label for="choice_3">{{ questions[index].acf.choice_3 }}</label>
+          </li>
+          <li>
+            <input class="m-3" type="radio" name="choice_4" id="choice_4" />
+            <label for="choice_4">{{ questions[index].acf.choice_4 }}</label>
+          </li>
+        </ul>
       </div>
-      <div class="modal-body">
-        <p *ngFor="let q of questions">
-          <span [innerHtml]="q.content.rendered"></span>
-        </p>
-      </div>
-      <div class="modal-footer">
-        <button
-          type="button"
-          class="btn btn-light"
-          (click)="modal.close('Close click')">
-          Close
-        </button>
-      </div>
-    </ng-template>
+    </div>
+    <hr />
+    <div class="modal-footer">
+      <button
+        class="btn btn-primary btnprev"
+        (click)="changeIndex(-1)"
+        [disabled]="index == 0"
+      >
+        Previous
+      </button>
+      <button
+        class="btn btn-primary btnnex"
+        (click)="changeIndex(1)"
+        [disabled]="index == questions.length - 1"
+      >
+        Next
+      </button>
+      <button type="button" class="btn btn-light" (click)="modal.close()">
+        Close
+      </button>
+    </div>
+  </ng-template>
 </div>
