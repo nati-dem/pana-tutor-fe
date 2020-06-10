@@ -40,14 +40,17 @@ export class CategoryService {
     return this.http.get<any>(url);
   }
 
-  storeCourseInCahce(courses){
-    courses.forEach(course => {
-      localStorage.setItem(env.localCoursePrefix+course.id, JSON.stringify(course));
+  storeCourseInCahce(courses) {
+    courses.forEach((course) => {
+      localStorage.setItem(
+        env.localCoursePrefix + course.id,
+        JSON.stringify(course)
+      );
     });
   }
 
-  getCourseFromCahce(id){
-    return JSON.parse(localStorage.getItem(env.localCoursePrefix+id));
+  getCourseFromCahce(id) {
+    return JSON.parse(localStorage.getItem(env.localCoursePrefix + id));
   }
 
   getCourseSummary(id: number): Observable<any> {
@@ -62,10 +65,9 @@ export class CategoryService {
   }
 
   findCourse(q): Observable<any> {
-    const url = `${env.searchCoursesUrl}&q=${q}`
+    const url = `${env.searchCoursesUrl}&q=${q}`;
     return this.http.get<any>(env.userApiBaseUrl + url);
   }
-
 }
 export const sampleCategories: CourseCategory[] = [
   {
