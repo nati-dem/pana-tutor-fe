@@ -22,10 +22,10 @@ export class QuizService extends BaseHttpService {
     return this.http.get<any>(env.userApiBaseUrl + url, super.httpOptionsWithAuth());
   }
 
-  getQuestionByCourseAndQuiz(courseId, quizId, queId){
+  getQuestionByCourseAndQuiz(courseId, quizId, queIds){
     // /dev/api/courses/que/xx?courseId=xx&quizId=xx
-    let url = `${env.courseQueUrl}/${queId}?courseId=${courseId}&quizId=${quizId}`
-    console.log('@service getQueByCourse:', quizId, ' && queId:', queId , ' && url:', url)
+    let url = `${env.courseQueUrl}/${queIds}?courseId=${courseId}&quizId=${quizId}`
+    console.log('@service getQueByCourse:', quizId, ' && queIds:', queIds , ' && url:', url)
     return this.http.get<any>(env.userApiBaseUrl + url, super.httpOptionsWithAuth());
   }
 

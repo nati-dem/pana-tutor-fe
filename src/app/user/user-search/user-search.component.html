@@ -1,19 +1,19 @@
 <div class="lesson-banner">
   <div class="lesson-content">
     <div class="row my-row justify-content-center">
-      <h1 class="lesson-text">LessonsX</h1>
+      <h1 class="lesson-text">Users</h1>
     </div>
   </div>
 </div>
 <section>
-  <div class="container">
-    <h3 class="search-title">What subject or grade are you looking for</h3>
+  <div class="container mb-5">
+    <h3 class="search-title">User Search</h3>
     <div class="row justify-content-center">
       <input
         #searchInp
         type="text"
         class="search-input"
-        placeholder="Search for a subject"
+        placeholder="Search for a Tutor"
         (keyup.enter)="onEnter(searchInp.value)"
       />
     </div>
@@ -23,32 +23,31 @@
       </div>
     </div>
     <div *ngIf="searchSubmit && searchResult.length < 1" class="d-flex justify-content-center py-5">
-      No Course Found
+      No User Found
     </div>
   </div>
 </section>
 
 <div *ngIf="searchResult.length > 0" class="container popular-sub-container">
-    <h1 class="popular-title">SUBJECTS</h1>
+    <h1 class="popular-title">Search Result</h1>
     <div class="row my-row1">
       <div
         class="col-lg-4 mb-4 col-sm-8 grid-margin"
-        *ngFor="let course of searchResult">
+        *ngFor="let res of searchResult">
         <div class="card shadow h-80">
           <img src="/assets/images/physics.jpg" class="card-img-top" alt="..." />
           <div class="card-title"></div>
           <div class="card-body">
-            <h1 class="grade">{{ course.title.raw }}</h1>
-            <p class="avalbl-tutor">10 Tutors Availabel</p>
+            <h1 class="grade">{{ res.name }}</h1>
           </div>
-          <button class="findtutor-btn" routerLink="/categories/course-summary/{{ course.id }}">
-            Find tutor
+          <button class="findtutor-btn" routerLink="/user/public/{{ res.id }}">
+            View Profile
           </button>
         </div>
       </div>
     </div>
   </div>
-
+<!--
 <div class="container popular-sub-container">
   <h1 class="popular-title">POPULAR SUBJECTS</h1>
   <div class="row my-row1">
@@ -70,4 +69,4 @@
       </div>
     </div>
   </div>
-</div>
+</div>-->
