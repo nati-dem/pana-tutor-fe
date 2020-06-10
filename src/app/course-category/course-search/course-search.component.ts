@@ -56,7 +56,7 @@ export class CourseSearchComponent implements OnInit {
       this.isSearchLoading = true;
       console.log(value)
       this.searchSubmit = false;
-      this.categoryService.search(EntityType.courses, value)
+      this.categoryService.findCourse(value)
       .subscribe(res => {
         console.log("search res::", res)
         this.searchResult = res;

@@ -61,8 +61,8 @@ export class CategoryService {
     return this.http.get<any>(url);
   }
 
-  search(e,q): Observable<any> {
-    const url = `${env.searchUrl}?entity=${e}&q=${q}`
+  findCourse(q): Observable<any> {
+    const url = `${env.searchCoursesUrl}&q=${q}`
     return this.http.get<any>(env.userApiBaseUrl + url);
   }
 
