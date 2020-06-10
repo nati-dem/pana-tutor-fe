@@ -52,7 +52,6 @@
                 name="exampleRadios"
                 id="exampleRadios1"
                 value="option1"
-                checked
               />
               <label class="form-check-label" for="exampleRadios1">
                 {{ questions[index].acf.choice_1 }}
@@ -110,9 +109,15 @@
       <button
         class="btn btn-primary btnnex"
         (click)="changeIndex(1)"
-        [disabled]="index == questions.length - 1"
+        *ngIf="index != questions.length - 1"
       >
         Next
+      </button>
+      <button
+        *ngIf="index == questions.length - 1"
+        class="btn btn-primary submitbtn"
+      >
+        Submit
       </button>
       <button type="button" class="btn btn-light" (click)="modal.close()">
         Close

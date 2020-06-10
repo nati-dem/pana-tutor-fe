@@ -26,7 +26,8 @@
   float: left;
 }
 .btnprev,
-.btnnex {
+.btnnex,
+.submitbtn {
   background-color: #52aabb;
 }
 label {
