@@ -5,7 +5,7 @@ import{PageNotFoundComponent} from './app-root/page-not-found/page-not-found.com
 
 const routes: Routes = [
   { path: '',redirectTo: '',pathMatch: 'full'},
-  { path: 'user', loadChildren: () => import('./user/user.module').then(m => m.UserModule) },
+  { path: 'users', loadChildren: () => import('./user/user.module').then(m => m.UserModule) },
   { path: 'categories', loadChildren: () => import('./course-category/course-category.module').then(m => m.CourseCategoryModule) },
   { path: 'course-admin', canActivate: [AuthGuard], loadChildren: () => import('./course-admin/course-admin.module').then(m => m.CourseAdminModule) },
   // TODO add guard --> canActivate: [AuthGuard],
