@@ -35,8 +35,7 @@ export class AppComponent implements OnInit, AfterViewInit {
       if (this.location.path() == "/categories") {
         this.showJoinUsSection = true;
         this.isHomePage = false;
-      }
-      else if (this.location.path() != "") {
+      } else if (this.location.path() != "") {
         this.showJoinUsSection = false;
         this.isHomePage = false;
       } else {
