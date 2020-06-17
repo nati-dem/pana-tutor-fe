@@ -4,6 +4,7 @@ import { environment as env } from "./../../environments/environment";
 import { BaseHttpService } from "./base.http.service";
 import { HttpHeaders } from "@angular/common/http";
 import { Config } from "../enum/config.enum";
+import { of } from 'rxjs';
 
 @Injectable({
   providedIn: "root",
@@ -14,6 +15,10 @@ export class QuizService extends BaseHttpService {
   }
 
   getQuizByCourseAndSection(courseId, sectionId, quizId) {
+    let quiz = this.getQuizFromCache(quizId);
+    if(quiz){
+      return of(quiz);
+    }
     let url = env.courseQuizUrl.replace("<courseId>", courseId);
     quizId.sort();
     url = `${url}/${quizId}`;
@@ -25,18 +30,22 @@ export class QuizService extends BaseHttpService {
       " && url:",
       url
     );
-    let quiz = this.http.get<any>(
+    return this.http.get<any>(
       env.userApiBaseUrl + url,
       super.httpOptionsWithAuth()
     );
-    quiz.forEach((q) => {
-      sessionStorage.setItem(env.localQuizPrefix + quizId, JSON.stringify(q));
-    });
-    this.getQuizFromCache(quizId);
-    return quiz;
+  }
+
+  storeQuizInCache(quiz, quizId){
+      sessionStorage.setItem(env.localQuizPrefix + quizId, JSON.stringify(quiz));
   }
 
   getQuestionByCourseAndQuiz(courseId, quizId, queIds) {
+    const questions = this.getQuizQuestionFromCache(quizId);
+    if(questions) {
+      console.log('questions from cache')
+      return of(questions);
+    }
     // /dev/api/courses/que/xx?courseId=xx&quizId=xx
     let url = `${env.courseQueUrl}/${queIds}?courseId=${courseId}&quizId=${quizId}`;
     console.log(
@@ -50,28 +59,17 @@ export class QuizService extends BaseHttpService {
     // localStorage.setItem(env.localQuizPrefix + queIds, "melkam loged in");
     // localStorage.getItem("log");
 
-    let quizQuestion = this.http.get<any>(
+    return this.http.get<any>(
       env.userApiBaseUrl + url,
       super.httpOptionsWithAuth()
     );
-    // this.storeQuizInCahce(quizQuestion);
-    quizQuestion.forEach((quiz) => {
-      sessionStorage.setItem(
-        env.localQuizQuestionPrefix + quizId,
-        JSON.stringify(quiz)
-      );
-    });
-    this.getQuizQuestionFromCache(quizId);
-    return quizQuestion;
   }
 
-  storeQuizInCache(quizes) {
-    quizes.forEach((quiz) => {
+  storeQuizQuestionsInCache(quizWithQUestions, quizId){
       sessionStorage.setItem(
-        env.localQuizPrefix + quiz.id,
-        JSON.stringify(quiz)
+        env.localQuizQuestionPrefix + quizId,
+        JSON.stringify(quizWithQUestions)
       );
-    });
   }
 
   getQuizFromCache(id) {

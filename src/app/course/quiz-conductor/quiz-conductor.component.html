@@ -40,6 +40,7 @@
       </button>
     </div>
     <hr />
+    <span *ngIf="questions && questions.length > 0"> 
     <div class="modal-body">
       <div class="quiz">
         <div class="question">
@@ -126,5 +127,6 @@
         Close
       </button>
     </div>
+    </span>
   </ng-template>
 </div>
