@@ -1,14 +1,15 @@
 .profile-banner {
   background-color: #52aabb;
-  height: 200px;
 }
 
 .main-content {
-  margin-top: 6rem;
+  margin-top: 3rem;
+  margin-bottom: 3rem;
 }
 
 .username {
   padding-top: 6rem;
+  padding-bottom: 3rem;
   padding-left: 2rem;
   color: white;
   font-weight: bold;
@@ -33,7 +34,7 @@
 }
 
 .display-content {
-  margin-top: 4rem;
+  margin-top: 3rem;
 }
 .resume-btn {
   justify-self: center;
@@ -45,4 +46,11 @@
   border-radius: 50px;
   color: black;
   text-align: center;
+}
+
+@media (max-width: 768px) {
+  .username {
+    padding-top: 3rem;
+    font-size: 2rem;
+  }
 }

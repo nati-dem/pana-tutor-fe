@@ -59,6 +59,7 @@ export class QuizConductorComponent implements OnInit {
         this.quiz = res;
         this.quizQuestionIds = this.quiz.acf.quiz_questions;
         console.log("quiz api res:", this.quiz);
+        this.quizService.storeQuizInCache(res, this.quizInp.quizIds);
         // TODO - make get questions call when user clicks on StartQuiz button??
         this.getQuestions();
       });
@@ -74,6 +75,7 @@ export class QuizConductorComponent implements OnInit {
       .subscribe((res) => {
         this.questions = res;
         console.log("questions api res:", this.questions);
+        this.quizService.storeQuizQuestionsInCache(res, this.quizInp.quizIds);
       });
   }
 
