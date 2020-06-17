@@ -1,5 +1,9 @@
 import { Injectable } from "@angular/core";
-import { HttpClient, HttpErrorResponse } from "@angular/common/http";
+import {
+  HttpClient,
+  HttpErrorResponse,
+  HttpHeaders,
+} from "@angular/common/http";
 import { Observable, throwError, Subject, BehaviorSubject, of } from "rxjs";
 import { catchError, retry } from "rxjs/operators";
 import { BaseHttpService } from "./base.http.service";
@@ -36,6 +40,20 @@ export class AuthService extends BaseHttpService {
       token: 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiIxMjM0NTY3ODkwIiwibmFtZSI6IkpvaG4gRG9lIiwiaWF0IjoxNTE2MjM5MDIyfQ.SflKxwRJSMeKKF2QT4fwpMeJf36POk6yJV_adQssw5c',
       userId: 123
     });*/
+  }
+
+  getProfileById(id: number) {
+    let header = new HttpHeaders();
+    var token = this.localStorageHasToken();
+    // console.log(token);
+    header.append("Authorization", "Bearer" + token);
+    header.append("Content-Type", "application/json");
+    const url = `${env.userApiBaseUrl + env.profileUrl}/${id}`;
+    let profile = this.http.get<UserSignupRequest[]>(
+      url,
+      super.httpOptionsWithAuth()
+    );
+    return profile;
   }
 
   signup(signupReq: UserSignupRequest): Observable<any> {
@@ -77,8 +95,10 @@ export class AuthService extends BaseHttpService {
 
   isTokenValid() {
     // token should be saved in memory since it's set whenever page is refreshd
-    console.log('inMemoryToken::', this.token)
-    const isTokenValid = localStorage.getItem(Config.USER_TOKEN) && !this.jwtHelper.isTokenExpired();
+    console.log("inMemoryToken::", this.token);
+    const isTokenValid =
+      localStorage.getItem(Config.USER_TOKEN) &&
+      !this.jwtHelper.isTokenExpired();
     console.log("token valid..", isTokenValid);
     return isTokenValid;
   }

@@ -1,14 +1,12 @@
-import { NgModule } from '@angular/core';
-import { Routes, RouterModule } from '@angular/router';
+import { NgModule } from "@angular/core";
+import { Routes, RouterModule } from "@angular/router";
 
-import { ProfileDashboardComponent } from './dashboard/profile-dashboard.component';
+import { ProfileDashboardComponent } from "./dashboard/profile-dashboard.component";
 
-const routes: Routes = [
-  { path: '', component: ProfileDashboardComponent }
-];
+const routes: Routes = [{ path: "", component: ProfileDashboardComponent }];
 
 @NgModule({
   imports: [RouterModule.forChild(routes)],
-  exports: [RouterModule]
+  exports: [RouterModule],
 })
-export class ProfileRoutingModule { }
+export class ProfileRoutingModule {}

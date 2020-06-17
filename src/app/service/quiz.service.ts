@@ -2,8 +2,12 @@ import { Injectable } from "@angular/core";
 import { HttpClient, HttpErrorResponse } from "@angular/common/http";
 import { environment as env } from "./../../environments/environment";
 import { BaseHttpService } from "./base.http.service";
+import { QuizInit } from "../../../../pana-tutor-lib/model/course/quiz-init.interface";
+import { QuizAnsEntry } from "../../../../pana-tutor-lib/model/course/quiz-ans-entry.interface";
+import { QuizSubmission } from "../../../../pana-tutor-lib/model/course/quiz-submission.interface";
 import { HttpHeaders } from "@angular/common/http";
 import { Config } from "../enum/config.enum";
+import { from, Observable } from "rxjs";
 
 @Injectable({
   providedIn: "root",
@@ -79,5 +83,20 @@ export class QuizService extends BaseHttpService {
   }
   getQuizQuestionFromCache(id) {
     return JSON.parse(sessionStorage.getItem(env.localQuizQuestionPrefix + id));
+  }
+
+  startQuiz(quizIntreq: QuizInit): Observable<any> {
+    let url = `${env.userApiBaseUrl}/${env.startQuizUrl}`;
+    return this.http.post<any>(url, quizIntreq);
+  }
+
+  submitQuizAns(quizsubAnsreq: QuizAnsEntry) {
+    let url = `${env.userApiBaseUrl}/${env.submitQuizAnsUrl}`;
+    return this.http.post<any>(url, quizsubAnsreq);
+  }
+
+  submitQuiz(quizreq: QuizSubmission) {
+    let url = `${env.userApiBaseUrl}/${env.submitQuizUrl}`;
+    return this.http.post<any>(url, quizreq);
   }
 }

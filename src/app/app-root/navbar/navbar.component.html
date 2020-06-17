@@ -48,6 +48,17 @@
           >Contact</a
         >
       </li>
+      <li *ngIf="authenticated$" class="nav-item">
+        <a
+          class="nav-link"
+          routerLinkActive="active"
+          (click)="isMenuCollapsed = true"
+          [routerLink]="'/tutor-session/tutor-profile'"
+          id="link2"
+        >
+          Tutor</a
+        >
+      </li>
 
       <li *ngIf="authenticated$" class="nav-item">
         <a

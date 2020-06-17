@@ -13,6 +13,11 @@ import { QuizConductorComponent } from "./quiz-conductor/quiz-conductor.componen
     CourseDetailComponent,
     QuizConductorComponent,
   ],
-  imports: [CommonModule, CourseRoutingModule, CountdownModule],
+  imports: [
+    CommonModule,
+    CourseRoutingModule,
+    CountdownModule,
+    ReactiveFormsModule,
+  ],
 })
 export class CourseModule {}

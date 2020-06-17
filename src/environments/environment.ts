@@ -4,10 +4,11 @@
 
 export const environment = {
   production: false,
-  // userApiBaseUrl: "http://localhost:5000/dev/api",
-  userApiBaseUrl: "https://panalearn.com/dev/api",
+  userApiBaseUrl: "http://localhost:5000/dev/api",
+  // userApiBaseUrl: "https://panalearn.com/dev/api",
   loginUrl: "/auth/login",
   signupUrl: "/auth/register",
+  profileUrl: "/users/profile",
   tokenValidationUrl: "/auth/token-validate",
   categoryUrl: "/categories",
   courseByCategoryIdUrl: "/categories/courses",
@@ -16,6 +17,9 @@ export const environment = {
   courseSectionUrl: "/courses/<courseId>/chapter",
   courseQuizUrl: "/courses/<courseId>/quiz",
   courseQueUrl: "/courses/que",
+  startQuizUrl: "/quiz/start",
+  submitQuizUrl: "/quiz/submit-quiz",
+  submitQuizAnsUrl: "/quiz/submit-answer",
   localCoursePrefix: "pana_course_",
   localQuizPrefix: "pana_quiz_",
   localQuizQuestionPrefix: "pana_quiz_questions_",

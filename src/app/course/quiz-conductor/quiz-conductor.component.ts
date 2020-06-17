@@ -1,4 +1,5 @@
 import { Component, OnInit, Input } from "@angular/core";
+import { FormControl, FormGroup, Validators } from "@angular/forms";
 import { NgbModal } from "@ng-bootstrap/ng-bootstrap";
 import { QuizService } from "../../service/quiz.service";
 import { Quiz } from "../../../../../pana-tutor-lib/model/course/quiz.interface";
@@ -10,6 +11,7 @@ import { Question } from "../../../../../pana-tutor-lib/model/course/question.in
   styleUrls: ["./quiz-conductor.component.css"],
 })
 export class QuizConductorComponent implements OnInit {
+  quizform = new FormGroup({});
   @Input() quizInp: any;
   quiz: Quiz;
   quizQuestionIds;
@@ -31,6 +33,7 @@ export class QuizConductorComponent implements OnInit {
       "quizIds: ",
       this.quizInp.quizIds
     );
+
     this.getQuiz();
   }
 
