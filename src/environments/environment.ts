@@ -23,8 +23,8 @@ export const environment = {
   localCoursePrefix: "pana_course_",
   localQuizPrefix: "pana_quiz_",
   localQuizQuestionPrefix: "pana_quiz_questions_",
-  searchCoursesUrl: "/search?entity=courses",
-  searchUsersUrl: "/search?entity=users",
+  searchCoursesUrl: "/search/?entity=courses",
+  searchUsersUrl: "/search/?entity=users",
 };
 
 /*
