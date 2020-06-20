@@ -1,11 +1,4 @@
 <span *ngIf="selectedCourse" >
-  <div class="course-banner">
-    <div class="course-content">
-      <div class="row my-row justify-content-center">
-        <h5 class="course-text">{{ selectedCourse.title.rendered }}</h5>
-      </div>
-    </div>
-  </div>
 
   <div *ngIf="!selectedSection && !apiError" class="d-flex justify-content-center py-5">
     <div class="spinner-border spinner-border-sm text-secondary" role="status">
@@ -14,12 +7,10 @@
   </div>
 
   <!--{{apiError.error.code}} -->
-  <div  *ngIf="apiError" class="d-flex justify-content-center py-5">
-    <span *ngIf="apiError.status == 401">
-    Error: You have to Sign in to access this page.
-    </span>
+  <div *ngIf="apiError" class="d-flex justify-content-center py-5">
+    <app-api-error-template [apiErrorInp]="apiError" ></app-api-error-template>
   </div>
-  
+
   <div *ngIf="selectedSection">
     <div class="container content">
       <div class="row">

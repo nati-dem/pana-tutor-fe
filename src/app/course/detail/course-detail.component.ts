@@ -11,8 +11,7 @@ import { CourseService } from "../../service/course.service";
   styleUrls: ["./course-detail.component.css"],
 })
 export class CourseDetailComponent implements OnInit {
-  //@Input() selectedCourse: Course;
-  selectedCourse: Course;
+  @Input() selectedCourse: Course;
   closeResult: string;
   sections: any;
   selectedSection: any;
@@ -24,17 +23,22 @@ export class CourseDetailComponent implements OnInit {
     private router: Router,
     private route: ActivatedRoute,
     private categoryService: CategoryService,
-    private courseService: CourseService
-  ) {
+    private courseService: CourseService) {
     //console.log(this.router.getCurrentNavigation().extras.state);
   }
 
   ngOnInit(): void {
-    // this.selectedCourse = history.state;
     const id = +this.route.snapshot.paramMap.get("course-id");
-    this.getCourseSummary(id);
+    this.getCourseDetails(id);
   }
 
+  getCourseDetails(id){
+    console.log("@getCourseDetails course-id: ", id);
+    if(this.selectedCourse) {
+      this.getSections(id, this.selectedCourse.acf.course_sections);
+    }
+  }
+  /*
   getCourseSummary(id) {
     console.log("get course detail by course-id: ", id);
     this.categoryService.getCourseSummary(id).subscribe((res) => {
@@ -43,7 +47,7 @@ export class CourseDetailComponent implements OnInit {
       this.getSections(id, this.selectedCourse.acf.course_sections);
       //console.log(this.courses);
     });
-  }
+  }*/
 
   getSections(id, sectionIds) {
     this.courseService.getSections(id, sectionIds).subscribe(
