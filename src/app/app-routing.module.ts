@@ -31,17 +31,10 @@ const routes: Routes = [
       import("./course/course.module").then((m) => m.CourseModule),
   },
   {
-    path: "tutor-request",
+    path: "tutors",
+    //canActivate: [AuthGuard],
     loadChildren: () =>
-      import("./tutor-booking/tutor-booking.module").then(
-        (m) => m.TutorBookingModule
-      ),
-  },
-  {
-    path: "tutor-session",
-    canActivate: [AuthGuard],
-    loadChildren: () =>
-      import("./tutor/tutor-session.module").then((m) => m.TutorSessionModule),
+      import("./tutor-public/tutor-public.module").then((m) => m.TutorPublicModule),
   },
   {
     path: "profile",
