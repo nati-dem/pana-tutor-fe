@@ -20,7 +20,6 @@ export class TutorGroupAdminComponent implements OnInit {
   courseId:number;
   groups: GroupsInCourseResponse;
   selectedGroup;
-
   formSubmitError;
   createGroupForm;
   addMemberInGroupForm;
@@ -142,7 +141,7 @@ export class TutorGroupAdminComponent implements OnInit {
     this.formSubmitError = null;
   }
 
-  onUserSearchFormSelected(user){
+  onUserSearchEvent(user){
     console.log('event emitted, user::', user)
     if(user){
       this.createGroupForm.patchValue({ user_id: user.id });
