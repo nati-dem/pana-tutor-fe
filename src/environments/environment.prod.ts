@@ -12,6 +12,6 @@ export const environment = {
   courseQuizUrl:"/courses/<courseId>/quiz",
   courseQueUrl:"/courses/que",
   localCoursePrefix: "pana_course_",
-  searchCoursesUrl: "/search?entity=courses",
-  searchUsersUrl: "/search?entity=users",
+  searchCoursesUrl: "/search/?entity=courses",
+  searchUsersUrl: "/search/?entity=users",
 };

@@ -9,7 +9,7 @@ import { UserService } from "../../service/user.service";
 })
 export class UserSearchComponent implements OnInit {
 
-  searchResult: Course[] = [];
+  searchResult = [];
   isSearchLoading = false;
   searchSubmit = false;
 

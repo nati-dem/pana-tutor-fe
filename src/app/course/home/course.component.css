@@ -1,0 +1,45 @@
+.course-banner {
+    background: url("/assets/images/image (1).png");
+    /*height: 500px;*/
+    -webkit-background-size: cover;
+    -moz-background-size: cover;
+    -o-background-size: cover;
+    background-size: cover;
+    /*margin-top: -2rem;*/
+    position: sticky;
+    position: sticky; /* Required for Safari */
+    position: sticky;
+    width: 100%;
+    z-index: 1;
+  }
+  .course-content {
+    background-color: rgba(0, 0, 0, 0.3);
+    height: 100%;
+  }
+  .course-text {
+    margin-top: 7rem;
+    margin-bottom: 7rem;
+    color: white;
+    font-size: 4rem;
+    font-family: Comic Sans MS, Comic Sans, cursive;
+    font-weight: bolder;
+  }
+  @media (max-width: 768px) {
+    .my-col {
+      display: none;
+      overflow: hidden;
+      overflow-y: hidden;
+      overflow-x: hidden;
+    }
+    .sub-course {
+      display: none;
+    }
+    .course-text {
+      margin-top: 3rem;
+      margin-bottom: 3rem;
+      font-size: 2rem;
+    }
+    .content{
+      margin-top: 1rem;
+    }
+  }

@@ -1,0 +1,18 @@
+
+<div class="form-group">
+    <input #searchUserInp type="text" class="form-control"  placeholder="Search User"
+        (keyup.enter)="searchUserFormSubmit(searchUserInp.value)" />
+        <span *ngIf="isUserSearchLoading"  class="spinner-border spinner-border-sm text-secondary" role="status">
+            <span class="sr-only">Loading...</span>
+        </span>
+    <input type="hidden" class="form-control" formControlName="user_id" >
+</div>
+<p *ngIf="searchUserSubmit && searchUserResult.length < 1" class=""> 
+    No User Found
+</p>
+<div class="mb-2" *ngIf="searchUserResult.length > 0">
+    <div  *ngFor="let user of searchUserResult;let i = index">
+        <li [ngClass]="{ 'selected' : i === userListActiveIndex }" (click)="selectUser(user, i)">
+            <a class="user-list"> {{ user.name }} | {{ user.email }}</a> </li>
+    </div>
+</div>

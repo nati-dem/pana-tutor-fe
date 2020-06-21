@@ -25,8 +25,11 @@ export const environment = {
   localQuizPrefix: "pana_quiz_",
   localQuizIntPrefix: "pana_quiz_init_",
   localQuizQuestionPrefix: "pana_quiz_questions_",
-  searchCoursesUrl: "/search?entity=courses",
-  searchUsersUrl: "/search?entity=users",
+  searchCoursesUrl: "/search/?entity=courses",
+  searchUsersUrl: "/search/?entity=users",
+  allGroupsInCourseUrl: "/tutor-groups/course",
+  addGroupInCourseUrl: "/tutor-groups/create",
+  addMemberInGroupUrl: "/tutor-groups/members"
 };
 
 /*
