@@ -1,0 +1,7 @@
+.selected{
+    color:rgba(237, 151, 52, 0.795);
+}
+.user-list:hover{
+    color:rgba(237, 151, 52, 0.795);
+    cursor: pointer;
+}

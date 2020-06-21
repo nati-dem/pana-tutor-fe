@@ -20,10 +20,6 @@ export class TutorGroupAdminComponent implements OnInit {
   courseId:number;
   groups: GroupsInCourseResponse;
   selectedGroup;
-  isUserSearchLoading = false;
-  searchUserResult = [];
-  searchUserSubmit = false;
-  activeIndex;
 
   formSubmitError;
   createGroupForm;
@@ -144,41 +140,17 @@ export class TutorGroupAdminComponent implements OnInit {
     this.initCreateGroupForm();
     this.initAddMemberInGroupForm();
     this.formSubmitError = null;
-    this.isUserSearchLoading = false;
-    this.searchUserResult = [];
-    this.searchUserSubmit = false;
-    this.activeIndex = -1;
   }
 
-  searchUserFormSubmit(value: string) {
-    if(value.length >= 4) {
-      this.activeIndex = -1;
-      this.isUserSearchLoading = true;
-      this.resetSelectedUser();
-      this.searchUserSubmit = false;
-      this.userService.findUser(value)
-        .subscribe(res => {
-          console.log("search res::", res)
-          this.searchUserResult = res;
-          this.searchUserSubmit = true;
-          this.isUserSearchLoading = false;
-        }, err => {
-          this.searchUserResult = [];
-          this.searchUserSubmit = true;
-          this.isUserSearchLoading = false;
-        });
+  onUserSearchFormSelected(user){
+    console.log('event emitted, user::', user)
+    if(user){
+      this.createGroupForm.patchValue({ user_id: user.id });
+      this.addMemberInGroupForm.patchValue({ user_id: user.id });
+    } else {
+      this.createGroupForm.patchValue({user_id: ''});
+      this.addMemberInGroupForm.patchValue({user_id: ''});
     }
-  }
-
-  selectUser(u, index){
-    this.createGroupForm.patchValue({ user_id: u.id });
-    this.addMemberInGroupForm.patchValue({ user_id: u.id });
-    this.activeIndex = index;
-  }
-
-  resetSelectedUser(){
-    this.createGroupForm.patchValue({user_id: ''});
-    this.addMemberInGroupForm.patchValue({user_id: ''});
   }
 
 }
