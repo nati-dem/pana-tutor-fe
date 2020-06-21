@@ -9,6 +9,7 @@ export const environment = {
   loginUrl: "/auth/login",
   signupUrl: "/auth/register",
   profileUrl: "/users/profile",
+  publicUserProfileUrl: "/public/user",
   tokenValidationUrl: "/auth/token-validate",
   categoryUrl: "/categories",
   courseByCategoryIdUrl: "/categories/courses",
