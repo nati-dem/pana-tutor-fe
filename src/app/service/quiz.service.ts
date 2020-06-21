@@ -60,8 +60,6 @@ export class QuizService extends BaseHttpService {
       " && url:",
       url
     );
-    // localStorage.setItem(env.localQuizPrefix + queIds, "melkam loged in");
-    // localStorage.getItem("log");
 
     return this.http.get<any>(
       env.userApiBaseUrl + url,
@@ -82,19 +80,23 @@ export class QuizService extends BaseHttpService {
   getQuizQuestionFromCache(id) {
     return JSON.parse(sessionStorage.getItem(env.localQuizQuestionPrefix + id));
   }
+  getQuizInt(id) {
+    let url = `${env.userApiBaseUrl}/${env.getQuizint}/${id}`;
+    return this.http.get<any>(url, super.httpOptionsWithAuth());
+  }
 
   startQuiz(quizIntreq: QuizInit): Observable<any> {
     let url = `${env.userApiBaseUrl}/${env.startQuizUrl}`;
-    return this.http.post<any>(url, quizIntreq);
+    return this.http.post<any>(url, quizIntreq, super.httpOptionsWithAuth());
   }
 
   submitQuizAns(quizsubAnsreq: QuizAnsEntry) {
     let url = `${env.userApiBaseUrl}/${env.submitQuizAnsUrl}`;
-    return this.http.post<any>(url, quizsubAnsreq);
+    return this.http.post<any>(url, quizsubAnsreq, super.httpOptionsWithAuth());
   }
 
   submitQuiz(quizreq: QuizSubmission) {
     let url = `${env.userApiBaseUrl}/${env.submitQuizUrl}`;
-    return this.http.post<any>(url, quizreq);
+    return this.http.post<any>(url, quizreq, super.httpOptionsWithAuth());
   }
 }

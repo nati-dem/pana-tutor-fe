@@ -1,9 +1,18 @@
 import { Component, OnInit, Input } from "@angular/core";
-import { FormControl, FormGroup, Validators } from "@angular/forms";
+import {
+  FormControl,
+  FormGroup,
+  FormBuilder,
+  Validators,
+} from "@angular/forms";
 import { NgbModal } from "@ng-bootstrap/ng-bootstrap";
 import { QuizService } from "../../service/quiz.service";
 import { Quiz } from "../../../../../pana-tutor-lib/model/course/quiz.interface";
 import { Question } from "../../../../../pana-tutor-lib/model/course/question.interface";
+import { QuizAnsEntry } from "../../../../../pana-tutor-lib/model/course/quiz-ans-entry.interface";
+import { QuizInit } from "../../../../../pana-tutor-lib/model/course/quiz-init.interface";
+import { YesNoChoice } from "../../../../../pana-tutor-lib/enum/common.enum";
+import { QuizSubmission } from "../../../../../pana-tutor-lib/model/course/quiz-submission.interface";
 
 @Component({
   selector: "app-quiz-conductor",
@@ -12,17 +21,29 @@ import { Question } from "../../../../../pana-tutor-lib/model/course/question.in
 })
 export class QuizConductorComponent implements OnInit {
   quizform = new FormGroup({});
+  form: FormGroup;
+  selectedOption: string = "";
   @Input() quizInp: any;
   quiz: Quiz;
   quizQuestionIds;
   questions: Question[];
-
+  answer = [];
+  submitedAnswer: QuizAnsEntry;
+  radioSelected: string;
   index = 0;
+  quizInt: any;
+  submitedQuiz: any;
 
   constructor(
     private modalService: NgbModal,
-    private quizService: QuizService
-  ) {}
+    private quizService: QuizService,
+    private formBuilder: FormBuilder
+  ) {
+    this.radioSelected = "";
+    this.quizform = this.formBuilder.group({
+      answer: [],
+    });
+  }
 
   ngOnInit(): void {
     console.log(
@@ -38,14 +59,73 @@ export class QuizConductorComponent implements OnInit {
   }
 
   changeIndex(number) {
+    this.submitAnswer();
     if (
       (this.index > 0 && number < 0) || //index must be greater than 0 at all times
       (this.index < this.questions.length && number > 0)
     ) {
       //index must be less than length of array
+
       this.index += number;
     }
   }
+  radioChangHandler(event: any) {
+    this.selectedOption = event.target.value;
+    console.log(this.selectedOption);
+  }
+
+  getquizIntByid() {
+    this.quizService.getQuizInt(this.quiz.id).subscribe((res) => {
+      this.quizInt = res;
+    });
+  }
+
+  submitAnswer() {
+    this.getquizIntByid();
+    this.getQuiz();
+    this.getQuestions();
+
+    console.log("get Quizinp from int", this.quizInt);
+    console.log("get quiz int id", this.quizInt.initId);
+    console.log("quiz from get quiz", this.quiz);
+    console.log("Question from get questio", this.questions[this.index].id);
+
+    console.log("form values", this.quizform.value);
+    // const quez = this.quizService.getQuizFromCache(this.quizInp.quizIds);
+    // const que = this.quizService.getQuizQuestionFromCache(this.quizInp.quizIds);
+
+    // console.log("quez submit", quez.id);
+    // console.log("Question submit", que[this.index].id);
+
+    let req = {
+      quiz_init_id: 3,
+      instructor_feedback: null,
+      marked_for_review: YesNoChoice.yes,
+      que_id: this.questions[this.index].id,
+      answer: this.quizform.value.answer,
+    };
+
+    this.quizService.submitQuizAns(req).subscribe((res) => {
+      this.submitedAnswer = res;
+      console.log("Submited answer", this.submitedAnswer);
+    });
+  }
+
+  // submitQuiz() {
+  //   this.getQuestions();
+  //   let req: QuizSubmission = {
+  //     que_id: this.questions[this.index].id,
+  //     marked_for_review:YesNoChoice.yes,
+  //     answer:
+  //     quiz_init_id: 3,
+  //     instructor_feedback: "good",
+  //     instructor_id: null,
+  //   };
+  //   this.quizService.submitQuiz(req).subscribe((res) => {
+  //     this.submitedQuiz = res;
+  //     console.log("submited quiz ", this.submitedQuiz);
+  //   });
+  // }
 
   getQuiz() {
     // TODO - Cache quiz and questions in local storage
@@ -79,12 +159,28 @@ export class QuizConductorComponent implements OnInit {
       });
   }
 
+  mapQuizIntData(): QuizInit {
+    this.getQuiz();
+    return {
+      quiz_id: this.quiz.id,
+      enrollment_id: 3,
+      timer: this.quiz.acf.time_limit,
+    };
+  }
+
   openVerticallyCentered(content) {
+    let quizIntreq: QuizInit = this.mapQuizIntData();
+    this.quizService.startQuiz(quizIntreq).subscribe((res) => {
+      this.quizInt = res;
+      console.log("quizstart", res);
+    });
     this.modalService.open(content, {
       centered: true,
       size: "lg",
       backdrop: "static",
       keyboard: false,
-    }); //scrollable:true
+    });
+
+    //scrollable:true
   }
 }

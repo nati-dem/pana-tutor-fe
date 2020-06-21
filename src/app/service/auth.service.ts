@@ -49,11 +49,8 @@ export class AuthService extends BaseHttpService {
     header.append("Authorization", "Bearer" + token);
     header.append("Content-Type", "application/json");
     const url = `${env.userApiBaseUrl + env.profileUrl}/${id}`;
-    let profile = this.http.get<UserSignupRequest[]>(
-      url,
-      super.httpOptionsWithAuth()
-    );
-    return profile;
+    // let profile =
+    return this.http.get<UserSignupRequest>(url, super.httpOptionsWithAuth());
   }
 
   signup(signupReq: UserSignupRequest): Observable<any> {

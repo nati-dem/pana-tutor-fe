@@ -40,93 +40,110 @@
       </button>
     </div>
     <hr />
-    <span *ngIf="questions && questions.length > 0"> 
-    <div class="modal-body">
-      <div class="quiz">
-        <div class="question">
-          <span [innerHtml]="questions[index].content.rendered"></span>
-          <!-- <span>{{ questions[index].content.rendered }}</span> -->
-        </div>
-        <div class="container">
-          <form [formGroup]="quizform" class="form-group m-3">
-            <div class="form-check">
-              <input
-                class="form-check-input"
-                type="radio"
-                name="exampleRadios"
-                id="exampleRadios1"
-                value="option1"
-              />
-              <label class="form-check-label" for="exampleRadios1">
-                {{ questions[index].acf.choice_1 }}
-              </label>
-            </div>
-            <div class="form-check">
-              <input
-                class="form-check-input"
-                type="radio"
-                name="exampleRadios"
-                id="exampleRadios2"
-                value="option2"
-              />
-              <label class="form-check-label" for="exampleRadios2">
-                {{ questions[index].acf.choice_2 }}
-              </label>
-            </div>
-            <div class="form-check">
-              <input
-                class="form-check-input"
-                type="radio"
-                name="exampleRadios"
-                id="exampleRadios3"
-                value="option3"
-              />
-              <label class="form-check-label" for="exampleRadios3">
-                {{ questions[index].acf.choice_3 }}
-              </label>
-            </div>
-            <div class="form-check">
-              <input
-                class="form-check-input"
-                type="radio"
-                name="exampleRadios"
-                id="exampleRadios4"
-                value="option4"
-              />
-              <label class="form-check-label" for="exampleRadios2">
-                {{ questions[index].acf.choice_4 }}
-              </label>
-            </div>
-          </form>
+    <span *ngIf="questions && questions.length > 0">
+      <div class="modal-body">
+        <div class="quiz">
+          <div class="question">
+            <span [innerHtml]="questions[index].content.rendered"></span>
+            <!-- <span>{{ questions[index].content.rendered }}</span> -->
+          </div>
+          <div class="container">
+            <form
+              [formGroup]="quizform"
+              (ngSubmit)="submitAnswer()"
+              class="form-group m-3"
+            >
+              <div class="form-check">
+                <input
+                  class="form-check-input"
+                  type="radio"
+                  formControlName="answer"
+                  name="answer"
+                  id="exampleRadios1"
+                  [value]="questions[index].acf.choice_1"
+                  (change)="radioChangHandler($event)"
+                />
+                <label class="form-check-label" for="exampleRadios1">
+                  {{ questions[index].acf.choice_1 }}
+                </label>
+              </div>
+              <div class="form-check">
+                <input
+                  class="form-check-input"
+                  type="radio"
+                  formControlName="answer"
+                  name="answer"
+                  id="exampleRadios2"
+                  [value]="questions[index].acf.choice_2"
+                  (change)="radioChangHandler($event)"
+                />
+                <label class="form-check-label" for="exampleRadios2">
+                  {{ questions[index].acf.choice_2 }}
+                </label>
+              </div>
+              <div class="form-check">
+                <input
+                  class="form-check-input"
+                  type="radio"
+                  formControlName="answer"
+                  name="answer"
+                  id="exampleRadios3"
+                  [value]="questions[index].acf.choice_3"
+                  (change)="radioChangHandler($event)"
+                />
+                <label class="form-check-label" for="exampleRadios3">
+                  {{ questions[index].acf.choice_3 }}
+                </label>
+              </div>
+              <div class="form-check">
+                <input
+                  class="form-check-input"
+                  type="radio"
+                  formControlName="answer"
+                  name="answer"
+                  id="exampleRadios4"
+                  [value]="questions[index].acf.choice_4"
+                  (change)="radioChangHandler($event)"
+                />
+                <label class="form-check-label" for="exampleRadios2">
+                  {{ questions[index].acf.choice_4 }}
+                </label>
+              </div>
+              <!-- <hr /> -->
+              <div class="modal-footer">
+                <button
+                  class="btn btn-primary btnprev"
+                  (click)="changeIndex(-1)"
+                  [disabled]="index == 0"
+                >
+                  Previous
+                </button>
+                <button
+                  class="btn btn-primary btnnex"
+                  (click)="changeIndex(1)"
+                  *ngIf="index != questions.length - 1"
+                >
+                  Next
+                </button>
+                <button
+                  *ngIf="index == questions.length - 1"
+                  class="btn btn-primary submitbtn"
+                  type="submit"
+                >
+                  Submit
+                </button>
+                <button
+                  type="button"
+                  class="btn btn-light"
+                  (click)="modal.close()"
+                >
+                  Close
+                </button>
+              </div>
+            </form>
+          </div>
         </div>
       </div>
-    </div>
-    <hr />
-    <div class="modal-footer">
-      <button
-        class="btn btn-primary btnprev"
-        (click)="changeIndex(-1)"
-        [disabled]="index == 0"
-      >
-        Previous
-      </button>
-      <button
-        class="btn btn-primary btnnex"
-        (click)="changeIndex(1)"
-        *ngIf="index != questions.length - 1"
-      >
-        Next
-      </button>
-      <button
-        *ngIf="index == questions.length - 1"
-        class="btn btn-primary submitbtn"
-      >
-        Submit
-      </button>
-      <button type="button" class="btn btn-light" (click)="modal.close()">
-        Close
-      </button>
-    </div>
     </span>
   </ng-template>
 </div>

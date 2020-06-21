@@ -9,7 +9,7 @@ import { UserSignupRequest } from "../../../../../pana-tutor-lib/model/user/user
 })
 export class ProfileDashboardComponent implements OnInit {
   constructor(private authService: AuthService) {}
-  profile: any;
+  profile: UserSignupRequest;
   user: any;
   id: any;
 
@@ -27,8 +27,6 @@ export class ProfileDashboardComponent implements OnInit {
     this.getProfile();
     console.log("User", this.user.data.user.id);
     console.log("Current user", currentUser.data.user.id);
-    console.log("profile name", this.profile);
-    console.log("profil user");
   }
 
   getProfile() {
