@@ -144,8 +144,8 @@ export class TutorGroupAdminComponent implements OnInit {
   onUserSearchEvent(user){
     console.log('event emitted, user::', user)
     if(user){
-      this.createGroupForm.patchValue({ user_id: user.id });
-      this.addMemberInGroupForm.patchValue({ user_id: user.id });
+      this.createGroupForm.patchValue({ user_id: user.user_id });
+      this.addMemberInGroupForm.patchValue({ user_id: user.user_id });
     } else {
       this.createGroupForm.patchValue({user_id: ''});
       this.addMemberInGroupForm.patchValue({user_id: ''});

@@ -15,7 +15,7 @@ export class UserService extends BaseHttpService {
   }
 
   findUser(q): Observable<any> {
-    const url = `${env.searchUsersUrl}&q=${q}`;
+    const url = `${env.searchUsersUrl}/?q=${q}`;
     return this.http.get<any>(env.userApiBaseUrl + url);
   }
 
