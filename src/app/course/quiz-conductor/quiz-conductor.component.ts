@@ -33,6 +33,8 @@ export class QuizConductorComponent implements OnInit {
   index = 0;
   quizInt: any;
   submitedQuiz: any;
+  quizInitData = [];
+  checked: boolean = false;
 
   constructor(
     private modalService: NgbModal,
@@ -54,12 +56,17 @@ export class QuizConductorComponent implements OnInit {
       "quizIds: ",
       this.quizInp.quizIds
     );
-
+    this.getquizIntByid();
     this.getQuiz();
+    // this.getquizIntByid();
+
+    this.getQuestions();
+    // this.getQuiz();
   }
 
   changeIndex(number) {
     this.submitAnswer();
+
     if (
       (this.index > 0 && number < 0) || //index must be greater than 0 at all times
       (this.index < this.questions.length && number > 0)
@@ -67,65 +74,59 @@ export class QuizConductorComponent implements OnInit {
       //index must be less than length of array
 
       this.index += number;
+
+      this.quizform.controls["answer"].reset();
     }
   }
   radioChangHandler(event: any) {
     this.selectedOption = event.target.value;
+    this.checked = true;
     console.log(this.selectedOption);
   }
 
   getquizIntByid() {
-    this.quizService.getQuizInt(this.quiz.id).subscribe((res) => {
-      this.quizInt = res;
+    this.quizService.getQuizInt(this.quizInp.quizIds).subscribe((res) => {
+      this.quizInitData = res;
     });
   }
 
   submitAnswer() {
-    this.getquizIntByid();
-    this.getQuiz();
-    this.getQuestions();
-
-    console.log("get Quizinp from int", this.quizInt);
-    console.log("get quiz int id", this.quizInt.initId);
-    console.log("quiz from get quiz", this.quiz);
-    console.log("Question from get questio", this.questions[this.index].id);
-
-    console.log("form values", this.quizform.value);
-    // const quez = this.quizService.getQuizFromCache(this.quizInp.quizIds);
-    // const que = this.quizService.getQuizQuestionFromCache(this.quizInp.quizIds);
-
-    // console.log("quez submit", quez.id);
-    // console.log("Question submit", que[this.index].id);
+    const found = this.quizInitData.find(
+      (element) => element.quiz_id == this.quiz.id
+    );
 
     let req = {
-      quiz_init_id: 3,
-      instructor_feedback: null,
-      marked_for_review: YesNoChoice.yes,
       que_id: this.questions[this.index].id,
       answer: this.quizform.value.answer,
+      quiz_init_id: found.initId,
+      instructor_feedback: null,
+      marked_for_review: YesNoChoice.yes,
     };
-
-    this.quizService.submitQuizAns(req).subscribe((res) => {
-      this.submitedAnswer = res;
-      console.log("Submited answer", this.submitedAnswer);
-    });
+    if (this.quizform.value != null) {
+      this.quizService.submitQuizAns(req).subscribe((res) => {
+        this.submitedAnswer = res;
+        console.log("Submited answer", this.submitedAnswer);
+      });
+    }
   }
 
-  // submitQuiz() {
-  //   this.getQuestions();
-  //   let req: QuizSubmission = {
-  //     que_id: this.questions[this.index].id,
-  //     marked_for_review:YesNoChoice.yes,
-  //     answer:
-  //     quiz_init_id: 3,
-  //     instructor_feedback: "good",
-  //     instructor_id: null,
-  //   };
-  //   this.quizService.submitQuiz(req).subscribe((res) => {
-  //     this.submitedQuiz = res;
-  //     console.log("submited quiz ", this.submitedQuiz);
-  //   });
-  // }
+  submitQuiz() {
+    const found = this.quizInitData.find(
+      (element) => element.quiz_id == this.quiz.id
+    );
+    let req: QuizSubmission = {
+      answer: found.answers,
+      que_id: this.questions[this.index].id,
+      quiz_init_id: found.initId,
+      marked_for_review: YesNoChoice.yes,
+      instructor_feedback: null,
+      instructor_id: null,
+    };
+    this.quizService.submitQuiz(req).subscribe((res) => {
+      this.submitedQuiz = res;
+      console.log("submited quiz ", this.submitedQuiz);
+    });
+  }
 
   getQuiz() {
     // TODO - Cache quiz and questions in local storage
