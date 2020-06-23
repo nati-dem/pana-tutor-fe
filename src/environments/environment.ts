@@ -9,6 +9,7 @@ export const environment = {
   loginUrl: "/auth/login",
   signupUrl: "/auth/register",
   profileUrl: "/users/profile",
+  publicUserProfileUrl: "/public/users/profile",
   tokenValidationUrl: "/auth/token-validate",
   categoryUrl: "/categories",
   courseByCategoryIdUrl: "/categories/courses",
@@ -26,7 +27,8 @@ export const environment = {
   localQuizIntPrefix: "pana_quiz_init_",
   localQuizQuestionPrefix: "pana_quiz_questions_",
   searchCoursesUrl: "/search/?entity=courses",
-  searchUsersUrl: "/search/?entity=users",
+  searchUsersWpUrl: "/search/?entity=users",
+  searchUsersUrl: "/search/users",
   allGroupsInCourseUrl: "/tutor-groups/course",
   addGroupInCourseUrl: "/tutor-groups/create",
   addMemberInGroupUrl: "/tutor-groups/members"
