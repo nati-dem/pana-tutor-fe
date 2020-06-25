@@ -83,9 +83,10 @@ export class TutorGroupAdminComponent implements OnInit {
   }
 
   getCreateGroupForm(): TutorGroupCreate{
+    const startDate = this.createGroupForm.value.start_date;
     return {
       course_id: this.courseId,
-      start_date: this.createGroupForm.value.start_date,
+      start_date: startDate.year+'-'+startDate.month+'-'+startDate.day,
       status: GroupStatus.active,
       owner: {
         user_id: this.createGroupForm.value.user_id,
