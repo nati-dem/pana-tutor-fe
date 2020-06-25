@@ -115,6 +115,7 @@
                   class="btn btn-primary btnprev"
                   (click)="changeIndex(-1)"
                   [disabled]="index == 0"
+                  type="submit"
                 >
                   Previous
                 </button>
@@ -122,6 +123,7 @@
                   class="btn btn-primary btnnex"
                   (click)="changeIndex(1)"
                   *ngIf="index != questions.length - 1"
+                  type="submit"
                 >
                   Next
                 </button>

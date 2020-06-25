@@ -27,7 +27,7 @@ export class QuizConductorComponent implements OnInit {
   quiz: Quiz;
   quizQuestionIds;
   questions: Question[];
-  answer = [];
+  // answer = [];
   submitedAnswer: QuizAnsEntry;
   radioSelected: string;
   index = 0;
@@ -43,7 +43,7 @@ export class QuizConductorComponent implements OnInit {
   ) {
     this.radioSelected = "";
     this.quizform = this.formBuilder.group({
-      answer: [],
+      answer: [null, Validators.required],
     });
   }
 
@@ -91,6 +91,13 @@ export class QuizConductorComponent implements OnInit {
   }
 
   submitAnswer() {
+    console.log("get Quizinp from int", this.quizInitData);
+
+    console.log("quiz from get quiz", this.quiz);
+    console.log("Question from get questio", this.questions[this.index].id);
+
+    console.log("form values", this.quizform.value);
+
     const found = this.quizInitData.find(
       (element) => element.quiz_id == this.quiz.id
     );
