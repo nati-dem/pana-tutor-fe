@@ -43,13 +43,8 @@ export class AuthService extends BaseHttpService {
   }
 
   getProfileById(id: number) {
-    let header = new HttpHeaders();
-    var token = this.localStorageHasToken();
-    // console.log(token);
-    header.append("Authorization", "Bearer" + token);
-    header.append("Content-Type", "application/json");
     const url = `${env.userApiBaseUrl + env.profileUrl}/${id}`;
-    // let profile =
+
     return this.http.get<UserSignupRequest>(url, super.httpOptionsWithAuth());
   }
 

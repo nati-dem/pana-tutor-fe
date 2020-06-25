@@ -13,6 +13,7 @@ import { QuizAnsEntry } from "../../../../../pana-tutor-lib/model/course/quiz-an
 import { QuizInit } from "../../../../../pana-tutor-lib/model/course/quiz-init.interface";
 import { YesNoChoice } from "../../../../../pana-tutor-lib/enum/common.enum";
 import { QuizSubmission } from "../../../../../pana-tutor-lib/model/course/quiz-submission.interface";
+import { element } from "protractor";
 
 @Component({
   selector: "app-quiz-conductor",
@@ -58,10 +59,8 @@ export class QuizConductorComponent implements OnInit {
     );
     this.getquizIntByid();
     this.getQuiz();
-    // this.getquizIntByid();
 
     this.getQuestions();
-    // this.getQuiz();
   }
 
   changeIndex(number) {
@@ -91,11 +90,6 @@ export class QuizConductorComponent implements OnInit {
   }
 
   submitAnswer() {
-    console.log("get Quizinp from int", this.quizInitData);
-
-    console.log("quiz from get quiz", this.quiz);
-    console.log("Question from get questio", this.questions[this.index].id);
-
     console.log("form values", this.quizform.value);
 
     const found = this.quizInitData.find(
@@ -109,11 +103,13 @@ export class QuizConductorComponent implements OnInit {
       instructor_feedback: null,
       marked_for_review: YesNoChoice.yes,
     };
-    if (this.quizform.value != null) {
-      this.quizService.submitQuizAns(req).subscribe((res) => {
-        this.submitedAnswer = res;
-        console.log("Submited answer", this.submitedAnswer);
-      });
+    if (found) {
+      if (req.answer != null) {
+        this.quizService.submitQuizAns(req).subscribe((res) => {
+          this.submitedAnswer = res;
+          console.log("Submited answer", this.submitedAnswer);
+        });
+      }
     }
   }
 
