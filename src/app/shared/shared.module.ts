@@ -4,6 +4,7 @@ import { FormValidationTemplateComponent } from "./form-validation-template/form
 import { APIErrorTemplateComponent } from "./api-error-template/api-error-template.component";
 import { UserSearchFormComponent } from "./user-search-form/user-search-form.component";
 import { UserProfileViewComponent } from "./user-profile-view/user-profile-view.component";
+import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 
 @NgModule({
   declarations: [
@@ -12,7 +13,7 @@ import { UserProfileViewComponent } from "./user-profile-view/user-profile-view.
     UserSearchFormComponent,
     UserProfileViewComponent
   ],
-  imports: [CommonModule],
+  imports: [CommonModule, NgbModule],
   exports: [
     FormValidationTemplateComponent,
     APIErrorTemplateComponent,
