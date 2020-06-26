@@ -25,13 +25,14 @@ export const environment = {
   localCoursePrefix: "pana_course_",
   localQuizPrefix: "pana_quiz_",
   localQuizIntPrefix: "pana_quiz_init_",
+  localSubmitedAnsPrefix: "pana_submited_ans_",
   localQuizQuestionPrefix: "pana_quiz_questions_",
   searchCoursesUrl: "/search/?entity=courses",
   searchUsersWpUrl: "/search/?entity=users",
   searchUsersUrl: "/search/users",
   allGroupsInCourseUrl: "/tutor-groups/course",
   addGroupInCourseUrl: "/tutor-groups/create",
-  addMemberInGroupUrl: "/tutor-groups/members"
+  addMemberInGroupUrl: "/tutor-groups/members",
 };
 
 /*

@@ -86,6 +86,10 @@ export class QuizConductorComponent implements OnInit {
   getquizIntByid() {
     this.quizService.getQuizInt(this.quizInp.quizIds).subscribe((res) => {
       this.quizInitData = res;
+      this.quizService.storeSubmitedQuestionInCache(
+        this.quizInitData,
+        this.quizInp.quizIds
+      );
     });
   }
 
@@ -103,13 +107,13 @@ export class QuizConductorComponent implements OnInit {
       instructor_feedback: null,
       marked_for_review: YesNoChoice.yes,
     };
-    if (found) {
-      if (req.answer != null) {
-        this.quizService.submitQuizAns(req).subscribe((res) => {
-          this.submitedAnswer = res;
-          console.log("Submited answer", this.submitedAnswer);
-        });
-      }
+
+    if (req.answer != null) {
+      this.quizService.submitQuizAns(req).subscribe((res) => {
+        this.submitedAnswer = res;
+
+        console.log("Submited answer", this.submitedAnswer);
+      });
     }
   }
 

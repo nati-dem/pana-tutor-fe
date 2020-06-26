@@ -99,4 +99,14 @@ export class QuizService extends BaseHttpService {
     let url = `${env.userApiBaseUrl}/${env.submitQuizUrl}`;
     return this.http.post<any>(url, quizreq, super.httpOptionsWithAuth());
   }
+
+  storeSubmitedQuestionInCache(sumitedAnse, queid) {
+    sessionStorage.setItem(
+      env.localSubmitedAnsPrefix + queid,
+      JSON.stringify(sumitedAnse)
+    );
+  }
+  getSubmitedAnsInCach(id) {
+    return JSON.parse(sessionStorage.getItem(env.localSubmitedAnsPrefix + id));
+  }
 }
