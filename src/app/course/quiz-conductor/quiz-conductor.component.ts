@@ -122,7 +122,7 @@ export class QuizConductorComponent implements OnInit {
       (element) => element.quiz_id == this.quiz.id
     );
     let req: QuizSubmission = {
-      answer: found.answers,
+      answer: this.quizform.value.answer,
       que_id: this.questions[this.index].id,
       quiz_init_id: found.initId,
       marked_for_review: YesNoChoice.yes,
