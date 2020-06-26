@@ -83,7 +83,7 @@ export class QuizConductorComponent implements OnInit {
     this.checked = true;
     console.log(this.selectedOption);
   }
-
+  
   getquizIntByid() {
     this.quizService.getQuizInt(this.quizInp.quizIds).subscribe((res) => {
       this.quizInitData = res;
@@ -94,22 +94,22 @@ export class QuizConductorComponent implements OnInit {
       this.quizService.storeSubmitedQuestionInCache(
         this.quizInitData,
         this.quizInp.quizIds,
-        found.initId
+        found.initId // TODO - replace with this.quizInitId
       );
     });
   }
 
   submitAnswer() {
     console.log("form values", this.quizform.value);
-
+    /*
     const found = this.quizInitData.find(
       (element) => element.quiz_id == this.quiz.id
-    );
+    );*/
 
     let req = {
       que_id: this.questions[this.index].id,
       answer: this.quizform.value.answer,
-      quiz_init_id: found.initId,
+      quiz_init_id: this.quizInitId,
       instructor_feedback: null,
       marked_for_review: YesNoChoice.yes,
     };
@@ -124,14 +124,14 @@ export class QuizConductorComponent implements OnInit {
   }
 
   submitQuiz() {
-    const found = this.quizInitData.find(
+    /*const found = this.quizInitData.find(
       (element) => element.quiz_id == this.quiz.id
-    );
+    );*/
     let req: QuizSubmission = {
       answer: this.quizform.value.answer,
       que_id: this.questions[this.index].id,
-      quiz_init_id: found.initId,
-      marked_for_review: YesNoChoice.yes,
+      quiz_init_id: this.quizInitId,
+      marked_for_review: YesNoChoice.no,
       instructor_feedback: null,
       instructor_id: null,
     };
@@ -181,11 +181,12 @@ export class QuizConductorComponent implements OnInit {
       timer: this.quiz.acf.time_limit,
     };
   }
-
+  quizInitId = null;
   openVerticallyCentered(content) {
     let quizIntreq: QuizInit = this.mapQuizIntData();
     this.quizService.startQuiz(quizIntreq).subscribe((res) => {
       this.quizInt = res;
+      this.quizInitId = res[0].id;
       console.log("quizstart", res);
     });
     this.modalService.open(content, {
