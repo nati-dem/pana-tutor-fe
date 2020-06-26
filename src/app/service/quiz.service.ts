@@ -100,9 +100,9 @@ export class QuizService extends BaseHttpService {
     return this.http.post<any>(url, quizreq, super.httpOptionsWithAuth());
   }
 
-  storeSubmitedQuestionInCache(sumitedAnse, queid) {
+  storeSubmitedQuestionInCache(sumitedAnse, quizId, initId) {
     sessionStorage.setItem(
-      env.localSubmitedAnsPrefix + queid,
+      env.localSubmitedAnsPrefix + quizId + "_" + initId,
       JSON.stringify(sumitedAnse)
     );
   }

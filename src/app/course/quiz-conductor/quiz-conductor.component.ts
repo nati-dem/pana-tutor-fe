@@ -74,6 +74,7 @@ export class QuizConductorComponent implements OnInit {
 
       this.index += number;
 
+      this.quizform.controls["answer"].patchValue(this.quizform.value.answer);
       this.quizform.controls["answer"].reset();
     }
   }
@@ -86,9 +87,14 @@ export class QuizConductorComponent implements OnInit {
   getquizIntByid() {
     this.quizService.getQuizInt(this.quizInp.quizIds).subscribe((res) => {
       this.quizInitData = res;
+      const found = this.quizInitData.find(
+        (element) => element.quiz_id == this.quiz.id
+      );
+
       this.quizService.storeSubmitedQuestionInCache(
         this.quizInitData,
-        this.quizInp.quizIds
+        this.quizInp.quizIds,
+        found.initId
       );
     });
   }
