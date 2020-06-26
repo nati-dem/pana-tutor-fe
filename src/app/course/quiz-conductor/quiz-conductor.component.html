@@ -60,7 +60,7 @@
                   formControlName="answer"
                   name="answer"
                   id="exampleRadios1"
-                  [value]="questions[index].acf.choice_1"
+                  [value]="'choice_1'"
                   (change)="radioChangHandler($event)"
                 />
                 <label class="form-check-label" for="exampleRadios1">
@@ -74,7 +74,7 @@
                   formControlName="answer"
                   name="answer"
                   id="exampleRadios2"
-                  [value]="questions[index].acf.choice_2"
+                  [value]="'choice_2'"
                   (change)="radioChangHandler($event)"
                 />
                 <label class="form-check-label" for="exampleRadios2">
@@ -88,7 +88,7 @@
                   formControlName="answer"
                   name="answer"
                   id="exampleRadios3"
-                  [value]="questions[index].acf.choice_3"
+                  [value]="'choice_3'"
                   (change)="radioChangHandler($event)"
                 />
                 <label class="form-check-label" for="exampleRadios3">
@@ -102,7 +102,7 @@
                   formControlName="answer"
                   name="answer"
                   id="exampleRadios4"
-                  [value]="questions[index].acf.choice_4"
+                  [value]="'choice_4'"
                   (change)="radioChangHandler($event)"
                 />
                 <label class="form-check-label" for="exampleRadios2">
@@ -130,7 +130,7 @@
                 <button
                   *ngIf="index == questions.length - 1"
                   class="btn btn-primary submitbtn"
-                  type="submit"
+                  type="button"
                   (click)="submitQuiz()"
                 >
                   Submit

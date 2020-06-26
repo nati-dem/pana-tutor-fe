@@ -32,9 +32,10 @@ export class QuizConductorComponent implements OnInit {
   submitedAnswer: QuizAnsEntry;
   radioSelected: string;
   index = 0;
-  quizInt: any;
+  quizInt: any; // where is this being used?
+  quizInitId = null;
   submitedQuiz: any;
-  quizInitData = [];
+  quizInitData = []; // revisit usage
   checked: boolean = false;
 
   constructor(
@@ -49,39 +50,40 @@ export class QuizConductorComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    console.log(
-      "quizInp--> courseId:",
-      this.quizInp.courseId,
-      "sectionId: ",
-      this.quizInp.sectionId,
-      "quizIds: ",
-      this.quizInp.quizIds
+    console.log("quizInp--> courseId:",this.quizInp.courseId,
+      "sectionId: ",this.quizInp.sectionId,
+      "quizIds: ",this.quizInp.quizIds
     );
     this.getquizIntByid();
     this.getQuiz();
-
-    this.getQuestions();
   }
 
   changeIndex(number) {
+
     this.submitAnswer();
 
-    if (
-      (this.index > 0 && number < 0) || //index must be greater than 0 at all times
-      (this.index < this.questions.length && number > 0)
-    ) {
-      //index must be less than length of array
-
+    if ( (this.index > 0 && number < 0) || //index must be greater than 0 at all times
+      (this.index < this.questions.length && number > 0)) { //index must be less than length of array
+      
       this.index += number;
-
-      this.quizform.controls["answer"].patchValue(this.quizform.value.answer);
-      this.quizform.controls["answer"].reset();
+      //this.quizform.controls["answer"].patchValue(this.quizform.value.answer);
+      //this.quizform.controls["answer"].reset();
+     
+      const ansInMemory = this.questions[this.index]['ansInMemory']
+      if(ansInMemory){
+        console.log('patching ans @Qindex', this.index, ' && ansInMemory:', ansInMemory)
+        this.quizform.controls["answer"].patchValue(ansInMemory);
+      } else {
+        console.log('resetting form')
+        this.quizform.controls["answer"].reset();
+      }
     }
   }
+
   radioChangHandler(event: any) {
     this.selectedOption = event.target.value;
     this.checked = true;
-    console.log(this.selectedOption);
+    console.log('this.selectedOption', this.selectedOption);
   }
   
   getquizIntByid() {
@@ -100,12 +102,7 @@ export class QuizConductorComponent implements OnInit {
   }
 
   submitAnswer() {
-    console.log("form values", this.quizform.value);
-    /*
-    const found = this.quizInitData.find(
-      (element) => element.quiz_id == this.quiz.id
-    );*/
-
+    console.log("submitAnswer::form values", this.quizform.value);
     let req = {
       que_id: this.questions[this.index].id,
       answer: this.quizform.value.answer,
@@ -113,20 +110,19 @@ export class QuizConductorComponent implements OnInit {
       instructor_feedback: null,
       marked_for_review: YesNoChoice.yes,
     };
-
+    
     if (req.answer != null) {
+      // store in memory
+      this.questions[this.index]['ansInMemory'] = req.answer
       this.quizService.submitQuizAns(req).subscribe((res) => {
         this.submitedAnswer = res;
-
         console.log("Submited answer", this.submitedAnswer);
       });
     }
   }
 
   submitQuiz() {
-    /*const found = this.quizInitData.find(
-      (element) => element.quiz_id == this.quiz.id
-    );*/
+    console.log('submitting quiz..')
     let req: QuizSubmission = {
       answer: this.quizform.value.answer,
       que_id: this.questions[this.index].id,
@@ -140,7 +136,7 @@ export class QuizConductorComponent implements OnInit {
       console.log("submited quiz ", this.submitedQuiz);
     });
   }
-
+  
   getQuiz() {
     // TODO - Cache quiz and questions in local storage
     this.quizService
@@ -174,14 +170,13 @@ export class QuizConductorComponent implements OnInit {
   }
 
   mapQuizIntData(): QuizInit {
-    this.getQuiz();
     return {
       quiz_id: this.quiz.id,
       enrollment_id: 3,
       timer: this.quiz.acf.time_limit,
     };
   }
-  quizInitId = null;
+
   openVerticallyCentered(content) {
     let quizIntreq: QuizInit = this.mapQuizIntData();
     this.quizService.startQuiz(quizIntreq).subscribe((res) => {
