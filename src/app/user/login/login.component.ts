@@ -41,6 +41,7 @@ export class LoginComponent extends BaseFormGroup implements OnInit {
         //console.log("Login response", res);
         this.authService.saveTokenInLocal(res);
         this.authService.notifyAuthObservers(true);
+        this.authService.setUserAuthGlobals();
         this.router.navigate(["/profile"]);
       },
       (err) => {

@@ -5,6 +5,8 @@ import { Course } from "../../../../../pana-tutor-lib/model/course/course.interf
 import { CategoryService } from "../../service/category.service";
 import { CourseService } from "../../service/course.service";
 import { Location } from "@angular/common";
+import { GlobalService } from "../../service/global.service";
+import { UserRole } from "../../../../../pana-tutor-lib/enum/user.enum";
 
 @Component({
   selector: 'app-course-home',
@@ -21,6 +23,9 @@ export class CourseComponent implements OnInit {
   apiError: any;
   page = 'topics';
   courseId;
+  userId;
+  pageLinks = [];
+  isAdmin = false;
 
   constructor(
     private modalService: NgbModal,
@@ -47,8 +52,44 @@ export class CourseComponent implements OnInit {
     .subscribe((res) => {
       console.log("@getCourseSummary resp: ", res);
       this.selectedCourse = res;
+      this.getGlobalUserAuthInfo();
     });
   }
+
+  getGlobalUserAuthInfo = async () =>{
+    console.log('GlobalService userID:', GlobalService.userId)
+    this.userId = GlobalService.userId;
+    for (let i = 1; i <= 5; i++) {
+      await this.sleep(500);
+      this.userId = GlobalService.userId;
+      console.log('waited global user info: ' + i + ' -->'+ this.userId);
+      if(this.userId)
+        break;
+    }
+    if(this.userId){
+      this.generatePageLinks();
+    }
+  }
+
+  generatePageLinks(){
+    const courses = GlobalService.courses
+    const userRole = GlobalService.userRole
+    const groupFound = courses.find(
+      (c) => c.course_id == this.courseId && c.groups.length > 0
+    );
+    
+    this.pageLinks.push({page: 'overview', text: 'Overview'})
+    this.pageLinks.push({page: 'topics', text: 'Topics'})
+    if(groupFound){
+      this.pageLinks.push({page: 'board', text: 'Tutorial'})
+    }
+    if(userRole === UserRole.ADMINISTRATOR){
+      this.pageLinks.push({page: 'group-admin', text: 'Group Admin'})
+      this.isAdmin = true;
+    }
+  }
+
+  sleep = (ms=500) => new Promise(resolve => setTimeout(resolve, ms))
 
   getRouterLink(){
     return `/course/home/${this.courseId}`;

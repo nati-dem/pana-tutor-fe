@@ -24,9 +24,9 @@ const routes: Routes = [
         (m) => m.CourseAdminModule
       ),
   },
-  // TODO add guard --> canActivate: [AuthGuard],
   {
     path: "course",
+    canActivate: [AuthGuard],
     loadChildren: () =>
       import("./course/course.module").then((m) => m.CourseModule),
   },

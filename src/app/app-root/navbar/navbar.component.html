@@ -1,17 +1,14 @@
 <nav class="navbar my-nav navbar-expand-md navbar-light">
   <!-- <div class="container"> -->
   <a [routerLink]="'.'" class="navbar-brand logo_h"
-    ><img class="mr-auto logo_image" src="/assets/images/Tutor-web.png" alt=""
-  /></a>
-  <button
-    class="navbar-toggler"
+    ><img class="mr-auto logo_image" src="/assets/images/Tutor-web.png" alt=""/></a>
+  <button class="navbar-toggler"
     type="button"
     data-toggle="collapse"
     data-target="#navbarSupportedContent"
     aria-controls="navbarSupportedContent"
     aria-expanded="false"
-    aria-label="Toggle navigation"
-  >
+    aria-label="Toggle navigation">
     <span class="navbar-toggler-icon"></span>
   </button>
 
@@ -19,91 +16,71 @@
     <ul class="navbar-nav ml-auto text-right">
       <li class="nav-item active">
         <!-- <a class="nav-link" href="">Home</a> -->
-        <a
-          class="nav-link"
+        <a class="nav-link"
           id="link1"
           routerLinkActive="active"
           [routerLink]="'.'"
           (click)="isMenuCollapsed = true"
-          >Home</a
-        >
+          >Home</a>
       </li>
       <li class="nav-item">
-        <a
-          class="nav-link"
+        <a class="nav-link"
           id="link1"
           routerLinkActive="active"
           [routerLink]="'/categories'"
-          (click)="isMenuCollapsed = true"
-          >Lessons</a
-        >
+          (click)="isMenuCollapsed = true">Lessons</a>
       </li>
       <li class="nav-item">
-        <a
-          class="nav-link"
+        <a class="nav-link"
           routerLinkActive="active"
           [routerLink]="'.'"
           (click)="isMenuCollapsed = true"
-          id="link1"
-          >Contact</a
-        >
+          id="link1">Contact</a>
       </li>
       <li class="nav-item">
-        <a
-          class="nav-link"
+        <a class="nav-link"
           routerLinkActive="active"
           (click)="isMenuCollapsed = true"
           [routerLink]="'/tutors/'"
-          id="link2"
-        >
-          Tutors</a
-        >
+          id="link2">
+          Tutors</a>
       </li>
+      <span *ngIf="!parentHasLoaded else userMenu"></span>
+      <ng-template #userMenu >
+        <li *ngIf="authenticated$" class="nav-item">
+          <a class="nav-link"
+            routerLinkActive="active"
+            (click)="isMenuCollapsed = true"
+            [routerLink]="'/profile'"
+            id="link2">
+            Profile</a>
+        </li>
+        <li *ngIf="authenticated$" class="nav-item">
+          <a class="nav-link"
+            routerLinkActive="active"
+            (click)="isMenuCollapsed = true"
+            [routerLink]="'/users/logout'"
+            id="link2">
+            Log out</a>
+        </li>
 
-      <li *ngIf="authenticated$" class="nav-item">
-        <a
-          class="nav-link"
-          routerLinkActive="active"
-          (click)="isMenuCollapsed = true"
-          [routerLink]="'/profile'"
-          id="link2"
-        >
-          Profile</a
-        >
-      </li>
-      <li *ngIf="authenticated$" class="nav-item">
-        <a
-          class="nav-link"
-          routerLinkActive="active"
-          (click)="isMenuCollapsed = true"
-          [routerLink]="'/users/logout'"
-          id="link2"
-        >
-          Log out</a
-        >
-      </li>
+        <li *ngIf="!authenticated$" class="nav-item">
+          <a class="nav-link"
+            routerLinkActive="active"
+            [routerLink]="'/users/signup'"
+            (click)="isMenuCollapsed = true"
+            id="link2"
+            >SIGN UP</a>
+        </li>
 
-      <li *ngIf="!authenticated$" class="nav-item">
-        <a
-          class="nav-link"
-          routerLinkActive="active"
-          [routerLink]="'/users/signup'"
-          (click)="isMenuCollapsed = true"
-          id="link2"
-          >SIGN UP</a
-        >
-      </li>
-
-      <li *ngIf="!authenticated$" class="nav-item">
-        <a
-          class="nav-link"
-          routerLinkActive="active"
-          [routerLink]="'/users/login'"
-          (click)="isMenuCollapsed = true"
-          id="link2"
-          >LOG IN</a
-        >
-      </li>
+        <li *ngIf="!authenticated$" class="nav-item">
+          <a class="nav-link"
+            routerLinkActive="active"
+            [routerLink]="'/users/login'"
+            (click)="isMenuCollapsed = true"
+            id="link2">LOG IN</a>
+        </li>
+    </ng-template>
     </ul>
   </div>
   <!-- </div> -->

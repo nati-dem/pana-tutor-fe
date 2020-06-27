@@ -1,5 +1,5 @@
 
-<span *ngIf="selectedCourse" >
+<span *ngIf="selectedCourse && userId" >
     <div class="course-banner">
       <div class="course-content">
         <div class="row my-row justify-content-center">
@@ -14,18 +14,16 @@
     </div>
     
     <div class="container content mb-4">
-        <div class="row mt-4">
-            <button [routerLink]="getRouterLink()" [queryParams]="{ page: 'overview'}" class="btn btn-info">Overview</button> &nbsp;
-            <button [routerLink]="getRouterLink()" [queryParams]="{ page: 'topics'}" class="btn btn-info">Topics</button> &nbsp; 
-            <button [routerLink]="getRouterLink()" [queryParams]="{ page: 'board'}"  class="btn btn-info">Tutorial</button> &nbsp; 
-            <button class="btn btn-info">Reviews</button> &nbsp; 
-            <button [routerLink]="getRouterLink()" [queryParams]="{ page: 'group-admin'}"  class="btn btn-info">Group Admin</button>
+        <div class="row mt-4" *ngIf="pageLinks.length > 0" >
+          <span *ngFor="let p of pageLinks">
+              <button [routerLink]="getRouterLink()" [queryParams]="{ page: p.page}" class="btn btn-info">{{p.text}}</button> &nbsp;
+          </span>
         </div>
         
         <span *ngIf="page == 'topics'">
             <app-course-detail [selectedCourse]="selectedCourse"></app-course-detail>
         </span>
-        <span *ngIf="page == 'group-admin'">
+        <span *ngIf="page == 'group-admin' && isAdmin">
             <app-tutor-group-admin  ></app-tutor-group-admin>
         </span>
         <span *ngIf="page == 'board'">

@@ -14,15 +14,18 @@ import {
 } from "./../../../../pana-tutor-lib/model/user/user-auth.interface";
 import { JwtHelperService } from "@auth0/angular-jwt";
 import { Config } from "../enum/config.enum";
+import { GlobalService } from "./global.service";
 
 @Injectable({
   providedIn: "root",
 })
 export class AuthService extends BaseHttpService {
+
   private _token;
   isAuthenticated$ = new BehaviorSubject<boolean>(false);
 
-  constructor(private http: HttpClient, private jwtHelper: JwtHelperService) {
+  constructor(private http: HttpClient, 
+    private jwtHelper: JwtHelperService) {
     super();
   }
 
@@ -44,8 +47,27 @@ export class AuthService extends BaseHttpService {
 
   getProfileById(id: number) {
     const url = `${env.userApiBaseUrl + env.profileUrl}/${id}`;
-
     return this.http.get<UserSignupRequest>(url, super.httpOptionsWithAuth());
+  }
+
+  getUserAuthInfo() {
+    const url = `${env.userApiBaseUrl + env.userAuthInfoUrl}`;
+    return this.http.get<any>(url, super.httpOptionsWithAuth());
+  }
+
+  setUserAuthGlobals() {
+    console.log('setUserAuthGlobals api call..');
+    const url = `${env.userApiBaseUrl + env.userAuthInfoUrl}`;
+    return this.http.get<any>(url, super.httpOptionsWithAuth())
+      .subscribe((res) => {
+        console.log('setUserAuthGlobals res', res);
+        GlobalService.userId = res.user_id;
+        GlobalService.courses = res.courses;
+        GlobalService.userRole = res.user_role;
+        GlobalService.userName = res.name;
+      }, err => {
+        console.log('setUserAuthGlobals err', err);
+      });
   }
 
   signup(signupReq: UserSignupRequest): Observable<any> {
@@ -83,11 +105,12 @@ export class AuthService extends BaseHttpService {
     localStorage.removeItem(Config.USER_TOKEN);
     this.token = null;
     this.notifyAuthObservers(false);
+    GlobalService.resetAll();
   }
 
   isTokenValid() {
     // token should be saved in memory since it's set whenever page is refreshd
-    console.log("inMemoryToken::", this.token);
+    //console.log("inMemoryToken::", this.token);
     const isTokenValid =
       localStorage.getItem(Config.USER_TOKEN) &&
       !this.jwtHelper.isTokenExpired();
@@ -105,4 +128,6 @@ export class AuthService extends BaseHttpService {
   set token(t) {
     this._token = t;
   }
+
 }
+
