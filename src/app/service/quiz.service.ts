@@ -106,7 +106,7 @@ export class QuizService extends BaseHttpService {
       JSON.stringify(sumitedAnse)
     );
   }
-  getSubmitedAnsInCach(id) {
+  getSubmitedAnsInCache(id) {
     return JSON.parse(sessionStorage.getItem(env.localSubmitedAnsPrefix + id));
   }
 }
