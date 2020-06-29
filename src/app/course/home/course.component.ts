@@ -7,6 +7,7 @@ import { CourseService } from "../../service/course.service";
 import { Location } from "@angular/common";
 import { GlobalService } from "../../service/global.service";
 import { UserRole } from "../../../../../pana-tutor-lib/enum/user.enum";
+import { sleep } from "../../util/helper";
 
 @Component({
   selector: 'app-course-home',
@@ -59,10 +60,10 @@ export class CourseComponent implements OnInit {
   getGlobalUserAuthInfo = async () =>{
     console.log('GlobalService userID:', GlobalService.userId)
     this.userId = GlobalService.userId;
-    for (let i = 1; i <= 5; i++) {
-      await this.sleep(500);
+    for (let i = 1; i <= 10; i++) {
+      await sleep(500);
       this.userId = GlobalService.userId;
-      console.log('waited global user info: ' + i + ' -->'+ this.userId);
+      console.log('waited for global user info: ' + i + ' -->'+ this.userId);
       if(this.userId)
         break;
     }
@@ -88,8 +89,6 @@ export class CourseComponent implements OnInit {
       this.isAdmin = true;
     }
   }
-
-  sleep = (ms=500) => new Promise(resolve => setTimeout(resolve, ms))
 
   getRouterLink(){
     return `/course/home/${this.courseId}`;
