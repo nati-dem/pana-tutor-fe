@@ -6,9 +6,14 @@ import { ReactiveFormsModule } from '@angular/forms';
 import { SharedModule } from '../shared/shared.module';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { TutorBoardComponent } from './tutor-board/tutor-board.component';
+import { TutorAssignComponent } from './tutor-assign/tutor-assign.component';
 
 @NgModule({
-  declarations: [TutorGroupAdminComponent, TutorBoardComponent],
+  declarations: [
+    TutorGroupAdminComponent,
+    TutorBoardComponent, 
+    TutorAssignComponent
+  ],
   imports: [
     CommonModule,
     TutorGroupRoutingModule,
@@ -16,6 +21,10 @@ import { TutorBoardComponent } from './tutor-board/tutor-board.component';
     SharedModule,
     NgbModule
   ],
-  exports: [TutorGroupAdminComponent, TutorBoardComponent]
+  exports: [
+    TutorGroupAdminComponent, 
+    TutorBoardComponent,
+    TutorAssignComponent
+  ]
 })
 export class TutorGroupModule { }

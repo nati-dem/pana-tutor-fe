@@ -77,13 +77,14 @@ export class CourseComponent implements OnInit {
 
     this.pageLinks.push({ page: "overview", text: "Overview" });
     this.pageLinks.push({ page: "topics", text: "Topics" });
-    // if(groupFound){
-    //   this.pageLinks.push({page: 'board', text: 'Tutorial'})
+    //if(groupFound){
+       this.pageLinks.push({page: 'board', text: 'Tutorial'})
     // }
-    if (userRole === UserRole.ADMINISTRATOR) {
+    //if (userRole === UserRole.ADMINISTRATOR) {
       this.pageLinks.push({ page: "group-admin", text: "Group Admin" });
+      this.pageLinks.push({ page: "assign-tutor", text: "Manage Tutors" });
       this.isAdmin = true;
-    }
+    //}
   }
 
   getRouterLink(){

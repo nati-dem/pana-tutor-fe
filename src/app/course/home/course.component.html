@@ -13,38 +13,10 @@
   </div>
 
   <div class="container content mb-4">
-    <div class="row mt-4">
-      <button
-        [routerLink]="getRouterLink()"
-        [queryParams]="{ page: 'overview' }"
-        class="btn btn-info"
-      >
-        Overview
-      </button>
-      &nbsp;
-      <button
-        [routerLink]="getRouterLink()"
-        [queryParams]="{ page: 'topics' }"
-        class="btn btn-info"
-      >
-        Topics
-      </button>
-      &nbsp;
-      <button
-        [routerLink]="getRouterLink()"
-        [queryParams]="{ page: 'board' }"
-        class="btn btn-info"
-      >
-        Tutorial
-      </button>
-      &nbsp; <button class="btn btn-info">Reviews</button> &nbsp;
-      <button
-        [routerLink]="getRouterLink()"
-        [queryParams]="{ page: 'group-admin' }"
-        class="btn btn-info"
-      >
-        Group Admin
-      </button>
+    <div class="row mt-4" *ngIf="pageLinks.length > 0" >
+      <span *ngFor="let p of pageLinks">
+          <button [routerLink]="getRouterLink()" [queryParams]="{ page: p.page}" class="btn btn-info">{{p.text}}</button> &nbsp;
+      </span>
     </div>
 
     <span *ngIf="page == 'topics'">
@@ -55,6 +27,9 @@
     </span>
     <span *ngIf="page == 'board'">
       <app-tutor-board></app-tutor-board>
+    </span>
+    <span *ngIf="page == 'assign-tutor'">
+        <app-tutor-assign></app-tutor-assign>
     </span>
   </div>
 </span>

@@ -34,9 +34,11 @@ export const environment = {
   allGroupsInCourseUrl: "/tutor-groups/course",
   addGroupInCourseUrl: "/tutor-groups/create",
   addMemberInGroupUrl: "/tutor-groups/members",
-
   findGroupsOfUserInCourse: "/tutor-groups/user/course",
   findAllGroupsOfUser: "/tutor-groups/user/all",
+  tutorListInCourseUrl: "/tutor-admin/course",
+  tutorAssignInCourseUrl: "/tutor-admin/course/tutor/assign",
+  tutorRemoveInCourseUrl: "/tutor-admin/course/<courseId>/tutor/<userId>",
 };
 
 /*
