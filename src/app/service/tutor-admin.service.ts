@@ -2,7 +2,7 @@ import { Injectable } from '@angular/core';
 import { HttpClient, HttpErrorResponse } from "@angular/common/http";
 import { environment as env } from "./../../environments/environment";
 import { BaseHttpService } from "./base.http.service";
-import { TutorCreateRequest } from "../../../../pana-tutor-lib/model/tutor/tutor-admin.interface";
+import { TutorAssignRequest } from "../../../../pana-tutor-lib/model/tutor/tutor-admin.interface";
 
 @Injectable({
   providedIn: 'root',
@@ -19,7 +19,7 @@ export class TutorAdminService extends BaseHttpService {
     return this.http.get<any>(env.userApiBaseUrl + url, super.httpOptionsWithAuth());
   }
 
-  assignTutorInCourse(req: TutorCreateRequest) {
+  assignTutorInCourse(req: TutorAssignRequest) {
     const url = `${env.userApiBaseUrl}${env.tutorAssignInCourseUrl}`;
     return this.http.post<any>(url, req, super.httpOptionsWithAuth());
   }

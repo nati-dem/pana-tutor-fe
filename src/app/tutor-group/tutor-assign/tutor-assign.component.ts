@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { TutorAdminService } from "../../service/tutor-admin.service";
 import { ActivatedRoute } from "@angular/router";
 import { FormGroup, FormControl, Validators } from '@angular/forms';
-import { TutorCreateRequest } from "../../../../../pana-tutor-lib/model/tutor/tutor-admin.interface";
+import { TutorAssignRequest } from "../../../../../pana-tutor-lib/model/tutor/tutor-admin.interface";
 import { NgbModal } from "@ng-bootstrap/ng-bootstrap";
 
 @Component({
@@ -48,7 +48,7 @@ export class TutorAssignComponent implements OnInit {
   onTutorAssignFormSubmit(){
     console.log('tutorAssignForm::', this.tutorAssignForm.value)
     // TODO - validate FORM
-    const req : TutorCreateRequest = this.getTutorAssignFormData();
+    const req : TutorAssignRequest = this.getTutorAssignFormData();
     this.tutorAdminService.assignTutorInCourse(req)
       .subscribe(res => {
         console.log('assignTutorInCourse res::', res)
@@ -60,7 +60,7 @@ export class TutorAssignComponent implements OnInit {
       });
   }
 
-  getTutorAssignFormData(): TutorCreateRequest{
+  getTutorAssignFormData(): TutorAssignRequest{
     return {
       course_id: this.courseId,
       user_id: this.tutorAssignForm.value.user_id
