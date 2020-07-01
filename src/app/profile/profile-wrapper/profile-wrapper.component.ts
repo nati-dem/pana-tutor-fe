@@ -24,7 +24,6 @@ export class ProfileWrapperComponent implements OnInit {
     this.currentUser = this.authService.decodeToken(localStorage.getItem("pana_user_token"));
     this.getProfile();
     this.route.queryParams.subscribe((params) => {
-      console.log('url::', params);
       this.page = params.page; // && params.page ? params.page: 'dashboard';
       if(!this.menuItems.has(this.page)){
         this.page = 'dashboard'
@@ -41,6 +40,15 @@ export class ProfileWrapperComponent implements OnInit {
       }, err => {
         console.log("Profile API Err", err);
       });
+  }
+
+  onProfileEventEmitter(profileEvt: UserSignupRequest){
+    console.log('onProfileEventEmitter:', profileEvt)
+    for (const k in profileEvt) {
+      if(profileEvt[k]){
+        this.profile[k] = profileEvt[k];
+      }
+    }
   }
 
 }

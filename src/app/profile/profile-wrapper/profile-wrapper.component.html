@@ -25,7 +25,7 @@
     <div class="col-md-6 display-content">
        <span *ngIf="profile" >
           <span *ngIf="page == 'edit'">
-            <app-profile-edit [profileInp]="profile"></app-profile-edit>
+            <app-profile-edit (profileEmitter)="onProfileEventEmitter($event)" [profileInp]="profile"></app-profile-edit>
           </span>
           <span *ngIf="page == 'change-passwrod'">
             <app-change-password [profileInp]="profile"></app-change-password>
