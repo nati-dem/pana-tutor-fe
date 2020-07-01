@@ -1,4 +1,4 @@
-import { Component, OnInit } from "@angular/core";
+import { Component, OnInit, Input } from "@angular/core";
 import { AuthService } from "../../service/auth.service";
 import { UserSignupRequest } from "../../../../../pana-tutor-lib/model/user/user-auth.interface";
 
@@ -9,6 +9,7 @@ import { UserSignupRequest } from "../../../../../pana-tutor-lib/model/user/user
 })
 export class ProfileDashboardComponent implements OnInit {
 
+  @Input() profileInp: UserSignupRequest;
   profile: UserSignupRequest;
   id: any;
   currentUser:any;
@@ -16,10 +17,11 @@ export class ProfileDashboardComponent implements OnInit {
   constructor(private authService: AuthService) {}
 
   ngOnInit(): void {
-    this.currentUser = this.authService.decodeToken(localStorage.getItem("pana_user_token"));
-    this.getProfile();
+    //this.currentUser = this.authService.decodeToken(localStorage.getItem("pana_user_token"));
+    //this.getProfile();
+    this.profile = this.profileInp;
   }
-
+  /*
   getProfile() {
     console.log("User", this.currentUser);
     this.authService
@@ -27,6 +29,6 @@ export class ProfileDashboardComponent implements OnInit {
       .subscribe((res) => {
         this.profile = res;
       });
-  }
+  }*/
 
 }

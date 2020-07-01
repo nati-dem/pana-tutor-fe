@@ -8,6 +8,7 @@ export class GlobalService {
   static userId:number;
   static userName:string;
   static userRole:string;
+  static email:string;
   static courses: UserCourse[];
 
   constructor() { }
@@ -16,6 +17,7 @@ export class GlobalService {
     GlobalService.userId = null;
     GlobalService.userName = null;
     GlobalService.userRole = null;
+    GlobalService.email = null;
     GlobalService.courses = [];
   }
 

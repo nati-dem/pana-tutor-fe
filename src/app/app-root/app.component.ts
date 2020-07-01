@@ -58,6 +58,7 @@ export class AppComponent implements OnInit, AfterViewInit {
         GlobalService.userId = res.user_id;
         GlobalService.courses = res.courses;
         GlobalService.userRole = res.user_role;
+        GlobalService.email = res.email;
         this.parentHasLoaded = true;
         console.log("@ setting token in memory");
         this.authService.token = this.authService.getLocalToken();

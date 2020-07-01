@@ -1,0 +1,53 @@
+
+<h4>Edit Profile</h4>
+<hr />
+
+<div class="form-container">
+  <form [formGroup]="profileUpdateForm" (ngSubmit)="onSubmit()"
+    class="form-inner-container signup-form justify-content-around">
+    <div class="cross-validation" [class.cross-validation-error]= " profileUpdateForm.errors?.identityRevealed
+        && (profileUpdateForm.touched || profileUpdateForm.dirty)">
+      
+      <div *ngIf="submitMessage" class="alert alert-success" role="alert">
+          {{submitMessage}}
+      </div>
+      
+      <div class="form-group signup-form inputWithIcon has-feedback has-feedback-left">
+        <input
+          formControlName="name" type="text" required class="form-control" id="name" placeholder="Full name"/>
+        <app-form-validation-template
+          [formControlsInp]="formControls.name"></app-form-validation-template>
+      </div>
+      <div class="form-group signup-form">
+        <input
+          formControlName="nickname" type="text" class="form-control" id="nickname" placeholder="Nickname"/>
+        <app-form-validation-template
+          [formControlsInp]="formControls.nickname"></app-form-validation-template>
+      </div>
+
+      <div class="form-group signup-form">
+        <input formControlName="phone" type="text" class="form-control" id="phone" placeholder="Phone number" />
+      </div>
+      <div class="form-group signup-form">
+        <input formControlName="city" type="text" class="form-control" id="city" placeholder="City" />
+      </div>
+      <div class="form-group signup-form">
+        <input formControlName="country" type="text" class="form-control" id="country" placeholder="Country" />
+      </div>
+      <div class="form-group signup-form">
+        <input formControlName="bio" type="text" class="form-control" id="bio" placeholder="Bio" />
+      </div>
+    </div>
+    <button type="submit"
+      class="mt-3 btn btn-primary btn-block"
+      [disabled]="!profileUpdateForm.valid || isFormProcessing">
+      Submit
+      <span *ngIf="isFormProcessing" class="spinner-border spinner-border-sm" role="status" aria-hidden="true"></span>
+    </button>
+    <div *ngIf="formErrors.length > 0" class="alert alert-danger mt-2" role="alert">
+      <li *ngFor="let formError of formErrors">
+        {{ formError }}
+      </li>
+    </div>
+  </form>
+</div>
