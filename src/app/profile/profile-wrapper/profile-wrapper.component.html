@@ -16,9 +16,10 @@
         <hr />
       </div>
       <div class="sidenav-section">
-          <a class="account-status" [routerLink]="'/profile'" [queryParams]="{ page: 'dashboard'}" > Courses</a> <br/>
-          <a class="account-status" [routerLink]="'/profile'" [queryParams]="{ page: 'edit'}" >EDIT PROFILE</a> <br/>
-          <a class="account-status" [routerLink]="'/profile'" [queryParams]="{ page: 'change-passwrod'}">Change Password</a>
+          <a class="account-status" [routerLink]="'/profile'" [queryParams]="{ page: 'dashboard'}" >Courses</a> <br/>
+          <a class="account-status" [routerLink]="'/profile'" [queryParams]="{ page: 'edit'}" >Edit Profile</a> <br/>
+          <a class="account-status" [routerLink]="'/profile'" [queryParams]="{ page: 'change-passwrod'}" >Change Password</a> <br/>
+          <a class="account-status" [routerLink]="'/profile'" [queryParams]="{ page: 'avatar'}" >Change Avatar</a>
         </div>
     </div>
 
@@ -32,6 +33,9 @@
           </span>
           <span *ngIf="page == 'dashboard'">
             <app-profile-dash [profileInp]="profile"></app-profile-dash>
+          </span>
+          <span *ngIf="page == 'avatar'">
+            <app-change-avatar [profileInp]="profile"></app-change-avatar>
           </span>
         </span>
     </div>

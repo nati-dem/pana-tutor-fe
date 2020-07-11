@@ -5,6 +5,8 @@
 export const environment = {
   production: false,
   userApiBaseUrl: "http://localhost:5000/dev/api",
+  uploadBaseLocation: "http://localhost:8888/panatutor-uploads",
+  avatarsLocation: "/avatar/",
   // userApiBaseUrl: "https://panalearn.com/dev/api",
   loginUrl: "/auth/login",
   signupUrl: "/auth/register",
@@ -41,6 +43,8 @@ export const environment = {
   tutorListInCourseUrl: "/tutor-admin/course",
   tutorAssignInCourseUrl: "/tutor-admin/course/tutor/assign",
   tutorRemoveInCourseUrl: "/tutor-admin/course/<courseId>/tutor/<userId>",
+  avatarUploadUrl: "/users/avatar",
+
 };
 
 /*

@@ -4,6 +4,7 @@ import { UserSignupRequest, ChangePasswordRequest } from "../../../../../pana-tu
 import { BaseFormGroup } from "../../shared/base-form-group";
 import { FormControl, FormGroup, Validators } from "@angular/forms";
 import { UserService } from "../../service/user.service";
+import { ErrorMessage } from "./../../enum/message.enum";
 
 @Component({
   selector: "app-change-password",
@@ -41,35 +42,47 @@ export class ChangePasswordComponent extends BaseFormGroup implements OnInit {
     this.profile = this.profileInp;
   }
 
-
   onSubmit() {
     console.log(this.passwordUpdateForm.value);
     if(this.isFormValid()) {
       let reqObj: ChangePasswordRequest = this.mapFormData();
       this.disableForm();
-      this.userService.changePassword(reqObj).subscribe(
-        (res) => {
+      this.userService.changePassword(reqObj)
+        .subscribe( (res) => {
           this.passwordUpdateForm.reset();
           console.log("passwordUpdate response", res);
           this.submitMessage = "Password Update Successful."
-        }, (err) => {
-          console.log("passwordUpdate Error", err);
-          this.formErrors.push(err.error.message);
-          this.enableForm();
-        }, () => {
-          this.enableForm();
-        }
-      );
+          }, (err) => {
+            console.log("passwordUpdate Error", err);
+            if(err.error && err.error.message){
+              if(err.error.detail.includes("ip_blocked")){
+                this.formErrors.push(ErrorMessage.AUTH_IP_BLOCKED);
+              } else {
+                this.formErrors.push(err.error.message);
+              }
+            } else {
+              this.formErrors.push("Error Updating Password - Please try again.");
+            }
+            this.enableForm();
+          }, () => {
+            this.enableForm();
+          }
+        );
     }
   }
 
   isFormValid(){
-    if(this.passwordUpdateForm.value.new_password.trim() != this.passwordUpdateForm.value.confirm_password.trim() ){
-      this.formErrors = [];
-      this.formErrors.push("Error - New Password & Confirm Password do not much");
-      return false;
+    let isFormValid = true;
+    this.formErrors = [];
+    if(this.passwordUpdateForm.value.password.trim() == this.passwordUpdateForm.value.new_password.trim() ){
+      this.formErrors.push("Error - Password has not changed");
+      isFormValid = false;
     }
-    return true;
+    else if(this.passwordUpdateForm.value.new_password.trim() != this.passwordUpdateForm.value.confirm_password.trim() ){
+      this.formErrors.push("Error - New Password & Confirm Password do not much");
+      isFormValid = false;
+    }
+    return isFormValid;
   }
 
   mapFormData(): ChangePasswordRequest {

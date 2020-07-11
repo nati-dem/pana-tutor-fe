@@ -1,6 +1,8 @@
 export const environment = {
   production: true,
   userApiBaseUrl: "https://panalearn.com/dev/api",
+  uploadBaseLocation: "http://panalearn.com/panatutor-uploads",
+  avatarsLocation: "/avatar/",
   loginUrl: "/auth/login",
   signupUrl: "/auth/register",
   profileUrl: "/users/profile",
@@ -24,5 +26,17 @@ export const environment = {
   searchUsersUrl: "/search/users",
   allGroupsInCourseUrl: "/tutor-groups/course",
   addGroupInCourseUrl: "/tutor-groups/create",
-  addMemberInGroupUrl: "/tutor-groups/members"
+  addMemberInGroupUrl: "/tutor-groups/members",
+  localQuizIntPrefix: "pana_quiz_init_",
+  localSubmitedAnsPrefix: "pana_submited_ans_",
+  findGroupsOfUserInCourse: "/tutor-groups/user/course",
+  findAllGroupsOfUser: "/tutor-groups/user/all",
+  tutorListInCourseUrl: "/tutor-admin/course",
+  tutorAssignInCourseUrl: "/tutor-admin/course/tutor/assign",
+  tutorRemoveInCourseUrl: "/tutor-admin/course/<courseId>/tutor/<userId>",
+  avatarUploadUrl: "/users/avatar",
+  profileUpdateUrl: "/users/profile",
+  passwordUpdateUrl: "/users/change-password",
+  userAuthInfoUrl: "/users/auth-info",
+  getQuizint: "quiz/user",
 };

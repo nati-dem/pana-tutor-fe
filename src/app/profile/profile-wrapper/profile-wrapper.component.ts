@@ -14,7 +14,7 @@ export class ProfileWrapperComponent implements OnInit {
   id: any;
   currentUser:any;
   page='dashboard';
-  menuItems = new Set(['edit', 'change-passwrod', 'dashboard'])
+  menuItems = new Set(['edit', 'change-passwrod', 'dashboard', 'avatar'])
 
   constructor(private authService: AuthService,
     private route: ActivatedRoute,) {
