@@ -68,6 +68,6 @@ export class SignupComponent extends BaseFormGroup implements OnInit {
       meta: {
         phone_number: this.signupForm.value.phone.trim(),
       },
-    };
+    } as UserSignupRequest;
   }
 }

@@ -1,0 +1,114 @@
+<div class="row m-2">
+  <button
+    class="btn btn-primary creat-btn"
+    (click)="openVerticallyCentered(content)"
+  >
+    <i class="fa fa-plus" aria-hidden="true"></i>
+    Create
+  </button>
+  <ng-template #content let-modal>
+    <div class="modal-header">
+      <div class="d-flex">
+        <div class="p-2">
+          <button
+            type="button"
+            (click)="modal.dismiss()"
+            class="close"
+            aria-label="Close"
+          >
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+        <div class="p-2">
+          <p class="modal-title" id="modal-basic-title">Assignment</p>
+        </div>
+      </div>
+      <select class="btn btn-light material-type">
+        <option value="">Assignment</option>
+        <option value="">pdf file</option>
+      </select>
+    </div>
+    <div class="modal-body">
+      <h1>this is modal-basic-title</h1>
+    </div>
+    <div class="modal-footer">
+      <button
+        type="button"
+        (click)="modal.close()"
+        class="btn btn-outline-dark"
+      >
+        close
+      </button>
+    </div>
+  </ng-template>
+</div>
+
+<div class="my-container">
+  <div class="inner">
+    <div
+      class="card"
+      (click)="isCollapsed = !isCollapsed"
+      [attr.aria-expanded]="!isCollapsed"
+    >
+      <div class="card-title">
+        <div class="d-flex">
+          <div class="p-2">
+            <i class="fa fa-bookmark-o logo_image" aria-hidden="true"></i>
+          </div>
+          <div class="p-2">
+            <div class="row">
+              <p>Nati Getch posted a new assignment:DB quiz 2</p>
+            </div>
+            <div class="row"><small>Jun 22(Edited Jun 22)</small></div>
+          </div>
+          <div class="ml-auto p-2">
+            <i class="fa fa-ellipsis-v dot-icon" aria-hidden="true"></i>
+          </div>
+        </div>
+      </div>
+      <div class="card-body">
+        <div id="collapseExample" [ngbCollapse]="isCollapsed">
+          <div class="card">
+            <div class="card-body">
+              You can collapse this card by clicking Toggle
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="inner">
+    <div
+      class="card"
+      (click)="isCollapsed = !isCollapsed"
+      [attr.aria-expanded]="!isCollapsed"
+    >
+      <div class="card-title">
+        <div class="d-flex">
+          <div class="p-2">
+            <i class="fa fa-bookmark-o logo_image" aria-hidden="true"></i>
+          </div>
+          <div class="p-2">
+            <div class="row">
+              <p>Nati Getch posted a new assignment:DB quiz 2</p>
+            </div>
+            <div class="row"><small>Jun 22(Edited Jun 22)</small></div>
+          </div>
+          <div class="ml-auto p-2">
+            <i class="fa fa-ellipsis-v dot-icon" aria-hidden="true"></i>
+          </div>
+        </div>
+      </div>
+      <div class="card-body">
+        <div id="collapseExample" [ngbCollapse]="isCollapsed">
+          <div class="card">
+            <div class="card-body">
+              You can collapse this card by clicking Toggle
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

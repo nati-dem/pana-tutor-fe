@@ -2,7 +2,7 @@ import {
   Component,
   OnInit,
   AfterViewInit,
-  ChangeDetectorRef,
+  ChangeDetectorRef, Input
 } from "@angular/core";
 import { AuthService } from "../../service/auth.service";
 import { Observable, of as observableOf } from "rxjs";
@@ -15,6 +15,7 @@ import { Observable, of as observableOf } from "rxjs";
 export class NavbarComponent implements OnInit, AfterViewInit {
   authenticated$: boolean;
   public isMenuCollapsed = false;
+  @Input() parentHasLoaded = false;
 
   constructor(
     private authService: AuthService,
@@ -24,13 +25,13 @@ export class NavbarComponent implements OnInit, AfterViewInit {
   ngOnInit(): void {
     this.authService.isAuthenticated$.subscribe((res) => {
       this.authenticated$ = res;
-      this.cd.detectChanges();
-      console.log("this.authenticated$ ", res);
+      //this.cd.detectChanges();
+      console.log("@navbar this.authenticated$ ", res);
     });
   }
 
   ngAfterViewInit() {
     //this.cd.detectChanges();
-    console.log(`navbar ngAfterViewInit`);
+    //console.log(`navbar ngAfterViewInit`);
   }
 }

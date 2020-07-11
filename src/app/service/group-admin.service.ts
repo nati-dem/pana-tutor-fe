@@ -24,7 +24,7 @@ export class GroupAdminService extends BaseHttpService {
     return this.http.post<any>(url, req, super.httpOptionsWithAuth());
   }
 
-  addMemberInGroup(req: GroupMemberRequest) {
+  upsertMemberInGroup(req: GroupMemberRequest) {
     const url = `${env.userApiBaseUrl}${env.addMemberInGroupUrl}`;
     return this.http.put<any>(url, req, super.httpOptionsWithAuth());
   }

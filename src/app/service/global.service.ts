@@ -5,16 +5,31 @@ import { Injectable } from '@angular/core';
 })
 export class GlobalService {
 
-  private _isLoading: boolean;
+  static userId:number;
+  static userName:string;
+  static userRole:string;
+  static email:string;
+  static courses: UserCourse[];
 
   constructor() { }
 
-  get isLoading(){
-    return this._isLoading;
+  static resetAll(){
+    GlobalService.userId = null;
+    GlobalService.userName = null;
+    GlobalService.userRole = null;
+    GlobalService.email = null;
+    GlobalService.courses = [];
   }
 
-  set isLoading(loading){
-    this._isLoading = loading;
-  }
+}
 
+interface UserCourse {
+  course_id:number;
+  groups: Groups[];
+}
+
+interface Groups {
+  groupId?:number;
+  user_role:string;
+  status:string;
 }

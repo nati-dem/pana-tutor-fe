@@ -1,4 +1,4 @@
-import { Component, OnInit } from "@angular/core";
+import { Component, OnInit, Input } from "@angular/core";
 import { AuthService } from "../../service/auth.service";
 import { UserSignupRequest } from "../../../../../pana-tutor-lib/model/user/user-auth.interface";
 
@@ -8,37 +8,27 @@ import { UserSignupRequest } from "../../../../../pana-tutor-lib/model/user/user
   styleUrls: ["./profile-dashboard.component.css"],
 })
 export class ProfileDashboardComponent implements OnInit {
-  constructor(private authService: AuthService) {}
-  profile: any;
-  user: any;
+
+  @Input() profileInp: UserSignupRequest;
+  profile: UserSignupRequest;
   id: any;
+  currentUser:any;
+
+  constructor(private authService: AuthService) {}
 
   ngOnInit(): void {
-    console.log(this.authService.isTokenValid());
-    let currentUser = this.authService.decodeToken(
-      localStorage.getItem("pana_user_token")
-    );
-    console.log(
-      this.authService.decodeToken(localStorage.getItem("pana_user_token"))
-    );
-    this.user = this.authService.decodeToken(
-      localStorage.getItem("pana_user_token")
-    );
-    this.getProfile();
-    console.log("User", this.user.data.user.id);
-    console.log("Current user", currentUser.data.user.id);
-    console.log("profile name", this.profile);
-    console.log("profil user");
+    //this.currentUser = this.authService.decodeToken(localStorage.getItem("pana_user_token"));
+    //this.getProfile();
+    this.profile = this.profileInp;
   }
-
+  /*
   getProfile() {
-    let currentUser = this.authService.decodeToken(
-      localStorage.getItem("pana_user_token")
-    );
+    console.log("User", this.currentUser);
     this.authService
-      .getProfileById(currentUser.data.user.id)
+      .getProfileById(this.currentUser.data.user.id)
       .subscribe((res) => {
         this.profile = res;
       });
-  }
+  }*/
+
 }

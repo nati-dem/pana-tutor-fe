@@ -21,6 +21,7 @@ export class AppComponent implements OnInit, AfterViewInit {
   public isMenuCollapsed = false;
   public isHomePage = false;
   public showJoinUsSection = false;
+  parentHasLoaded = false;
 
   constructor(
     private location: Location,
@@ -47,13 +48,27 @@ export class AppComponent implements OnInit, AfterViewInit {
     this.validateLocalToken();
   }
 
-  validateLocalToken() {
-    console.log(
-      "@ validateLocalToken if present in local storage --> ",
-      this.authService.getLocalToken()
-    );
+  validateLocalToken = async () => {
+    console.log("@ validateLocalToken if present in local storage --> ", this.authService.getLocalToken());
+    this.parentHasLoaded = false;
     if (this.authService.localStorageHasToken()) {
-      this.authService.validateToken().subscribe(
+      await this.authService.getUserAuthInfo()
+        .subscribe((res) => {
+        console.log('setUserGlobals API res', res);
+        GlobalService.userId = res.user_id;
+        GlobalService.courses = res.courses;
+        GlobalService.userRole = res.user_role;
+        GlobalService.email = res.email;
+        this.parentHasLoaded = true;
+        console.log("@ setting token in memory");
+        this.authService.token = this.authService.getLocalToken();
+        this.authService.notifyAuthObservers(true);
+      }, err => {
+        console.log('setUserGlobals API err', err);
+        this.parentHasLoaded = true;
+        this.authService.logout();
+      });
+        /* this.authService.validateToken().subscribe(
         (res) => {
           console.log("validate token response", res);
           console.log("@ setting token in memory");
@@ -64,7 +79,9 @@ export class AppComponent implements OnInit, AfterViewInit {
           console.log("validateLocalToken Error", err);
           this.authService.logout();
         }
-      );
+        ); */
+    } else {
+      this.parentHasLoaded = true;
     }
   }
 

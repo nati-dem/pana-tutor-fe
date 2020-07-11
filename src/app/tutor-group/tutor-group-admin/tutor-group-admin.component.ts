@@ -23,6 +23,9 @@ export class TutorGroupAdminComponent implements OnInit {
   formSubmitError;
   createGroupForm;
   addMemberInGroupForm;
+  editMemberInGroupForm;
+  selectedMember;
+  dataLoading = true;
 
   constructor(private groupAdminService: GroupAdminService,
     private route: ActivatedRoute,
@@ -55,11 +58,13 @@ export class TutorGroupAdminComponent implements OnInit {
   }
 
   getGroupsInCourse(courseId){
+    this.dataLoading = true;
     this.groupAdminService.getGroupsInCourse(courseId)
-    .subscribe(res => {
-      console.log('getGroupsInCourse res::', res)
-      this.groups = res;
-    });
+      .subscribe(res => {
+        console.log('getGroupsInCourse res::', res)
+        this.groups = res;
+        this.dataLoading = false;
+      });
   }
 
   onCreateGroupFormSubmit(){
@@ -78,9 +83,10 @@ export class TutorGroupAdminComponent implements OnInit {
   }
 
   getCreateGroupForm(): TutorGroupCreate{
+    const startDate = this.createGroupForm.value.start_date;
     return {
       course_id: this.courseId,
-      start_date: this.createGroupForm.value.start_date,
+      start_date: startDate.year+'-'+startDate.month+'-'+startDate.day,
       status: GroupStatus.active,
       owner: {
         user_id: this.createGroupForm.value.user_id,
@@ -93,31 +99,59 @@ export class TutorGroupAdminComponent implements OnInit {
   onAddMemberInGroupFormSubmit(){
     console.log('addMemberInGroupForm::', this.addMemberInGroupForm.value)
     // TODO - validate FORM
-    const req: GroupMemberRequest = this.getAddMemberInGroupForm();
-    this.groupAdminService.addMemberInGroup(req)
+    const req: GroupMemberRequest = this.getUpsertMemberInGroupForm(this.addMemberInGroupForm);
+    this.groupAdminService.upsertMemberInGroup(req)
       .subscribe(res => {
-        console.log('addMemberInGroup res::', res);
+        console.log('upsertMemberInGroup res::', res);
         this.getGroupsInCourse(this.courseId);
         this.closeModal();
       }, err => {
         this.formSubmitError = err;
-        console.log('addMemberInGroup err::',err)
+        console.log('upsertMemberInGroup err::',err)
       });
   }
 
-  getAddMemberInGroupForm(): GroupMemberRequest{
+  onEditMemberInGroupFormSubmit(){
+    console.log('onEditMemberInGroupFormSubmit::', this.editMemberInGroupForm.value)
+    // TODO - validate FORM
+    const req: GroupMemberRequest = this.getUpsertMemberInGroupForm(this.editMemberInGroupForm);
+    this.groupAdminService.upsertMemberInGroup(req)
+      .subscribe(res => {
+        console.log('upsertMemberInGroup res::', res);
+        this.getGroupsInCourse(this.courseId);
+        // TODO - only close edit form modal
+        this.closeModal();
+      }, err => {
+        this.formSubmitError = err;
+        console.log('upsertMemberInGroup err::',err)
+      });
+  }
+
+  getUpsertMemberInGroupForm(form): GroupMemberRequest{
     return {
       course_id: this.courseId,
       tutor_group_id:this.selectedGroup.groupId,
-      user_id: this.addMemberInGroupForm.value.user_id,
-      user_role: this.addMemberInGroupForm.value.user_role, 
-      status: this.addMemberInGroupForm.value.status, 
+      user_id: form.value.user_id,
+      user_role: form.value.user_role, 
+      status: form.value.status, 
     };
   }
 
   showGroupInModal(targetModal, grp:any){
     console.log('grp::', grp)
     this.selectedGroup = grp;
+    this.openVerticallyCentered(targetModal)
+  }
+
+  showEditGroupMemberModal(targetModal, member, grpId?){
+    console.log('member::', member)
+    //this.selectedGroup = grp;
+    this.selectedMember = member;
+    this.editMemberInGroupForm = new FormGroup({
+      user_id: new FormControl(member.user_id, [Validators.required]),
+      user_role:new FormControl(member.user_role, [Validators.required]),
+      status:new FormControl(member.member_status, [Validators.required]),
+    });
     this.openVerticallyCentered(targetModal)
   }
 
@@ -135,6 +169,11 @@ export class TutorGroupAdminComponent implements OnInit {
     this.resetAll();
   }
 
+  closeEditMemberModal(modal){
+    this.selectedMember = null;
+    modal.dismiss();
+  }
+
   resetAll(){
     this.initCreateGroupForm();
     this.initAddMemberInGroupForm();
@@ -144,8 +183,8 @@ export class TutorGroupAdminComponent implements OnInit {
   onUserSearchEvent(user){
     console.log('event emitted, user::', user)
     if(user){
-      this.createGroupForm.patchValue({ user_id: user.id });
-      this.addMemberInGroupForm.patchValue({ user_id: user.id });
+      this.createGroupForm.patchValue({ user_id: user.user_id });
+      this.addMemberInGroupForm.patchValue({ user_id: user.user_id });
     } else {
       this.createGroupForm.patchValue({user_id: ''});
       this.addMemberInGroupForm.patchValue({user_id: ''});

@@ -1,0 +1,10 @@
+
+<span *ngIf="isUserSearchLoading"  class="spinner-border spinner-border-sm text-secondary" role="status">
+    <span class="sr-only">Loading...</span>
+</span>
+<p *ngIf="searchUserSubmit && !isUserSearchLoading" class=""> 
+    User Not Found
+</p>
+<div class="mb-2" *ngIf="!isUserSearchLoading && userResponse">
+    <span>{{ userResponse.name }} | {{ userResponse.email }}</span>
+</div>

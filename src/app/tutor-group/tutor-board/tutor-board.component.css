@@ -1,0 +1,60 @@
+.logo_image {
+  /* background-color: white; */
+  border-radius: 60%;
+  /* margin-top: 0.5rem; */
+
+  /* border: 1x solid grey; */
+  padding: 10px;
+  background-color: #206acf;
+  color: white;
+}
+
+.card-title {
+  color: black;
+  margin-top: 1rem;
+  font-size: 1rem;
+  font-weight: 500;
+}
+.creat-btn {
+  background-color: #206acf;
+  /* justify-self: center; */
+  /* border: 2px #ed9834 solid; */
+  padding: 10px 2rem;
+  /* background-color: white; */
+  -webkit-border-radius: 100px;
+  -moz-border-radius: 100px;
+  border-radius: 100px;
+  /* color: black; */
+  /* text-al  ign: center; */
+  font-size: 1.5rem;
+}
+
+.inner {
+  margin: 2rem;
+}
+.dot-icon {
+  font-size: 1.5rem;
+}
+
+.modal-title {
+  font-weight: 500;
+}
+
+.btn-light {
+  background: #fff
+    url("https://smartthings.zendesk.com/hc/article_attachments/203195173/DropdownIcon.png")
+    no-repeat right center;
+  border: 1px solid #aaa;
+  /* cursor: pointer; */
+  /* height: 36px; */
+  padding: 6px 42px 6px 6px;
+}
+
+.btn-light:focus {
+  border-color: #014760;
+  outline: none;
+}
+
+.btn-light option {
+  padding: 6px;
+}
