@@ -37,6 +37,7 @@ export const environment = {
 
   findGroupsOfUserInCourse: "/tutor-groups/user/course",
   findAllGroupsOfUser: "/tutor-groups/user/all",
+  upsertGroupPost: "/tutor-posts/groups/post",
 };
 
 /*

@@ -32,9 +32,18 @@ const routes: Routes = [
   },
   {
     path: "tutors",
-    //canActivate: [AuthGuard],
+    // canActivate: [AuthGuard],
     loadChildren: () =>
-      import("./tutor-public/tutor-public.module").then((m) => m.TutorPublicModule),
+      import("./tutor-public/tutor-public.module").then(
+        (m) => m.TutorPublicModule
+      ),
+  },
+  {
+    path: "tutorboard",
+    loadChildren: () =>
+      import("./tutor-group/tutor-group.module").then(
+        (m) => m.TutorGroupModule
+      ),
   },
   {
     path: "profile",

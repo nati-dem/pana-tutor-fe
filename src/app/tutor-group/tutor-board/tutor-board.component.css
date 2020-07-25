@@ -32,29 +32,52 @@
 .inner {
   margin: 2rem;
 }
-.dot-icon {
-  font-size: 1.5rem;
-}
 
 .modal-title {
   font-weight: 500;
 }
 
-.btn-light {
-  background: #fff
-    url("https://smartthings.zendesk.com/hc/article_attachments/203195173/DropdownIcon.png")
-    no-repeat right center;
-  border: 1px solid #aaa;
-  /* cursor: pointer; */
-  /* height: 36px; */
-  padding: 6px 42px 6px 6px;
+label {
+  font-weight: bold;
+  font-size: small;
+}
+.rubic {
+  font-weight: 200;
+}
+.d-inline-block {
+  appearance: none;
+  /* overflow: hidden; */
 }
 
-.btn-light:focus {
-  border-color: #014760;
+input {
+  background-color: whitesmoke;
   outline: none;
+  border: none;
+  width: 100%;
+  position: relative;
+  border-bottom: 0.5px solid black;
+  margin: 8px 0px 0px 0px;
+  padding: 10px;
 }
 
-.btn-light option {
-  padding: 6px;
+textarea {
+  background-color: whitesmoke;
+  outline: none;
+  border: none;
+  width: 100%;
+  position: relative;
+  border-bottom: 0.5px solid black;
+  margin: 8px 0px 0px 0px;
+  padding: 10px;
+}
+
+.add-btn {
+  color: #206acf;
+}
+.create2-btn {
+  color: #206acf;
+}
+
+.add-btn-area {
+  margin: 1rem;
 }
