@@ -5,6 +5,7 @@ import { environment as env } from "./../../environments/environment";
 import { filter, find, tap } from "lodash";
 import { catchError } from "rxjs/operators";
 import { BaseHttpService } from "./base.http.service";
+import { UserSignupRequest, ChangePasswordRequest } from '../../../../pana-tutor-lib/model/user/user-auth.interface';
 
 @Injectable({
   providedIn: "root",
@@ -22,6 +23,22 @@ export class UserService extends BaseHttpService {
   getUserInfoById(id): Observable<any> {
     const url = `${env.publicUserProfileUrl}/${id}`;
     return this.http.get<any>(env.userApiBaseUrl + url, super.httpOptionsWithAuth());
+  }
+
+  updateProfile(reqObj: UserSignupRequest): Observable<any> {
+    return this.http.post<any>(
+      env.userApiBaseUrl + env.profileUpdateUrl,
+      reqObj,
+      super.httpOptionsWithAuth()
+    );
+  }
+
+  changePassword(reqObj: ChangePasswordRequest): Observable<any> {
+    return this.http.post<any>(
+      env.userApiBaseUrl + env.passwordUpdateUrl,
+      reqObj,
+      super.httpOptionsWithAuth()
+    );
   }
 
 }

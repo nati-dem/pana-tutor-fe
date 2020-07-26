@@ -5,10 +5,14 @@
 export const environment = {
   production: false,
   userApiBaseUrl: "http://localhost:5000/dev/api",
+  uploadBaseLocation: "http://localhost:8888/panatutor-uploads",
+  avatarsLocation: "/avatar/",
   // userApiBaseUrl: "https://panalearn.com/dev/api",
   loginUrl: "/auth/login",
   signupUrl: "/auth/register",
   profileUrl: "/users/profile",
+  profileUpdateUrl: "/users/profile",
+  passwordUpdateUrl: "/users/change-password",
   userAuthInfoUrl: "/users/auth-info",
   publicUserProfileUrl: "/public/users/profile",
   tokenValidationUrl: "/auth/token-validate",
@@ -34,10 +38,13 @@ export const environment = {
   allGroupsInCourseUrl: "/tutor-groups/course",
   addGroupInCourseUrl: "/tutor-groups/create",
   addMemberInGroupUrl: "/tutor-groups/members",
-
   findGroupsOfUserInCourse: "/tutor-groups/user/course",
   findAllGroupsOfUser: "/tutor-groups/user/all",
-  upsertGroupPost: "/tutor-posts/groups/post",
+  addGroupPost: "/tutor-posts/groups/post",
+  tutorListInCourseUrl: "/tutor-admin/course",
+  tutorAssignInCourseUrl: "/tutor-admin/course/tutor/assign",
+  tutorRemoveInCourseUrl: "/tutor-admin/course/<courseId>/tutor/<userId>",
+  avatarUploadUrl: "/users/avatar",
 };
 
 /*

@@ -5,6 +5,7 @@ export class BaseFormGroup {
   form: FormGroup;
   isFormProcessing = false;
   formErrors = [];
+  submitMessage: string;
 
   constructor() {
   }
@@ -20,6 +21,7 @@ export class BaseFormGroup {
     this.isFormProcessing = true;
     this.form.disable;
     this.formErrors = [];
+    this.submitMessage = null;
   }
 
   enableForm(){
@@ -31,6 +33,7 @@ export class BaseFormGroup {
     this.isFormProcessing = false;
     this.form.enable;
     this.formErrors = [];
+    this.submitMessage = null;
   }
 
 }

@@ -25,7 +25,7 @@ export class TutorBoardService extends BaseHttpService {
     );
   }
   upsertGroupPost(boardCreateRequest: BoardPostCreateRequest) {
-    const url = `${env.upsertGroupPost}`;
+    const url = `${env.addGroupPost}`;
     return this.http.put<any>(
       env.userApiBaseUrl + url,
       boardCreateRequest,

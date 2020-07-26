@@ -64,6 +64,7 @@ export class AuthService extends BaseHttpService {
         GlobalService.userId = res.user_id;
         GlobalService.courses = res.courses;
         GlobalService.userRole = res.user_role;
+        GlobalService.email = res.email;
         GlobalService.userName = res.name;
       }, err => {
         console.log('setUserAuthGlobals err', err);

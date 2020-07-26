@@ -1,90 +1,65 @@
-<div class="profile-banner">
-  <div class="inner-banner">
-    <div class="container title-container">
-      <h1 class="username">{{ profile?.name | uppercase }}</h1>
-    </div>
-  </div>
-</div>
+<h4>My Courses</h4>
+<hr />
 
-<div class="container main-content">
-  <div class="row">
-    <div class="col-md-4 sidenav">
-      <div class="sidenav-title">
-        <h2 class="resource-title">
-          RESOURSE
-        </h2>
-        <hr />
-      </div>
-      <div class="sidenav-section">
-        <p class="my-course">MY COURSES</p>
-        <p class="account-status">ACCOUNT STATUS</p>
+  <div class="row mx-md-n5">
+    <div class="col px-md-5">
+      <div class="p-3">
+        <h4>MATHEMATICS GRADE 5</h4>
+        <p>Progress</p>
+        <p>
+          <ngb-progressbar
+            [showValue]="true"
+            type="warning"
+            [value]="40"
+            height="2rem"
+          ></ngb-progressbar>
+        </p>
+        <div class="text-center">
+          <button class="btn btn-primary resume-btn">Resume</button>
+        </div>
       </div>
     </div>
-    <div class="col-md-6 display-content">
-      <h4>MY COURSES</h4>
-      <hr />
-      <div class="row mx-md-n5">
-        <div class="col px-md-5">
-          <div class="p-3">
-            <h4>MATHEMATICS GRADE 5</h4>
-            <p>Progress</p>
-            <p>
-              <ngb-progressbar
-                [showValue]="true"
-                type="warning"
-                [value]="40"
-                height="2rem"
-              ></ngb-progressbar>
-            </p>
-            <div class="text-center">
-              <button class="btn btn-primary resume-btn">Resume</button>
-            </div>
-          </div>
-        </div>
-        <div class="col px-md-5">
-          <div class="p-3">
-            <h4>MY COURSES</h4>
-            <p>Progress</p>
-            <p>
-              <ngb-progressbar
-                [showValue]="true"
-                type="warning"
-                [value]="40"
-                height="2rem"
-              ></ngb-progressbar>
-            </p>
-            <div class="text-center">
-              <button class="btn btn-primary resume-btn">Resume</button>
-            </div>
-          </div>
+    <div class="col px-md-5">
+      <div class="p-3">
+        <h4>MY COURSES</h4>
+        <p>Progress</p>
+        <p>
+          <ngb-progressbar
+            [showValue]="true"
+            type="warning"
+            [value]="40"
+            height="2rem"
+          ></ngb-progressbar>
+        </p>
+        <div class="text-center">
+          <button class="btn btn-primary resume-btn">Resume</button>
         </div>
       </div>
-      <!-- <div class="row">
-        <div class="col-4 m-3 course">
-          <h4>math</h4>
-          <p>Progress</p>
-          <p>
-            <ngb-progressbar
-              [showValue]="true"
-              type="success"
-              [value]="25"
-              height="2rem"
-            ></ngb-progressbar>
-          </p>
-        </div>
-        <div class="col-4 m-3">
-          <h4>English</h4>
-          <p>Progress</p>
-          <p>
-            <ngb-progressbar
-              [showValue]="true"
-              type="success"
-              [value]="25"
-              height="2rem"
-            ></ngb-progressbar>
-          </p>
-        </div>
-      </div> -->
     </div>
   </div>
-</div>
+  <!-- <div class="row">
+    <div class="col-4 m-3 course">
+      <h4>math</h4>
+      <p>Progress</p>
+      <p>
+        <ngb-progressbar
+          [showValue]="true"
+          type="success"
+          [value]="25"
+          height="2rem"
+        ></ngb-progressbar>
+      </p>
+    </div>
+    <div class="col-4 m-3">
+      <h4>English</h4>
+      <p>Progress</p>
+      <p>
+        <ngb-progressbar
+          [showValue]="true"
+          type="success"
+          [value]="25"
+          height="2rem"
+        ></ngb-progressbar>
+      </p>
+    </div>
+  </div> -->

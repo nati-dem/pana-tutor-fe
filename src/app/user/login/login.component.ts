@@ -43,13 +43,15 @@ export class LoginComponent extends BaseFormGroup implements OnInit {
         this.authService.notifyAuthObservers(true);
         this.authService.setUserAuthGlobals();
         this.router.navigate(["/profile"]);
-      },
-      (err) => {
+      }, (err) => {
         console.log("Login Error", err);
-        this.formErrors.push(ErrorMessage.LOGIN_ERROR);
+        if(err.error && err.error.detail && err.error.detail.includes("ip_blocked")){
+          this.formErrors.push(ErrorMessage.AUTH_IP_BLOCKED);
+        } else {
+          this.formErrors.push(ErrorMessage.LOGIN_ERROR);
+        }
         this.enableForm();
-      },
-      () => {
+      }, () => {
         this.enableForm();
       }
     );

@@ -44,7 +44,7 @@
                 </div>
                 <div class="modal-body">
                   
-                  <span [innerHtml]="selectedLesson.post_content"></span>
+                  <span [innerHtml]="selectedLesson.post_content | dompurify"></span>
                   <!-- <iframe
                     id="Geeks3"
                     class="modal-video"

@@ -7,6 +7,7 @@ import { CourseService } from "../../service/course.service";
 import { Location } from "@angular/common";
 import { GlobalService } from "../../service/global.service";
 import { UserRole } from "../../../../../pana-tutor-lib/enum/user.enum";
+import { sleep } from "../../util/helper";
 
 @Component({
   selector: "app-course-home",
@@ -56,8 +57,8 @@ export class CourseComponent implements OnInit {
   getGlobalUserAuthInfo = async () => {
     console.log("GlobalService userID:", GlobalService.userId);
     this.userId = GlobalService.userId;
-    for (let i = 1; i <= 5; i++) {
-      await this.sleep(500);
+    for (let i = 1; i <= 10; i++) {
+      await sleep(500);
       this.userId = GlobalService.userId;
       console.log("waited global user info: " + i + " -->" + this.userId);
       if (this.userId) break;
@@ -76,18 +77,17 @@ export class CourseComponent implements OnInit {
 
     this.pageLinks.push({ page: "overview", text: "Overview" });
     this.pageLinks.push({ page: "topics", text: "Topics" });
-    // if(groupFound){
-    //   this.pageLinks.push({page: 'board', text: 'Tutorial'})
+    //if(groupFound){
+       this.pageLinks.push({page: 'board', text: 'Tutorial'})
     // }
-    if (userRole === UserRole.ADMINISTRATOR) {
+    //if (userRole === UserRole.ADMINISTRATOR) {
       this.pageLinks.push({ page: "group-admin", text: "Group Admin" });
+      this.pageLinks.push({ page: "assign-tutor", text: "Manage Tutors" });
       this.isAdmin = true;
-    }
+    //}
   }
 
-  sleep = (ms = 500) => new Promise((resolve) => setTimeout(resolve, ms));
-
-  getRouterLink() {
+  getRouterLink(){
     return `/course/home/${this.courseId}`;
   }
 }

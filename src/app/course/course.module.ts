@@ -8,6 +8,7 @@ import { CourseDetailComponent } from "./detail/course-detail.component";
 import { QuizConductorComponent } from "./quiz-conductor/quiz-conductor.component";
 import { TutorGroupModule } from '../tutor-group/tutor-group.module';
 import { SharedModule } from '../shared/shared.module';
+import {NgDompurifyModule} from '@tinkoff/ng-dompurify';
 
 @NgModule({
   declarations: [
@@ -21,7 +22,8 @@ import { SharedModule } from '../shared/shared.module';
     CountdownModule,
     ReactiveFormsModule,
     TutorGroupModule,
-    SharedModule
+    SharedModule,
+    NgDompurifyModule
   ],
 })
 export class CourseModule {}

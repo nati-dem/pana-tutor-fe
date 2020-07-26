@@ -31,7 +31,7 @@ const routes: Routes = [
       import("./course/course.module").then((m) => m.CourseModule),
   },
   {
-    path: "tutors",
+    path: "tutoring",
     // canActivate: [AuthGuard],
     loadChildren: () =>
       import("./tutor-public/tutor-public.module").then(
