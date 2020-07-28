@@ -7,7 +7,7 @@
     Create
   </button>
   <ng-template #content let-modal>
-    <form [formGroup]="tutorForm" action="">
+    <form [formGroup]="tutorForm" (ngSubmit)="onSubmit()">
       <div class="modal-header">
         <div class="d-flex">
           <div class="p-2">
@@ -26,9 +26,12 @@
           </div>
         </div>
 
-        <select class="btn btn-light material-type">
-          <option value="">Assignment</option>
-          <option value="">pdf file</option>
+        <select formControlName="post_type" class="btn btn-light material-type">
+          <option selected value="assignment">Assignment</option>
+          <option value="generic">generic</option>
+          <option value="link">link</option>
+          <option value="material">material</option>
+          <option value="media">Media</option>
         </select>
       </div>
       <div class="modal-body">
@@ -41,7 +44,11 @@
                     <i class="fa fa-ellipsis-v dot-icon"></i>
                   </div>
                   <div class="col px-md-6">
-                    <input type="text" placeholder="Title" />
+                    <input
+                      formControlName="post_title"
+                      type="text"
+                      placeholder="Title"
+                    />
                   </div>
                 </div>
               </div>
@@ -51,6 +58,7 @@
                 </div>
                 <div class="col px-md-6">
                   <textarea
+                    formControlName="post_content"
                     type="text"
                     placeholder="Instruction (Optional)"
                     rows="5"
@@ -62,7 +70,7 @@
                   <button class="btn btn-light add-btn">Add</button>
                 </div>
                 <div class="col px-md-6">
-                  <button class="btn btn-light create2-btn">
+                  <button type="submit" class="btn btn-light create2-btn">
                     <i class="fa fa-plus m-1" aria-hidden="true"></i> Create
                   </button>
                 </div>
@@ -72,27 +80,21 @@
           <div class="col-md-4">
             <div class="p-1">
               <div class="form-group">
-                <label for="for">For</label>
+                <label for="for">Status</label>
                 <div class="row mx-md">
                   <div class="col px-md-2">
                     <select
-                      formControlName="for"
-                      name=""
+                      formControlName="status"
                       class="btn btn-light"
                       id="for"
                     >
-                      <option [selected]="true" value="Web dev">Web dev</option>
-                      <option value="Devps">Devps</option>
-                      <option value="Android dev">Android dev</option>
+                      <option selected value="published">Published</option>
+                      <option value="draft">Draft</option>
+                      <option value="hidden">Hidden</option>
                     </select>
                   </div>
                   <div class="col px-md-2">
-                    <select
-                      formControlName="student"
-                      name="for"
-                      class="btn btn-light"
-                      id="stude"
-                    >
+                    <select name="for" class="btn btn-light" id="stude">
                       <option [selected]="true" value="">studen</option>
                       <option value=""> instructor</option>
                     </select>
@@ -100,18 +102,16 @@
                 </div>
               </div>
               <div class="form-group">
-                <label for="points">Points</label>
+                <label>Points</label>
                 <div class="p-1">
                   <select
                     formControlName="points"
                     class="btn btn-light btn-block"
-                    name="point"
-                    id=""
                   >
-                    <option [selected]="true" value="">100</option>
-                    <option value="">200</option>
-                    <option value="">300</option>
-                    <option value="">400</option>
+                    <option selected value="100">100</option>
+                    <option value="200">200</option>
+                    <option value="300">300</option>
+                    <option value="400">400</option>
                   </select>
                 </div>
               </div>
@@ -119,7 +119,7 @@
               <div class="form-group">
                 <label for="due">Due</label>
                 <select
-                  formControlName="duedate"
+                  formControlName="due_date"
                   class="btn btn-light btn-block"
                   name="point"
                   id=""
@@ -134,12 +134,7 @@
                 <label for="Topic">
                   Topic
                 </label>
-                <select
-                  formControlName="topic"
-                  class="btn btn-light btn-block"
-                  name="point"
-                  id=""
-                >
+                <select class="btn btn-light btn-block" name="point" id="">
                   <option [selected]="true" value="">No Topic</option>
                   <option value="">No Topic</option>
                   <option value="">No Topic</option>

@@ -10,8 +10,8 @@ import { tokenGetter } from "./util/helper";
 import { PageNotFoundComponent } from "./app-root/page-not-found/page-not-found.component";
 import { NavbarComponent } from "./app-root/navbar/navbar.component";
 import { FooterComponent } from "./app-root/footer/footer.component";
-import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-import { ToastrModule } from 'ngx-toastr';
+import { BrowserAnimationsModule } from "@angular/platform-browser/animations";
+import { ToastrModule } from "ngx-toastr";
 
 @NgModule({
   declarations: [

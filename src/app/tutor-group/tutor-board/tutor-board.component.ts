@@ -3,10 +3,11 @@ import { TutorBoardService } from "../../service/tutor-board.service";
 import { ActivatedRoute } from "@angular/router";
 import { NgbModal } from "@ng-bootstrap/ng-bootstrap";
 import { BaseFormGroup } from "../../shared/base-form-group";
-import { FormGroup, FormControl } from "@angular/forms";
+import { FormGroup, FormControl, Validators } from "@angular/forms";
 import {
   BoardPostCreateRequest,
   BoardPostStatus,
+  BoardPostType,
 } from "../../../../../pana-tutor-lib/model/tutor/tutor-board.interface";
 
 @Component({
@@ -17,13 +18,17 @@ import {
 export class TutorBoardComponent extends BaseFormGroup implements OnInit {
   public isCollapsed = true;
   public isCollapsed2 = true;
-  courseId;
+  GroupsOfUserInCourse: any;
+  tutorPosts: any;
+  groupId: any;
+  courseId: any;
   public tutorForm = new FormGroup({
-    topic: new FormControl(),
-    for: new FormControl(),
-    duedate: new FormControl(),
-    student: new FormControl(),
-    points: new FormControl(),
+    post_title: new FormControl("", [Validators.required]),
+    post_content: new FormControl("", [Validators.required]),
+    post_type: new FormControl(BoardPostType.assignment, [Validators.required]),
+    points: new FormControl("", [Validators.required]),
+    due_date: new FormControl(""),
+    status: new FormControl(BoardPostStatus.published, [Validators.required]),
   });
 
   constructor(
@@ -41,7 +46,14 @@ export class TutorBoardComponent extends BaseFormGroup implements OnInit {
     this.tutorBoardService
       .getGroupsOfUserInCourse(this.courseId)
       .subscribe((res) => {
-        console.log("getGroupsOfUserInCourse res:", res);
+        this.GroupsOfUserInCourse = res;
+        // this.GroupsOfUserInCourse.forEach((item, index) => {
+        //   console.log("item", item.tutor_group_id);
+        //   console.log("index", index);
+        //   this.groupId = item.tutor_group_id;
+        // });
+
+        this.getTutorPosts();
       });
   }
 
@@ -54,20 +66,34 @@ export class TutorBoardComponent extends BaseFormGroup implements OnInit {
     }); //scrollable:true
   }
 
+  getTutorPosts() {
+    this.tutorBoardService.getTutorBoardPost(this.groupId).subscribe((res) => {
+      this.tutorPosts = res;
+      console.log("tutor posts", this.tutorPosts);
+    });
+  }
+
   onSubmit() {
     console.warn(this.tutorForm.value);
-    let signupReq: BoardPostCreateRequest = this.mapFormData();
+    let tutorBoardpostReq: BoardPostCreateRequest = this.mapFormData();
     this.disableForm();
+    this.tutorBoardService
+      .upsertGroupPost(tutorBoardpostReq)
+      .subscribe((res) => {
+        this.tutorForm.reset();
+        console.log("Signup response", res);
+      });
   }
 
   mapFormData(): BoardPostCreateRequest {
     return {
       course_id: this.courseId,
-      post_title: null,
-      post_content: null,
-      post_type: null,
-      status: BoardPostStatus.draft,
-      group_ids: null,
+      points: this.tutorForm.value.points.trim(),
+      post_title: this.tutorForm.value.post_title.trim(),
+      post_content: this.tutorForm.value.post_content.trim(),
+      post_type: this.tutorForm.value.post_type.trim(),
+      status: this.tutorForm.value.status.trim(),
+      group_ids: this.groupId,
     };
   }
 }

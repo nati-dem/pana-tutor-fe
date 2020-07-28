@@ -25,10 +25,20 @@ export class TutorBoardService extends BaseHttpService {
     );
   }
   upsertGroupPost(boardCreateRequest: BoardPostCreateRequest) {
-    const url = `${env.addGroupPost}`;
+    const url = `${env.addTutorBoardGroupPost}`;
     return this.http.put<any>(
       env.userApiBaseUrl + url,
       boardCreateRequest,
+      super.httpOptionsWithAuth()
+    );
+  }
+
+  getTutorBoardPost(groupId) {
+    let url = env.getTuturBoardPost.replace("<groupId>", groupId);
+    console.log(url);
+
+    return this.http.get<any>(
+      `${env.userApiBaseUrl}${url}`,
       super.httpOptionsWithAuth()
     );
   }
