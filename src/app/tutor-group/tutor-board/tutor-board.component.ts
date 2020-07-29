@@ -20,7 +20,7 @@ export class TutorBoardComponent extends BaseFormGroup implements OnInit {
   public isCollapsed2 = true;
   GroupsOfUserInCourse: any;
   tutorPosts: any;
-  groupId: any;
+  groupIds = [];
   courseId: any;
   public tutorForm = new FormGroup({
     post_title: new FormControl("", [Validators.required]),
@@ -46,14 +46,20 @@ export class TutorBoardComponent extends BaseFormGroup implements OnInit {
     this.tutorBoardService
       .getGroupsOfUserInCourse(this.courseId)
       .subscribe((res) => {
+        // var group_ids = [];
         this.GroupsOfUserInCourse = res;
-        // this.GroupsOfUserInCourse.forEach((item, index) => {
-        //   console.log("item", item.tutor_group_id);
-        //   console.log("index", index);
-        //   this.groupId = item.tutor_group_id;
-        // });
+        this.GroupsOfUserInCourse.forEach((groupOfUserInCourse, index) => {
+          console.log(
+            "groupOfUsersInCourse",
+            groupOfUserInCourse.tutor_group_id
+          );
 
-        this.getTutorPosts();
+          this.groupIds.push(groupOfUserInCourse.tutor_group_id);
+
+          console.log("group Ids", this.groupIds);
+        });
+
+        this.getTutorPosts(this.groupIds);
       });
   }
 
@@ -66,8 +72,8 @@ export class TutorBoardComponent extends BaseFormGroup implements OnInit {
     }); //scrollable:true
   }
 
-  getTutorPosts() {
-    this.tutorBoardService.getTutorBoardPost(this.groupId).subscribe((res) => {
+  getTutorPosts(groupId) {
+    this.tutorBoardService.getTutorBoardPost(groupId).subscribe((res) => {
       this.tutorPosts = res;
       console.log("tutor posts", this.tutorPosts);
     });
@@ -77,12 +83,17 @@ export class TutorBoardComponent extends BaseFormGroup implements OnInit {
     console.warn(this.tutorForm.value);
     let tutorBoardpostReq: BoardPostCreateRequest = this.mapFormData();
     this.disableForm();
-    this.tutorBoardService
-      .upsertGroupPost(tutorBoardpostReq)
-      .subscribe((res) => {
+    this.tutorBoardService.upsertGroupPost(tutorBoardpostReq).subscribe(
+      (res) => {
         this.tutorForm.reset();
-        console.log("Signup response", res);
-      });
+        console.log("Tutorpost response", res);
+      },
+      (err) => {
+        console.log("Tutorpost Error", err);
+        this.formErrors.push(err.error.message);
+        this.enableForm();
+      }
+    );
   }
 
   mapFormData(): BoardPostCreateRequest {
@@ -93,7 +104,7 @@ export class TutorBoardComponent extends BaseFormGroup implements OnInit {
       post_content: this.tutorForm.value.post_content.trim(),
       post_type: this.tutorForm.value.post_type.trim(),
       status: this.tutorForm.value.status.trim(),
-      group_ids: this.groupId,
+      group_ids: this.groupIds,
     };
   }
 }

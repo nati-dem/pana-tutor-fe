@@ -167,7 +167,7 @@
 </div>
 
 <div class="my-container">
-  <div class="inner">
+  <div *ngFor="let tutor of tutorPosts" class="inner">
     <div class="card">
       <div class="card-title">
         <div class="d-flex">
@@ -180,7 +180,7 @@
               [attr.aria-expanded]="!isCollapsed"
               aria-controls="collapse"
             >
-              Nati Getch posted a new assignment:DB quiz 2
+              {{ tutor.post_title }}
             </p>
           </div>
 
@@ -209,7 +209,7 @@
         <div id="collapse" [ngbCollapse]="isCollapsed">
           <div class="card">
             <div class="card-body">
-              You can collapse this card by clicking Toggle
+              {{ tutor.post_content }}
             </div>
           </div>
         </div>
