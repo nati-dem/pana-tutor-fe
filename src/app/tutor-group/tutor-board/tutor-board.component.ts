@@ -22,6 +22,7 @@ export class TutorBoardComponent extends BaseFormGroup implements OnInit {
   tutorPosts: any;
   groupIds = [];
   courseId: any;
+  postStatus: any;
   public tutorForm = new FormGroup({
     post_title: new FormControl("", [Validators.required]),
     post_content: new FormControl("", [Validators.required]),
@@ -48,7 +49,7 @@ export class TutorBoardComponent extends BaseFormGroup implements OnInit {
       .subscribe((res) => {
         // var group_ids = [];
         this.GroupsOfUserInCourse = res;
-        this.GroupsOfUserInCourse.forEach((groupOfUserInCourse, index) => {
+        this.GroupsOfUserInCourse.forEach((groupOfUserInCourse) => {
           console.log(
             "groupOfUsersInCourse",
             groupOfUserInCourse.tutor_group_id
@@ -57,9 +58,8 @@ export class TutorBoardComponent extends BaseFormGroup implements OnInit {
           this.groupIds.push(groupOfUserInCourse.tutor_group_id);
 
           console.log("group Ids", this.groupIds);
+          this.getTutorPosts(this.groupIds, this.courseId, this.postStatus);
         });
-
-        this.getTutorPosts(this.groupIds);
       });
   }
 
@@ -72,15 +72,24 @@ export class TutorBoardComponent extends BaseFormGroup implements OnInit {
     }); //scrollable:true
   }
 
-  getTutorPosts(groupId) {
-    this.tutorBoardService.getTutorBoardPost(groupId).subscribe((res) => {
-      this.tutorPosts = res;
-      console.log("tutor posts", this.tutorPosts);
-    });
+  getTutorPosts(groupId, courseId, postStatus) {
+    this.tutorBoardService
+      .getTutorBoardPost(groupId, courseId, postStatus)
+      .subscribe((res) => {
+        this.tutorPosts = res;
+
+        console.log("tutor posts", this.tutorPosts);
+        this.tutorPosts.forEach((tutorpost) => {
+          const date = new Date(tutorpost.post_date);
+
+          const postdate = date.toDateString();
+          tutorpost.post_date = postdate;
+          console.log("post DAte", postdate);
+        });
+      });
   }
 
   onSubmit() {
-    console.warn(this.tutorForm.value);
     let tutorBoardpostReq: BoardPostCreateRequest = this.mapFormData();
     this.disableForm();
     this.tutorBoardService.upsertGroupPost(tutorBoardpostReq).subscribe(

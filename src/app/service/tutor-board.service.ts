@@ -33,8 +33,9 @@ export class TutorBoardService extends BaseHttpService {
     );
   }
 
-  getTutorBoardPost(groupId) {
-    let url = env.getTuturBoardPost.replace("<groupId>", groupId);
+  getTutorBoardPost(groupId, courseId, postStatus = "draft") {
+    let getTutorBoardurl = env.getTuturBoardPost.replace("<groupId>", groupId);
+    const url = `${getTutorBoardurl}/?postStatus=${postStatus}&courseId=${courseId}`;
     console.log(url);
 
     return this.http.get<any>(
