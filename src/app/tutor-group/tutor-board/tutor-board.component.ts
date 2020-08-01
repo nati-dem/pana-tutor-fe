@@ -16,10 +16,9 @@ import {
   styleUrls: ["./tutor-board.component.css"],
 })
 export class TutorBoardComponent extends BaseFormGroup implements OnInit {
-  public isCollapsed = true;
-  public isCollapsed2 = true;
-  GroupsOfUserInCourse: any;
+  groupsOfUserInCourse: any;
   tutorPosts: any;
+  displayTutorPosts = false;
   groupIds = [];
   courseId: any;
   postStatus: any;
@@ -35,10 +34,8 @@ export class TutorBoardComponent extends BaseFormGroup implements OnInit {
   constructor(
     private tutorBoardService: TutorBoardService,
     private route: ActivatedRoute,
-    private modalService: NgbModal
-  ) {
+    private modalService: NgbModal) {
     super();
-    console.log("inside tutorPost const");
     super.setForm(this.tutorForm);
   }
 
@@ -48,18 +45,17 @@ export class TutorBoardComponent extends BaseFormGroup implements OnInit {
       .getGroupsOfUserInCourse(this.courseId)
       .subscribe((res) => {
         // var group_ids = [];
-        this.GroupsOfUserInCourse = res;
-        this.GroupsOfUserInCourse.forEach((groupOfUserInCourse) => {
-          console.log(
-            "groupOfUsersInCourse",
-            groupOfUserInCourse.tutor_group_id
-          );
-
+        this.groupsOfUserInCourse = res;
+        //console.log('@groupsOfUserInCourse', this.groupsOfUserInCourse)
+        
+        this.groupsOfUserInCourse.forEach((groupOfUserInCourse) => {
           this.groupIds.push(groupOfUserInCourse.tutor_group_id);
-
-          console.log("group Ids", this.groupIds);
-          this.getTutorPosts(this.groupIds, this.courseId, this.postStatus);
-        });
+          //console.log("group Ids", this.groupIds);
+        }); 
+        console.log("@groupOfUsersInCourse",res);
+        //console.log("groupOfUsersInCourse",this.groupIds);
+        // TODO - review post status.. for instructor, should fetch draft as well
+        this.getTutorPosts(this.groupIds, this.courseId, "published");
       });
   }
 
@@ -78,14 +74,16 @@ export class TutorBoardComponent extends BaseFormGroup implements OnInit {
       .subscribe((res) => {
         this.tutorPosts = res;
 
-        console.log("tutor posts", this.tutorPosts);
         this.tutorPosts.forEach((tutorpost) => {
           const date = new Date(tutorpost.post_date);
 
           const postdate = date.toDateString();
           tutorpost.post_date = postdate;
+          tutorpost['isCollapsed'] = true;
+          this.displayTutorPosts = true;
           console.log("post DAte", postdate);
         });
+        console.log("tutor posts", this.tutorPosts);
       });
   }
 

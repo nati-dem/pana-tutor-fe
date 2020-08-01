@@ -166,7 +166,7 @@
   </ng-template>
 </div>
 
-<div class="my-container">
+<div *ngIf="displayTutorPosts" class="my-container">
   <div *ngFor="let tutor of tutorPosts" class="inner">
     <div class="card">
       <div class="card-title">
@@ -176,12 +176,11 @@
           </div>
           <div class="p-2">
             <p
-              (click)="isCollapsed = !isCollapsed"
-              [attr.aria-expanded]="!isCollapsed"
-              aria-controls="collapse"
-            >
-              {{ tutor.post_title }}
-            </p>
+              (click)="tutor.isCollapsed = !tutor.isCollapsed"
+              [attr.aria-expanded]="!tutor.isCollapsed"
+              aria-controls="collapse_tutor.id"
+              class="pointer"
+              [innerHTML]="tutor.post_title | dompurify"></p>
           </div>
 
           <div class="ml-auto p-2">
@@ -206,7 +205,7 @@
         </div>
       </div>
       <div class="card-body">
-        <div id="collapse" [ngbCollapse]="isCollapsed">
+        <div id="collapse_tutor.id" [ngbCollapse]="tutor.isCollapsed">
           <div class="card">
             <div class="card-body">
               {{ tutor.post_content }}
@@ -216,7 +215,7 @@
       </div>
     </div>
   </div>
-
+  <!--
   <div class="inner">
     <div class="card">
       <div class="card-title">
@@ -265,5 +264,5 @@
         </div>
       </div>
     </div>
-  </div>
+  </div>-->
 </div>
