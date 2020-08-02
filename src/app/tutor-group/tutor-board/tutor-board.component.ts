@@ -1,4 +1,6 @@
 import { Component, OnInit } from "@angular/core";
+import { Router } from "@angular/router";
+import { Location } from "@angular/common";
 import { TutorBoardService } from "../../service/tutor-board.service";
 import { ActivatedRoute } from "@angular/router";
 import { NgbModal } from "@ng-bootstrap/ng-bootstrap";
@@ -33,6 +35,8 @@ export class TutorBoardComponent extends BaseFormGroup implements OnInit {
   });
 
   constructor(
+    public router: Router,
+    public _location: Location,
     private tutorBoardService: TutorBoardService,
     private route: ActivatedRoute,
     private modalService: NgbModal
@@ -41,7 +45,7 @@ export class TutorBoardComponent extends BaseFormGroup implements OnInit {
     console.log("inside tutorPost const");
     super.setForm(this.tutorForm);
   }
-
+  currentRouter = this.router.url;
   ngOnInit(): void {
     this.courseId = +this.route.snapshot.paramMap.get("course-id");
     this.tutorBoardService
@@ -58,6 +62,7 @@ export class TutorBoardComponent extends BaseFormGroup implements OnInit {
           this.groupIds.push(groupOfUserInCourse.tutor_group_id);
 
           console.log("group Ids", this.groupIds);
+          console.log("url", this.router.url);
           this.getTutorPosts(this.groupIds, this.courseId, this.postStatus);
         });
       });
@@ -95,6 +100,9 @@ export class TutorBoardComponent extends BaseFormGroup implements OnInit {
     this.tutorBoardService.upsertGroupPost(tutorBoardpostReq).subscribe(
       (res) => {
         this.tutorForm.reset();
+        this.modalService.dismissAll();
+        let url = this.router.url;
+
         console.log("Tutorpost response", res);
       },
       (err) => {
