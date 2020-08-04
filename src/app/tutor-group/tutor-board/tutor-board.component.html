@@ -95,7 +95,7 @@
                   </div>
                   <div class="col px-md-2">
                     <select name="for" class="btn btn-light" id="stude">
-                      <option [selected]="true" value="">studen</option>
+                      <option selected value="">studen</option>
                       <option value=""> instructor</option>
                     </select>
                   </div>
@@ -118,24 +118,30 @@
 
               <div class="form-group">
                 <label for="due">Due</label>
-                <select
-                  formControlName="due_date"
-                  class="btn btn-light btn-block"
-                  name="point"
-                  id=""
-                >
-                  <option [selected]="true" value="">Mon, Jun 29</option>
-                  <option value="">Mon, Jun 29</option>
-                  <option value="">Mon, Jun 29</option>
-                  <option value="">Mon, Jun 29</option>
-                </select>
+                <div class="input-group">
+                  <input
+                    id="dateOfBirth"
+                    class="form-control"
+                    placeholder="yyyy-mm-dd"
+                    name="dp"
+                    ngbDatepicker
+                    #dp="ngbDatepicker"
+                  />
+                  <div class="input-group-append">
+                    <button
+                      class="btn btn-outline-secondary calendar"
+                      (click)="dp.toggle()"
+                      type="button"
+                    ></button>
+                  </div>
+                </div>
               </div>
               <div class="form-group">
                 <label for="Topic">
                   Topic
                 </label>
                 <select class="btn btn-light btn-block" name="point" id="">
-                  <option [selected]="true" value="">No Topic</option>
+                  <option selected value="">No Topic</option>
                   <option value="">No Topic</option>
                   <option value="">No Topic</option>
                 </select>
@@ -166,7 +172,7 @@
   </ng-template>
 </div>
 
-<div class="my-container">
+<div *ngIf="displayTutorPosts" class="my-container">
   <div *ngFor="let tutor of tutorPosts" class="inner">
     <div class="card">
       <div class="card-title">
@@ -176,37 +182,284 @@
           </div>
           <div class="p-2">
             <p
-              (click)="isCollapsed = !isCollapsed"
-              [attr.aria-expanded]="!isCollapsed"
-              aria-controls="collapse"
-            >
-              {{ tutor.post_title }}
-            </p>
+              (click)="tutor.isCollapsed = !tutor.isCollapsed"
+              [attr.aria-expanded]="!tutor.isCollapsed"
+              aria-controls="collapse_tutor.id"
+              class="pointer"
+              [innerHTML]="tutor.post_title | dompurify"
+            ></p>
           </div>
 
           <div class="ml-auto p-2">
             <small class="p-4"> Posted {{ tutor.post_date }}</small>
 
             <div ngbDropdown class="d-inline-block">
-              <i
-                ngbDropdownToggle
-                class="fa fa-ellipsis-v dot-icon"
-                aria-hidden="true"
-              ></i>
+              <div ngbDropdownToggle class="toggle">
+                <i class="fa fa-ellipsis-v dot-icon" aria-hidden="true"></i>
+              </div>
+
               <div
                 ngbDropdownMenu
                 aria-labelledby="dropdownBasic1"
                 class="dropdown-menu dropdown-menu-left"
               >
-                <button ngbDropdownItem>Edit</button>
-                <button ngbDropdownItem>Delete</button>
+                <button
+                  (click)="showEditTutorPostModal(editTutorBoard, tutor)"
+                  ngbDropdownItem
+                >
+                  Edit
+                </button>
+                <button
+                  (click)="openVerticallyCentered(deletTutorBoard)"
+                  ngbDropdownItem
+                >
+                  Delete
+                </button>
+                <ng-template #editTutorBoard let-modal>
+                  <form
+                    [formGroup]="editTutorPostForm"
+                    (ngSubmit)="EditTutorBoardPost()"
+                  >
+                    <div class="modal-header">
+                      <div class="d-flex">
+                        <div class="p-2">
+                          <button
+                            type="button"
+                            (click)="modal.dismiss()"
+                            class="close"
+                            aria-label="Close"
+                          >
+                            <span aria-hidden="true">&times;</span>
+                          </button>
+                        </div>
+
+                        <div class="p-2">
+                          <p class="modal-title" id="modal-basic-title">
+                            Assignment
+                          </p>
+                        </div>
+                      </div>
+
+                      <select
+                        formControlName="post_type"
+                        class="btn btn-light material-type"
+                      >
+                        <option selected value="assignment">Assignment</option>
+                        <option value="generic">generic</option>
+                        <option value="link">link</option>
+                        <option value="material">material</option>
+                        <option value="media">Media</option>
+                      </select>
+                    </div>
+                    <div class="modal-body">
+                      <div class="row mx-md-n2">
+                        <div class="col px-md-8">
+                          <div class="p-1">
+                            <div class="form-group">
+                              <div class="row mx-md">
+                                <div class="px-md-2">
+                                  <i class="fa fa-ellipsis-v dot-icon"></i>
+                                </div>
+                                <div class="col px-md-6">
+                                  <input
+                                    formControlName="post_title"
+                                    type="text"
+                                    placeholder="Title"
+                                  />
+                                </div>
+                              </div>
+                            </div>
+                            <div class="row mx-md">
+                              <div class="px-md-2">
+                                <i class="fa fa-ellipsis-v dot-icon"></i>
+                              </div>
+                              <div class="col px-md-6">
+                                <textarea
+                                  formControlName="post_content"
+                                  type="text"
+                                  placeholder="Instruction (Optional)"
+                                  rows="5"
+                                ></textarea>
+                              </div>
+                            </div>
+                            <div class="row mx-md add-btn-area">
+                              <div class="px-md-4">
+                                <button class="btn btn-light add-btn">
+                                  Add
+                                </button>
+                              </div>
+                              <div class="col px-md-6">
+                                <button
+                                  type="submit"
+                                  class="btn btn-light create2-btn"
+                                >
+                                  <i
+                                    class="fa fa-plus m-1"
+                                    aria-hidden="true"
+                                  ></i>
+                                  Update
+                                </button>
+                              </div>
+                            </div>
+                          </div>
+                        </div>
+                        <div class="col-md-4">
+                          <div class="p-1">
+                            <div class="form-group">
+                              <label for="for">Status</label>
+                              <div class="row mx-md">
+                                <div class="col px-md-2">
+                                  <select
+                                    formControlName="status"
+                                    class="btn btn-light"
+                                    id="for"
+                                  >
+                                    <option selected value="published"
+                                      >Published</option
+                                    >
+                                    <option value="draft">Draft</option>
+                                    <option value="hidden">Hidden</option>
+                                  </select>
+                                </div>
+                                <div class="col px-md-2">
+                                  <select
+                                    name="for"
+                                    class="btn btn-light"
+                                    id="stude"
+                                  >
+                                    <option selected value="">studen</option>
+                                    <option value=""> instructor</option>
+                                  </select>
+                                </div>
+                              </div>
+                            </div>
+                            <div class="form-group">
+                              <label>Points</label>
+                              <div class="p-1">
+                                <select
+                                  formControlName="points"
+                                  class="btn btn-light btn-block"
+                                >
+                                  <option selected value="100">100</option>
+                                  <option value="200">200</option>
+                                  <option value="300">300</option>
+                                  <option value="400">400</option>
+                                </select>
+                              </div>
+                            </div>
+
+                            <div class="form-group">
+                              <label for="due">Due</label>
+                              <div class="input-group">
+                                <input
+                                  id="dateOfBirth"
+                                  class="form-control"
+                                  placeholder="yyyy-mm-dd"
+                                  name="dp"
+                                  ngbDatepicker
+                                  #dp="ngbDatepicker"
+                                />
+                                <div class="input-group-append">
+                                  <button
+                                    class="btn btn-outline-secondary calendar"
+                                    (click)="dp.toggle()"
+                                    type="button"
+                                  ></button>
+                                </div>
+                              </div>
+                            </div>
+                            <div class="form-group">
+                              <label for="Topic">
+                                Topic
+                              </label>
+                              <select
+                                class="btn btn-light btn-block"
+                                name="point"
+                                id=""
+                              >
+                                <option selected value="">No Topic</option>
+                                <option value="">No Topic</option>
+                                <option value="">No Topic</option>
+                              </select>
+                            </div>
+                            <div class="form-group">
+                              <label for="Rubric">Rubric</label>
+                              <div class="row">
+                                <button class="btn btn-light">
+                                  <i
+                                    class="fa fa-plus rubic p-2"
+                                    aria-hidden="true"
+                                  ></i
+                                  >Rubric
+                                </button>
+                              </div>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                    <div class="modal-footer">
+                      <button
+                        type="button"
+                        (click)="modal.close()"
+                        class="btn btn-outline-dark"
+                      >
+                        close
+                      </button>
+                    </div>
+                  </form>
+
+                  <!-- <div class="modal-footer">
+                    <button
+                      type="button"
+                      class="btn btn-outline-dark"
+                      (click)="modal.close('Save click')"
+                    >
+                      Save
+                    </button>
+                  </div> -->
+                </ng-template>
+                <ng-template #deletTutorBoard let-modal>
+                  <div class="modal-header">
+                    <h4 class="modal-title" id="modal-basic-title">
+                      Delet Tutor post
+                    </h4>
+                    <button
+                      type="button"
+                      class="close"
+                      aria-label="Close"
+                      (click)="modal.dismiss('Cross click')"
+                    >
+                      <span aria-hidden="true">&times;</span>
+                    </button>
+                  </div>
+                  <div class="modal-body">
+                    <p>Are yo sure you want to delet this post ?</p>
+                  </div>
+                  <div class="modal-footer">
+                    <button
+                      type="button"
+                      class="btn btn-primary deletBtn"
+                      (click)="removeTutorPostByPostId(tutor.id)"
+                    >
+                      Yes
+                    </button>
+                    <button
+                      type="button"
+                      class="btn btn-outline-dark"
+                      (click)="modal.dismiss('Cross click')"
+                    >
+                      No
+                    </button>
+                  </div>
+                </ng-template>
               </div>
             </div>
           </div>
         </div>
       </div>
       <div class="card-body">
-        <div id="collapse" [ngbCollapse]="isCollapsed">
+        <div id="collapse_tutor.id" [ngbCollapse]="tutor.isCollapsed">
           <div class="card">
             <div class="card-body">
               {{ tutor.post_content }}
@@ -216,7 +469,7 @@
       </div>
     </div>
   </div>
-
+  <!--
   <div class="inner">
     <div class="card">
       <div class="card-title">
@@ -265,5 +518,5 @@
         </div>
       </div>
     </div>
-  </div>
+  </div>-->
 </div>

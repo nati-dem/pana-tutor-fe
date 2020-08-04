@@ -81,3 +81,11 @@ textarea {
 .add-btn-area {
   margin: 1rem;
 }
+
+.deletBtn {
+  background-color: red;
+}
+
+.toggle::after {
+  display: none;
+}

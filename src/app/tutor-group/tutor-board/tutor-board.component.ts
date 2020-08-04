@@ -18,13 +18,15 @@ import {
   styleUrls: ["./tutor-board.component.css"],
 })
 export class TutorBoardComponent extends BaseFormGroup implements OnInit {
-  public isCollapsed = true;
-  public isCollapsed2 = true;
-  GroupsOfUserInCourse: any;
+  groupsOfUserInCourse: any;
   tutorPosts: any;
-  groupIds = [];
+  displayTutorPosts = false;
+  groupIds: any;
   courseId: any;
   postStatus: any;
+  postId: any;
+  selectedTutorpost;
+  editTutorPostForm;
   public tutorForm = new FormGroup({
     post_title: new FormControl("", [Validators.required]),
     post_content: new FormControl("", [Validators.required]),
@@ -42,29 +44,27 @@ export class TutorBoardComponent extends BaseFormGroup implements OnInit {
     private modalService: NgbModal
   ) {
     super();
-    console.log("inside tutorPost const");
     super.setForm(this.tutorForm);
   }
-  currentRouter = this.router.url;
+  // currentRouter = this.router.url;
   ngOnInit(): void {
     this.courseId = +this.route.snapshot.paramMap.get("course-id");
+
     this.tutorBoardService
       .getGroupsOfUserInCourse(this.courseId)
       .subscribe((res) => {
-        // var group_ids = [];
-        this.GroupsOfUserInCourse = res;
-        this.GroupsOfUserInCourse.forEach((groupOfUserInCourse) => {
-          console.log(
-            "groupOfUsersInCourse",
-            groupOfUserInCourse.tutor_group_id
-          );
+        this.groupsOfUserInCourse = res;
+        console.log("@groupsOfUserInCourse", this.groupsOfUserInCourse);
 
-          this.groupIds.push(groupOfUserInCourse.tutor_group_id);
+        this.groupsOfUserInCourse.forEach((groupOfUserInCourse) => {
+          this.groupIds = groupOfUserInCourse.tutor_group_id;
 
           console.log("group Ids", this.groupIds);
-          console.log("url", this.router.url);
-          this.getTutorPosts(this.groupIds, this.courseId, this.postStatus);
         });
+        console.log("@groupOfUsersInCourse", res);
+        console.log("@groupOfUsersInCourse", this.groupIds);
+        // TODO - review post status.. for instructor, should fetch draft as well
+        this.getTutorPosts(this.groupIds, this.courseId, "published");
       });
   }
 
@@ -77,33 +77,75 @@ export class TutorBoardComponent extends BaseFormGroup implements OnInit {
     }); //scrollable:true
   }
 
+  showEditTutorPostModal(targetModal, tutorpost) {
+    console.log("tutor post::", tutorpost);
+
+    this.selectedTutorpost = tutorpost;
+
+    this.editTutorPostForm = new FormGroup({
+      id: new FormControl(tutorpost.id, [Validators.required]),
+      course_id: new FormControl(tutorpost.course_id, [Validators.required]),
+      group_ids: new FormControl(tutorpost.group_ids, [Validators.required]),
+      post_title: new FormControl(tutorpost.post_title, [Validators.required]),
+      post_content: new FormControl(tutorpost.post_content, [
+        Validators.required,
+      ]),
+      status: new FormControl(tutorpost.status, [Validators.required]),
+      post_type: new FormControl(tutorpost.post_type, [Validators.required]),
+      points: new FormControl(tutorpost.points, [Validators.required]),
+      due_date: new FormControl(tutorpost.due_date),
+    });
+    this.openVerticallyCentered(targetModal);
+  }
+
   getTutorPosts(groupId, courseId, postStatus) {
     this.tutorBoardService
       .getTutorBoardPost(groupId, courseId, postStatus)
       .subscribe((res) => {
         this.tutorPosts = res;
 
-        console.log("tutor posts", this.tutorPosts);
         this.tutorPosts.forEach((tutorpost) => {
           const date = new Date(tutorpost.post_date);
 
           const postdate = date.toDateString();
           tutorpost.post_date = postdate;
+          tutorpost["isCollapsed"] = true;
+          this.displayTutorPosts = true;
           console.log("post DAte", postdate);
         });
+        console.log("tutor posts", this.tutorPosts);
       });
   }
 
   onSubmit() {
     let tutorBoardpostReq: BoardPostCreateRequest = this.mapFormData();
-    this.disableForm();
+
     this.tutorBoardService.upsertGroupPost(tutorBoardpostReq).subscribe(
       (res) => {
         this.tutorForm.reset();
         this.modalService.dismissAll();
-        let url = this.router.url;
 
+        this.ngOnInit();
         console.log("Tutorpost response", res);
+      },
+      (err) => {
+        console.log("Tutorpost Error", err);
+        this.formErrors.push(err.error.message);
+        this.enableForm();
+      }
+    );
+  }
+
+  EditTutorBoardPost() {
+    console.log("EditTutorBoardPostFormSubmit::", this.editTutorPostForm.value);
+    const req: BoardPostCreateRequest = this.getUpsertMemberInGroupForm(
+      this.editTutorPostForm
+    );
+    this.tutorBoardService.upsertGroupPost(req).subscribe(
+      (res) => {
+        this.modalService.dismissAll();
+        this.ngOnInit();
+        console.log("tutor post is updated");
       },
       (err) => {
         console.log("Tutorpost Error", err);
@@ -116,12 +158,34 @@ export class TutorBoardComponent extends BaseFormGroup implements OnInit {
   mapFormData(): BoardPostCreateRequest {
     return {
       course_id: this.courseId,
+      group_ids: this.groupIds,
       points: this.tutorForm.value.points.trim(),
       post_title: this.tutorForm.value.post_title.trim(),
       post_content: this.tutorForm.value.post_content.trim(),
       post_type: this.tutorForm.value.post_type.trim(),
       status: this.tutorForm.value.status.trim(),
-      group_ids: this.groupIds,
     };
+  }
+  getUpsertMemberInGroupForm(form): BoardPostCreateRequest {
+    return {
+      course_id: this.courseId,
+      group_ids: this.groupIds,
+      status: form.value.status,
+      post_content: form.value.post_content,
+      post_title: form.value.post_title,
+      due_date: form.value.due_date,
+      post_type: form.value.post_type,
+    };
+  }
+
+  removeTutorPostByPostId(postId) {
+    console.log("this post id", this.postId);
+    this.tutorBoardService
+      .removeTutorBoardPost(this.groupIds, postId, this.courseId)
+      .subscribe((res) => {
+        console.log("Deleted sucessfull");
+        this.modalService.dismissAll();
+        this.ngOnInit();
+      });
   }
 }

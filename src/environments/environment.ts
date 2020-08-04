@@ -42,6 +42,7 @@ export const environment = {
   findAllGroupsOfUser: "/tutor-groups/user/all",
   addTutorBoardGroupPost: "/tutor-posts/groups/post",
   getTuturBoardPost: "/tutor-posts/groups/<groupId>/posts",
+  removeTutorBoardUrl: "/tutor-posts/groups/<groupId>/posts/<postId>",
   tutorListInCourseUrl: "/tutor-admin/course",
   tutorAssignInCourseUrl: "/tutor-admin/course/tutor/assign",
   tutorRemoveInCourseUrl: "/tutor-admin/course/<courseId>/tutor/<userId>",

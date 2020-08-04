@@ -33,13 +33,23 @@ export class TutorBoardService extends BaseHttpService {
     );
   }
 
-  getTutorBoardPost(groupId, courseId, postStatus = "draft") {
+  getTutorBoardPost(groupId, courseId, postStatus) {
     let getTutorBoardurl = env.getTuturBoardPost.replace("<groupId>", groupId);
     const url = `${getTutorBoardurl}/?postStatus=${postStatus}&courseId=${courseId}`;
     console.log(url);
 
     return this.http.get<any>(
       `${env.userApiBaseUrl}${url}`,
+      super.httpOptionsWithAuth()
+    );
+  }
+
+  removeTutorBoardPost(groupId, postId, courseId) {
+    // const url=/tutor-posts/groups/{groupId}/posts/{postId}?courseId=10
+    let url = env.removeTutorBoardUrl.replace("<groupId>", groupId);
+    url = url.replace("<postId>", postId);
+    return this.http.delete<any>(
+      `${env.userApiBaseUrl}${url}/?courseId=${courseId}`,
       super.httpOptionsWithAuth()
     );
   }

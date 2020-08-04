@@ -7,6 +7,7 @@ import { SharedModule } from '../shared/shared.module';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { TutorBoardComponent } from './tutor-board/tutor-board.component';
 import { TutorAssignComponent } from './tutor-assign/tutor-assign.component';
+import {NgDompurifyModule} from '@tinkoff/ng-dompurify';
 
 @NgModule({
   declarations: [
@@ -19,7 +20,8 @@ import { TutorAssignComponent } from './tutor-assign/tutor-assign.component';
     TutorGroupRoutingModule,
     ReactiveFormsModule,
     SharedModule,
-    NgbModule
+    NgbModule,
+    NgDompurifyModule
   ],
   exports: [
     TutorGroupAdminComponent, 
