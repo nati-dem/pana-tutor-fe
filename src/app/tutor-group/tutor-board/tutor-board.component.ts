@@ -78,39 +78,6 @@ export class TutorBoardComponent extends BaseFormGroup implements OnInit {
     }); //scrollable:true
   }
 
-  showEditTutorPostModal(targetModal, tutorpost) {
-    console.log("tutor post::", tutorpost);
-
-    this.selectedTutorpost = tutorpost;
-    console.log("selected post::", tutorpost);
-    this.editTutorPostForm = new FormGroup({
-      id: new FormControl(tutorpost.id, [Validators.required]),
-      course_id: new FormControl(this.selectedTutorpost.course_id, [
-        Validators.required,
-      ]),
-      group_ids: new FormControl(this.selectedTutorpost.group_ids, [
-        Validators.required,
-      ]),
-      post_title: new FormControl(this.selectedTutorpost.post_title, [
-        Validators.required,
-      ]),
-      post_content: new FormControl(this.selectedTutorpost.post_content, [
-        Validators.required,
-      ]),
-      status: new FormControl(this.selectedTutorpost.status, [
-        Validators.required,
-      ]),
-      post_type: new FormControl(this.selectedTutorpost.post_type, [
-        Validators.required,
-      ]),
-      points: new FormControl(this.selectedTutorpost.points, [
-        Validators.required,
-      ]),
-      due_date: new FormControl(this.selectedTutorpost.due_date),
-    });
-    this.openVerticallyCentered(targetModal);
-  }
-
   getTutorPosts(groupId, courseId, postStatus) {
     this.tutorBoardService
       .getTutorBoardPost(groupId, courseId, postStatus)
@@ -128,6 +95,18 @@ export class TutorBoardComponent extends BaseFormGroup implements OnInit {
         });
         console.log("tutor posts", this.tutorPosts);
       });
+  }
+
+  mapFormData(): BoardPostCreateRequest {
+    return {
+      course_id: this.courseId,
+      group_ids: this.groupIds,
+      points: this.tutorForm.value.points.trim(),
+      post_title: this.tutorForm.value.post_title.trim(),
+      post_content: this.tutorForm.value.post_content.trim(),
+      post_type: this.tutorForm.value.post_type.trim(),
+      status: this.tutorForm.value.status.trim(),
+    };
   }
 
   onSubmit() {
@@ -150,43 +129,50 @@ export class TutorBoardComponent extends BaseFormGroup implements OnInit {
     );
   }
 
+  showEditTutorPostModal(targetModal, tutorpost) {
+    console.log("tutor post::", tutorpost);
+
+    // this.selectedTutorpost = tutorpost;
+    console.log("selected post::", tutorpost);
+    this.editTutorPostForm = new FormGroup({
+      id: new FormControl(tutorpost.id, [Validators.required]),
+      course_id: new FormControl(tutorpost.course_id, [Validators.required]),
+      group_ids: new FormControl(tutorpost.group_ids, [Validators.required]),
+      post_title: new FormControl(tutorpost.post_title, [Validators.required]),
+      post_content: new FormControl(tutorpost.post_content, [
+        Validators.required,
+      ]),
+      status: new FormControl(tutorpost.status, [Validators.required]),
+      post_type: new FormControl(tutorpost.post_type, [Validators.required]),
+      points: new FormControl(tutorpost.points, [Validators.required]),
+      due_date: new FormControl(tutorpost.due_date),
+    });
+    this.openVerticallyCentered(targetModal);
+  }
+
   EditTutorBoardPost(postId) {
-    console.log("EditTutorBoardPostFormSubmit::", this.editTutorPostForm.value);
-    console.log("form id", this.editTutorPostForm.value.id);
-    const req: BoardPostCreateRequest = this.getUpsertMemberInGroupForm(
+    const req: BoardPostCreateRequest = this.getUpsertTutorBoardForm(
       this.editTutorPostForm
     );
 
-    if (postId === this.editTutorPostForm.value.id) {
-      this.tutorBoardService.upsertGroupPost(req).subscribe(
-        (res) => {
-          this.modalService.dismissAll();
+    this.tutorBoardService.editTutorBoardPost(postId, req).subscribe(
+      (res) => {
+        this.modalService.dismissAll();
 
-          this.getTutorPosts(this.groupIds, this.courseId, "published");
-          console.log("tutor post is updated");
-        },
-        (err) => {
-          console.log("Tutorpost Error", err);
-          this.formErrors.push(err.error.message);
-          this.enableForm();
-        }
-      );
-    }
+        this.getTutorPosts(this.groupIds, this.courseId, "published");
+        console.log("tutor post is updated");
+      },
+      (err) => {
+        console.log("Tutorpost Error", err);
+        this.formErrors.push(err.error.message);
+        this.enableForm();
+      }
+    );
   }
 
-  mapFormData(): BoardPostCreateRequest {
+  getUpsertTutorBoardForm(form): BoardPostCreateRequest {
     return {
-      course_id: this.courseId,
-      group_ids: this.groupIds,
-      points: this.tutorForm.value.points.trim(),
-      post_title: this.tutorForm.value.post_title.trim(),
-      post_content: this.tutorForm.value.post_content.trim(),
-      post_type: this.tutorForm.value.post_type.trim(),
-      status: this.tutorForm.value.status.trim(),
-    };
-  }
-  getUpsertMemberInGroupForm(form): BoardPostCreateRequest {
-    return {
+      id: form.value.id,
       course_id: this.courseId,
       group_ids: this.groupIds,
       status: form.value.status,
