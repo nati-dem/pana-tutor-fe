@@ -32,6 +32,13 @@ export class TutorBoardService extends BaseHttpService {
       super.httpOptionsWithAuth()
     );
   }
+  editTutorBoardPost(postId) {
+    const url = `${env.addTutorBoardGroupPost}`;
+    return this.http.put<any>(
+      `${env.userApiBaseUrl}${url}/?postId=${postId}`,
+      this.httpOptionsWithAuth
+    );
+  }
 
   getTutorBoardPost(groupId, courseId, postStatus) {
     let getTutorBoardurl = env.getTuturBoardPost.replace("<groupId>", groupId);

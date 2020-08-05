@@ -195,7 +195,9 @@
 
             <div ngbDropdown class="d-inline-block">
               <div ngbDropdownToggle class="toggle">
-                <i class="fa fa-ellipsis-v dot-icon" aria-hidden="true"></i>
+                <button class="btn">
+                  <i class="fa fa-ellipsis-v dot-icon" aria-hidden="true"></i>
+                </button>
               </div>
 
               <div
@@ -218,7 +220,7 @@
                 <ng-template #editTutorBoard let-modal>
                   <form
                     [formGroup]="editTutorPostForm"
-                    (ngSubmit)="EditTutorBoardPost()"
+                    (ngSubmit)="EditTutorBoardPost(tutor.id)"
                   >
                     <div class="modal-header">
                       <div class="d-flex">
