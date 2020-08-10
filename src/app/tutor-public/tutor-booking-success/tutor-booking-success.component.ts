@@ -1,6 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { TutorBookingService } from "../../service/tutor-booking.service";
+import { YenePayVerifyRequest } from "../../../../../pana-tutor-lib/model/tutor/tutor-booking.interface";
+
 
 @Component({
   selector: 'app-tutor-booking-success',
@@ -10,12 +12,14 @@ import { TutorBookingService } from "../../service/tutor-booking.service";
 export class TutorBookingSuccessComponent implements OnInit {
 
   params;
+  courseId;
 
   constructor(private route: ActivatedRoute,
     private router: Router,
     private tutorBookingService: TutorBookingService) { }
 
   ngOnInit(): void {
+    this.courseId = +this.route.snapshot.paramMap.get("courseId");
     this.route.queryParams.subscribe((params) => {
       console.log('booking success params:', params);
       this.params = params;
@@ -27,7 +31,8 @@ export class TutorBookingSuccessComponent implements OnInit {
   }
 
   verifyPaymentAndFinalizeBooking(){
-    const req = {
+    const req: YenePayVerifyRequest = {
+      courseId: this.courseId,
       TotalAmount: this.params.TotalAmount,
       BuyerId: this.params.BuyerId,
       MerchantOrderId: this.params.MerchantOrderId,

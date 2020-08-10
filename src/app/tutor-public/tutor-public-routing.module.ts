@@ -8,7 +8,7 @@ const routes: Routes = [
   //{ path: "tutors", component: TutorProfileListComponent },
   //{ path: "course/:courseId", component: TutorProfileListComponent },
   { path: "booking", component: TutorBookingComponent },
-  { path: "booking/success", component: TutorBookingSuccessComponent },
+  { path: "booking/:courseId/success", component: TutorBookingSuccessComponent },
 ];
 
 @NgModule({

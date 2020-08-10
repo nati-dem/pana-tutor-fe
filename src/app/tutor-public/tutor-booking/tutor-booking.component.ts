@@ -21,8 +21,6 @@ export class TutorBookingComponent implements OnInit {
   apiError = false;
   slectedCourse: Course;
   selectedCat: CourseCategory;
-
-
   step = 0;
   packages;
   selectedPkg;
