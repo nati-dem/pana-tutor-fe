@@ -1,1 +1,201 @@
-<p>tutor-booking works!</p>
+<div class="lesson-banner">
+    <div class="lesson-content">
+      <div class="row my-row justify-content-center">
+        <h1 class="lesson-text">Sign Up For Tutor</h1>
+      </div>
+    </div>
+  </div>
+  <!--
+  <section>
+    <div class="container">
+      <h3 class="search-title">What subject or grade are you looking for</h3>
+      <div class="row justify-content-center">
+        <input
+          #searchInp
+          type="text"
+          class="search-input"
+          placeholder="Search for a subject"
+          (keyup.enter)="onEnter(searchInp.value)"
+        />
+      </div>
+      <div *ngIf="isSearchLoading" class="d-flex justify-content-center py-5">
+        <div class="spinner-border spinner-border-sm text-secondary" role="status">
+          <span class="sr-only">Loading...</span>
+        </div>
+      </div>
+      <div *ngIf="searchSubmit && searchResult.length < 1" class="d-flex justify-content-center py-5">
+        No Course Found
+      </div>
+    </div>
+  </section> 
+  
+  <div *ngIf="searchResult.length > 0" class="container popular-sub-container">
+      <h1 class="popular-title">SUBJECTS</h1>
+      <div class="row my-row1">
+        <div
+          class="col-lg-4 mb-4 col-sm-8 grid-margin"
+          *ngFor="let course of searchResult">
+          <div class="card shadow h-80">
+            <img src="/assets/images/physics.jpg" class="card-img-top" alt="..." />
+            <div class="card-title"></div>
+            <div class="card-body">
+              <h1 class="grade">{{ course.title.raw }}</h1>
+              <p class="avalbl-tutor">10 Tutors Availabel</p>
+            </div>
+            <button class="findtutor-btn" routerLink="/categories/course-summary/{{ course.id }}">
+              Find tutor
+            </button>
+          </div>
+        </div>
+      </div>
+    </div> -->
+  
+  <div class="container popular-sub-container">
+    <!-- 
+    <h2>Step 1: I am Looking For</h2>
+    Elementary school  <br/>
+    Middle school  <br/>
+    High School <br/>
+    Language<br/>
+    IT / Computer <br/>
+    -->
+    <div *ngIf="isPageLoading && !apiError" class="d-flex justify-content-center py-5">
+        <div class="spinner-border spinner-border-sm text-secondary" role="status">
+          <span class="sr-only">Loading...</span>
+    </div>
+    </div>
+    <span *ngIf="step ==0">
+    <h1 class="popular-title">Select Category</h1>
+    <!--
+    <div class="row my-row1">
+    <div class="col-lg-4 mb-4 col-sm-8 grid-margin" >
+    <div class="card shadow h-80">
+      <img src="/assets/images/physics.jpg" class="card-img-top" alt="..." />
+      <div class="card-title"></div>
+      <div class="card-body">
+        <h1 class="grade">Coding</h1>
+      </div>
+      <button class="findtutor-btn" routerLink="courses/1">
+        Select
+      </button>
+    </div>
+   </div>
+   <div class="col-lg-4 mb-4 col-sm-8 grid-margin" >
+    <div class="card shadow h-80">
+      <img src="/assets/images/physics.jpg" class="card-img-top" alt="..." />
+      <div class="card-title"></div>
+      <div class="card-body">
+        <h1 class="grade">Amharic</h1>
+      </div>
+      <button class="findtutor-btn" routerLink="courses/1">
+        Select
+      </button>
+    </div>
+    </div>
+    <div class="col-lg-4 mb-4 col-sm-8 grid-margin" >
+      <div class="card shadow h-80">
+        <img src="/assets/images/physics.jpg" class="card-img-top" alt="..." />
+        <div class="card-title"></div>
+        <div class="card-body">
+          <h1 class="grade">English</h1>
+        </div>
+        <button class="findtutor-btn" routerLink="courses/1">
+          Select
+        </button>
+      </div>
+    </div>
+
+  </div> 
+  -->
+    <div class="row my-row1">
+      <div class="col-lg-4 mb-4 col-sm-8 grid-margin"
+        *ngFor="let cat of categories"
+        [class.selected]="cat === selectedCat">
+        <div class="card shadow h-80">
+          <img src="/assets/images/physics.jpg" class="card-img-top" alt="..." />
+          <div class="card-title"></div>
+          <div class="card-body">
+            <h1 class="grade">{{ cat.title.raw }}</h1>
+            <p class="avalbl-tutor">10 Tutors Availabel</p>
+          </div>
+          <button class="findtutor-btn" (click)="onSelectCat(cat.id)" >
+            Select
+          </button>
+        </div>
+      </div>
+    </div>
+    </span>
+
+    <span *ngIf="step ==1">
+        <h1 class="popular-title">Select Subject</h1>
+        <div class="row my-row1">
+            <div class="col-lg-4 mb-4 col-sm-8 grid-margin"
+              *ngFor="let course of courses" >
+              <div class="card shadow h-80">
+                <img src="/assets/images/physics.jpg" class="card-img-top" alt="..." />
+                <div class="card-title"></div>
+                <div class="card-body">
+                  <h1 class="grade">{{ course.title.raw }}</h1>
+                  <p class="avalbl-tutor">10 Tutors Availabel</p>
+                </div>
+                <button class="findtutor-btn" (click)="onSelectCourse(course)" >
+                  Select
+                </button>
+              </div>
+            </div>
+          </div>
+    </span>
+    
+    <span *ngIf="step ==2 && slectedCourse">
+        <h1 class="popular-title">Select Package: {{ slectedCourse?.title.raw }}</h1>
+        <div class="row">
+          <div class="col" *ngFor="let pkg of packages" >
+              <p>{{pkg.name}}</p>
+              <p>{{pkg.price}} ETB / Mth </p>
+              <p>{{pkg.numOfSession}}</p>
+              <p>{{pkg.hrPerSession}}</p>
+              <p>{{pkg.access}}</p>
+              <p>
+              <button class="findtutor-btn" (click)="onSelectPackage(pkg)" >
+                  Select
+              </button>
+              </p>
+          </div>
+        </div>
+    </span>
+    <!--
+    <span *ngIf="step ==3 && slectedCourse">
+        <h1 class="popular-title">Preferences: {{ slectedCourse?.title.raw }}</h1>
+        Select country <br/><br/>
+        Select timezone <br/><br/>
+        Select currency <br/><br/>
+        Prefered time for session <br/><br/>
+        Do you want to be tutored in Group? <br/><br/>
+        <button class="findtutor-btn" (click)="afterSelectPref()" >
+            Next
+        </button>
+    </span> -->
+
+    <span *ngIf="step ==3 && slectedCourse">
+        <h1 class="popular-title">Payment: {{ slectedCourse?.title.raw }}</h1>
+        Pay with paypal <br/><br/>
+        Pay with Amole <br/><br/>
+        Pay with CBE Birr <br/><br/>
+        Pay with YenePay <br/><br/>
+        <span>Checkout with </span>
+        
+        <span (click)="onNavigate(yenePayUrl)" ><img class="pointer" style="width:100px" src="https://yenepayprod.blob.core.windows.net/images/logo.png">  </span>
+    </span>
+    <!-- 
+    <h1 class="popular-title">Step 3: Choose Package</h1>
+    <h1 class="popular-title">Step 4: Enter Personal Info, Username & Password (if not logged in)</h1>
+    <h1 class="popular-title">Step 5: Pay</h1>
+    App Automatically assign tutor -> save record in tutor_group_members DB & Redirect to Course Detail page
+    -->
+    <div *ngIf="step > 0">
+        <button  class="findtutor-btn" (click)="goToPrev()" >
+            Previous
+        </button>
+    </div>
+
+  </div>
