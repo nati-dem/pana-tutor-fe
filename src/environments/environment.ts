@@ -48,6 +48,10 @@ export const environment = {
   tutorAssignInCourseUrl: "/tutor-admin/course/tutor/assign",
   tutorRemoveInCourseUrl: "/tutor-admin/course/<courseId>/tutor/<userId>",
   avatarUploadUrl: "/users/avatar",
+  getTutorBookingRequest: "/tutor-booking/booking-request/<courseId>",
+  putTutorBookingRequest: "/tutor-booking/booking-request/<courseId>",
+  generatePaymentInfo: "/payment/generate-payment-info",
+  verifyPayment: "/payment/ypay-pdt/verify-and-finalize-booking"
 };
 
 /*

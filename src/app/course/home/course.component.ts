@@ -24,7 +24,7 @@ export class CourseComponent implements OnInit {
   page = "topics";
   courseId;
   userId;
-  pageLinks = [];
+  pageLinks = CourseNavLinks.pageLinks;
   isAdmin = false;
 
   constructor(
@@ -50,7 +50,8 @@ export class CourseComponent implements OnInit {
     this.categoryService.getCourseSummary(id).subscribe((res) => {
       console.log("@getCourseSummary resp: ", res);
       this.selectedCourse = res;
-      this.getGlobalUserAuthInfo();
+      if(CourseNavLinks.pageLinks.length ==0 )
+        this.getGlobalUserAuthInfo();
     });
   }
 
@@ -75,14 +76,14 @@ export class CourseComponent implements OnInit {
       (c) => c.course_id == this.courseId && c.groups.length > 0
     );
 
-    this.pageLinks.push({ page: "overview", text: "Overview" });
-    this.pageLinks.push({ page: "topics", text: "Topics" });
+    CourseNavLinks.pageLinks.push({ page: "overview", text: "Overview" });
+    CourseNavLinks.pageLinks.push({ page: "topics", text: "Topics" });
     if (groupFound) {
-      this.pageLinks.push({ page: "board", text: "Tutorial" });
+      CourseNavLinks.pageLinks.push({ page: "board", text: "Tutorial" });
     }
     if (userRole === UserRole.ADMINISTRATOR) {
-      this.pageLinks.push({ page: "group-admin", text: "Group Admin" });
-      this.pageLinks.push({ page: "assign-tutor", text: "Manage Tutors" });
+      CourseNavLinks.pageLinks.push({ page: "group-admin", text: "Group Admin" });
+      CourseNavLinks.pageLinks.push({ page: "assign-tutor", text: "Manage Tutors" });
       this.isAdmin = true;
     }
   }
@@ -90,4 +91,8 @@ export class CourseComponent implements OnInit {
   getRouterLink() {
     return `/course/home/${this.courseId}`;
   }
+}
+
+class CourseNavLinks {
+  static pageLinks = [];
 }
