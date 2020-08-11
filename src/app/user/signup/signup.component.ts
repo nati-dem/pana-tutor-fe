@@ -7,6 +7,11 @@ import { BaseFormGroup } from "../../shared/base-form-group";
 import { UserRole } from "../../../../../pana-tutor-lib/enum/user.enum";
 import { randomString } from "./../../util/helper";
 import { from } from "rxjs";
+import { SocialAuthService, SocialUser } from "angularx-social-login";
+import {
+  FacebookLoginProvider,
+  GoogleLoginProvider,
+} from "angularx-social-login";
 
 @Component({
   selector: "app-signup",
@@ -14,6 +19,7 @@ import { from } from "rxjs";
   styleUrls: ["../../shared/shared-css.css"],
 })
 export class SignupComponent extends BaseFormGroup implements OnInit {
+  public user: any = SocialUser;
   signupForm = new FormGroup({
     email: new FormControl("", [Validators.required, Validators.minLength(4)]),
     password: new FormControl("", [
@@ -28,7 +34,11 @@ export class SignupComponent extends BaseFormGroup implements OnInit {
     phone: new FormControl("", [Validators.required, Validators.minLength(4)]),
   });
 
-  constructor(private authService: AuthService, private router: Router) {
+  constructor(
+    private socialAuthService: SocialAuthService,
+    private authService: AuthService,
+    private router: Router
+  ) {
     super();
     console.log("inside signupcomp const");
     super.setForm(this.signupForm);
@@ -69,5 +79,54 @@ export class SignupComponent extends BaseFormGroup implements OnInit {
         phone_number: this.signupForm.value.phone.trim(),
       },
     } as UserSignupRequest;
+  }
+
+  //
+
+  mapGoogleData(): UserSignupRequest {
+    return {
+      email: this.user.email,
+      // password: "melkam",
+      first_name: this.user.firstName,
+      last_name: this.user.lastName,
+      username: this.user.name,
+      name: this.user.name,
+      roles: [UserRole.SUBSCRIBER],
+    } as UserSignupRequest;
+  }
+
+  signUpWithGoogle(): void {
+    this.socialAuthService
+      .signIn(GoogleLoginProvider.PROVIDER_ID)
+      .then((res) => {
+        console.log("google login", res);
+
+        this.user = res;
+
+        let signupReq: UserSignupRequest = this.mapGoogleData();
+        console.log("signupGoogle req", signupReq);
+        this.authService.signup(signupReq).subscribe(
+          (res) => {
+            // this.signupForm.reset();
+            console.log("Signup response", res);
+          },
+          (err) => {
+            console.log("Signup Error", err);
+            // this.formErrors.push(err.error.message);
+            // this.enableForm();
+          },
+          () => {
+            // this.enableForm();
+          }
+        );
+      });
+  }
+
+  signInWithFB(): void {
+    this.socialAuthService.signIn(FacebookLoginProvider.PROVIDER_ID);
+  }
+
+  signOut(): void {
+    this.socialAuthService.signOut();
   }
 }

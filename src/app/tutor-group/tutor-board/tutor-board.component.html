@@ -123,10 +123,11 @@
                     id="dateOfBirth"
                     class="form-control"
                     placeholder="yyyy-mm-dd"
-                    name="dp"
+                    formControlName="due_date"
                     ngbDatepicker
                     #dp="ngbDatepicker"
                   />
+
                   <div class="input-group-append">
                     <button
                       class="btn btn-outline-secondary calendar"
@@ -135,6 +136,7 @@
                     ></button>
                   </div>
                 </div>
+                <ngb-timepicker></ngb-timepicker>
               </div>
               <div class="form-group">
                 <label for="Topic">

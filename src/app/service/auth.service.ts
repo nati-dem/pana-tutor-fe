@@ -20,12 +20,10 @@ import { GlobalService } from "./global.service";
   providedIn: "root",
 })
 export class AuthService extends BaseHttpService {
-
   private _token;
   isAuthenticated$ = new BehaviorSubject<boolean>(false);
 
-  constructor(private http: HttpClient, 
-    private jwtHelper: JwtHelperService) {
+  constructor(private http: HttpClient, private jwtHelper: JwtHelperService) {
     super();
   }
 
@@ -56,19 +54,21 @@ export class AuthService extends BaseHttpService {
   }
 
   setUserAuthGlobals() {
-    console.log('setUserAuthGlobals api call..');
+    console.log("setUserAuthGlobals api call..");
     const url = `${env.userApiBaseUrl + env.userAuthInfoUrl}`;
-    return this.http.get<any>(url, super.httpOptionsWithAuth())
-      .subscribe((res) => {
-        console.log('setUserAuthGlobals res', res);
+    return this.http.get<any>(url, super.httpOptionsWithAuth()).subscribe(
+      (res) => {
+        console.log("setUserAuthGlobals res", res);
         GlobalService.userId = res.user_id;
         GlobalService.courses = res.courses;
         GlobalService.userRole = res.user_role;
         GlobalService.email = res.email;
         GlobalService.userName = res.name;
-      }, err => {
-        console.log('setUserAuthGlobals err', err);
-      });
+      },
+      (err) => {
+        console.log("setUserAuthGlobals err", err);
+      }
+    );
   }
 
   signup(signupReq: UserSignupRequest): Observable<any> {
@@ -130,5 +130,11 @@ export class AuthService extends BaseHttpService {
     this._token = t;
   }
 
-}
+  googleLogin() {
+    return this.http.get<any>(
+      env.userApiBaseUrl + env.googleLoginUrl,
 
+      super.httpOptions()
+    );
+  }
+}

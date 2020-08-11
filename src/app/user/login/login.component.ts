@@ -7,6 +7,11 @@ import { Router } from "@angular/router";
 import { ErrorResponse } from "./../../../../../pana-tutor-lib/model/api-response.interface";
 import { BaseFormGroup } from "../../shared/base-form-group";
 import { ErrorMessage } from "./../../enum/message.enum";
+import { SocialAuthService, SocialUser } from "angularx-social-login";
+import {
+  FacebookLoginProvider,
+  GoogleLoginProvider,
+} from "angularx-social-login";
 
 @Component({
   selector: "app-login",
@@ -14,12 +19,14 @@ import { ErrorMessage } from "./../../enum/message.enum";
   styleUrls: ["../../shared/shared-css.css"],
 })
 export class LoginComponent extends BaseFormGroup implements OnInit {
+  public user: any = SocialUser;
   loginForm = new FormGroup({
     email: new FormControl("", [Validators.required]),
     password: new FormControl("", [Validators.required]),
   });
 
   constructor(
+    private socialAuthService: SocialAuthService,
     private authService: AuthService,
     private router: Router,
     private globalService: GlobalService
@@ -38,20 +45,26 @@ export class LoginComponent extends BaseFormGroup implements OnInit {
     this.disableForm();
     this.authService.authenticate(userLoginReq).subscribe(
       (res) => {
-        //console.log("Login response", res);
+        console.log("Login response", res);
         this.authService.saveTokenInLocal(res);
         this.authService.notifyAuthObservers(true);
         this.authService.setUserAuthGlobals();
         this.router.navigate(["/profile"]);
-      }, (err) => {
+      },
+      (err) => {
         console.log("Login Error", err);
-        if(err.error && err.error.detail && err.error.detail.includes("ip_blocked")){
+        if (
+          err.error &&
+          err.error.detail &&
+          err.error.detail.includes("ip_blocked")
+        ) {
           this.formErrors.push(ErrorMessage.AUTH_IP_BLOCKED);
         } else {
           this.formErrors.push(ErrorMessage.LOGIN_ERROR);
         }
         this.enableForm();
-      }, () => {
+      },
+      () => {
         this.enableForm();
       }
     );
@@ -62,5 +75,33 @@ export class LoginComponent extends BaseFormGroup implements OnInit {
       username: this.loginForm.value.email.trim(),
       password: this.loginForm.value.password.trim(),
     };
+  }
+
+  signInWithGoogle(): void {
+    this.socialAuthService
+      .signIn(GoogleLoginProvider.PROVIDER_ID)
+      .then((userData) => {
+        this.user = userData;
+        console.log(this.user);
+
+        console.log("userData", userData);
+        console.log("idToken Google", this.user.idToken);
+        this.authService.saveTokenInLocal(this.user.idToken);
+        this.authService.notifyAuthObservers(true);
+        this.authService.setUserAuthGlobals();
+        this.router.navigate(["/profile"]);
+      });
+  }
+
+  saveToken(token) {
+    this.authService.saveTokenInLocal(token);
+  }
+
+  signInWithFB(): void {
+    this.socialAuthService.signIn(FacebookLoginProvider.PROVIDER_ID);
+  }
+
+  signOut(): void {
+    this.socialAuthService.signOut();
   }
 }

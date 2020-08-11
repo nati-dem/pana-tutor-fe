@@ -101,11 +101,13 @@ export class TutorBoardComponent extends BaseFormGroup implements OnInit {
     return {
       course_id: this.courseId,
       group_ids: this.groupIds,
+
       points: this.tutorForm.value.points.trim(),
       post_title: this.tutorForm.value.post_title.trim(),
       post_content: this.tutorForm.value.post_content.trim(),
       post_type: this.tutorForm.value.post_type.trim(),
       status: this.tutorForm.value.status.trim(),
+      due_date: this.tutorForm.value.due_date,
     };
   }
 

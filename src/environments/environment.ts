@@ -11,6 +11,7 @@ export const environment = {
   loginUrl: "/auth/login",
   signupUrl: "/auth/register",
   profileUrl: "/users/profile",
+  googleLoginUrl: "/auth/google",
   profileUpdateUrl: "/users/profile",
   passwordUpdateUrl: "/users/change-password",
   userAuthInfoUrl: "/users/auth-info",
