@@ -13,8 +13,8 @@ export class TutorBookingService extends BaseHttpService {
     super();
   }
 
-  getTutorBookingRequest(courseId){
-    let url = env.getTutorBookingRequest.replace("<courseId>", courseId)
+  validateCourseBookingRequest(courseId){
+    let url = env.validateCourseBookingRequest.replace("<courseId>", courseId)
     return this.http.get<any>(env.userApiBaseUrl + url, super.httpOptionsWithAuth());
   }
 

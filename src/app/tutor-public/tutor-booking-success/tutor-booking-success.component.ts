@@ -13,6 +13,8 @@ export class TutorBookingSuccessComponent implements OnInit {
 
   params;
   courseId;
+  isPageLoading = true;
+  apiError = false;
 
   constructor(private route: ActivatedRoute,
     private router: Router,
@@ -21,7 +23,7 @@ export class TutorBookingSuccessComponent implements OnInit {
   ngOnInit(): void {
     this.courseId = +this.route.snapshot.paramMap.get("courseId");
     this.route.queryParams.subscribe((params) => {
-      console.log('booking success params:', params);
+      //console.log('booking success params:', params);
       this.params = params;
       if(!params.MerchantOrderId) {
         this.router.navigate(["/tutoring/booking"]);
@@ -31,7 +33,24 @@ export class TutorBookingSuccessComponent implements OnInit {
   }
 
   verifyPaymentAndFinalizeBooking(){
-    const req: YenePayVerifyRequest = {
+    this.isPageLoading = true;
+    this.apiError = false;
+    
+    this.tutorBookingService.verifyPaymentAndFinalizeBooking(this.getyPayRequestModel())
+      .subscribe(res => {
+          this.isPageLoading = false;
+          console.log("verifyPaymentAndFinalizeBooking res", res)
+          this.router.navigate(["/course/home/"+this.courseId]);
+        }, err => {
+          this.apiError = true;
+          this.isPageLoading = false;
+          console.log("verifyPaymentAndFinalizeBooking err", err)
+          //this.router.navigate(["tutoring/booking"]);
+        }, );
+  }
+
+  getyPayRequestModel(): YenePayVerifyRequest{
+    return {
       courseId: this.courseId,
       TotalAmount: this.params.TotalAmount,
       BuyerId: this.params.BuyerId,
@@ -44,12 +63,6 @@ export class TutorBookingSuccessComponent implements OnInit {
       Currency: this.params.Currency,
       Signature: this.params.Signature
     }
-    this.tutorBookingService.verifyPaymentAndFinalizeBooking(req)
-    .subscribe(res => {
-        console.log("verifyPaymentAndFinalizeBooking res", res)
-      }, err => {
-        console.log("verifyPaymentAndFinalizeBooking err", err)
-      })
   }
 
   /*

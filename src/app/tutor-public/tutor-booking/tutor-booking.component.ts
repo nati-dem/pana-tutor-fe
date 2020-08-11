@@ -4,8 +4,6 @@ import { Course } from "../../../../../pana-tutor-lib/model/course/course.interf
 import { MediaModel } from "../../../../../pana-tutor-lib/model/media-model.interface";
 import { CategoryService } from "../../service/category.service";
 import { TutorBookingService } from "../../service/tutor-booking.service";
-import { from } from "rxjs";
-import { EntityType } from "../../../../../pana-tutor-lib/enum/constants";
 import { TutorBookingRequest } from "../../../../../pana-tutor-lib/model/tutor/tutor-booking.interface";
 
 @Component({
@@ -18,10 +16,11 @@ export class TutorBookingComponent implements OnInit {
   courses = [];
   coursesCatId;
   isPageLoading = true;
-  apiError = false;
+  apiError = null;
   slectedCourse: Course;
   selectedCat: CourseCategory;
   step = 0;
+  stepTitle = 'Select Category';
   packages;
   selectedPkg;
   yenePayUrl;
@@ -36,23 +35,24 @@ export class TutorBookingComponent implements OnInit {
   }
 
   getCategories() {
+    this.apiError = null;
     if(this.categories.length == 0) {
       this.categoryService
       .findCategories()
       .subscribe((data) => {
         this.categories = data;
         this.isPageLoading = false;
+      }, err => {
+        this.apiError = true;
+      }, () => {
+        this.isPageLoading = false;
       });
     }
 
   }
 
-  goToPrev(){
-    if(this.step > 0)
-      this.step = this.step -1;
-  }
-
   onSelectCat(id){
+    this.apiError = null;
     if(this.courses.length == 0 || this.coursesCatId != id) {
       this.isPageLoading = true;
       this.categoryService
@@ -60,53 +60,71 @@ export class TutorBookingComponent implements OnInit {
         .subscribe((data) => {
           this.courses = data;
           this.step = 1;
+          this.stepTitle = 'Select Subject';
           this.coursesCatId = id;
+          this.isPageLoading = false;
+        }, err => {
+          this.apiError = err.error? err.error.message: err.message;
+        }, () => {
           this.isPageLoading = false;
         });
     } else {
       console.log('@this.courses::',this.courses)
       this.step = 1;
+      this.refreshTitle();
     }
   }
 
   onSelectCourse(course){
+    this.apiError = null;
     this.slectedCourse = course;
     this.isPageLoading = true;
     // TODO - check user eligiblity
     // TODO - save user preferences
-    this.tutorBookingService.getTutorBookingRequest(course.id)
-    .subscribe((data) => {
-      console.log('getTutorBookingRequest res::', data)
-      //this.slectedCourse = data;
-      this.step = 2;
-      this.isPageLoading = false;
-      this.packages = this.tutorBookingService.findPackages();
-    }, err => {
-      console.log('getTutorBookingRequest err::', err)
-    });
+    this.tutorBookingService.validateCourseBookingRequest(course.id)
+      .subscribe((data) => {
+        console.log('validateCourseBookingRequest res::', data)
+        this.step = 2;
+        this.stepTitle = 'Select Package';
+        this.isPageLoading = false;
+        this.packages = this.tutorBookingService.findPackages();
+      }, err => {
+        console.log('validateCourseBookingRequest err::', err)
+        this.apiError = err.error? err.error.message: err.message;
+      }, () => {
+        this.isPageLoading = false;
+      });
   }
 
   onSelectPackage(pkg){
+    this.apiError = null;
     this.selectedPkg = pkg;
     console.log('onSelectPackage::', pkg)
-    const req: TutorBookingRequest = {
-      packageId: pkg.id,
+    
+    this.tutorBookingService.putTutorBookingRequest(this.slectedCourse.id, this.getTutorBookingRequest())
+      .subscribe((data) => {
+        console.log('putTutorBookingRequest res::', data)
+        this.step = 3;
+        this.stepTitle = 'Payment';
+        this.isPageLoading = false;
+        this.tutorBookingService.getPaymentLinks(this.getPaymentInfoGeneratorReq(data))
+        .subscribe(d => {
+          console.log('getPaymentLinks res::', d)
+          this.yenePayUrl = d.yenePayUrl;
+        });
+      }, err => {
+        console.log('putTutorBookingRequest err::', err)
+        this.apiError = true;
+      }, () => {
+        this.isPageLoading = false;
+      });
+  }
+
+  getTutorBookingRequest(): TutorBookingRequest{
+    return {
+      packageId: this.selectedPkg.id,
       course_id: this.slectedCourse.id,
     }
-    this.tutorBookingService.putTutorBookingRequest(this.slectedCourse.id, req)
-    .subscribe((data) => {
-      console.log('putTutorBookingRequest res::', data)
-      this.step = 3;
-      this.isPageLoading = false;
-      this.tutorBookingService.getPaymentLinks(this.getPaymentInfoGeneratorReq(data))
-      .subscribe(d => {
-        console.log('getPaymentLinks res::', d)
-        this.yenePayUrl = d.yenePayUrl;
-      });
-    }, err => {
-      console.log('putTutorBookingRequest err::', err)
-    });
-    
   }
 
   getPaymentInfoGeneratorReq(data){
@@ -123,9 +141,28 @@ export class TutorBookingComponent implements OnInit {
     this.step = 4;
   }
 
-   onNavigate(url){
+  onNavigate(url){
     window.open(url, "_self");
     //window.open(url,'YpayWindow','width=600,height=450,toolbar=no,scrollbars=yes,resizable=yes,');
+  }
+
+  goToPrev(){
+    if(this.step > 0)
+      this.step = this.step -1;
+    this.apiError = null;
+    this.isPageLoading = false;
+    this.refreshTitle();
+  }
+
+  refreshTitle(){
+    if(this.step == 0)
+      this.stepTitle = 'Select Category';
+    else if(this.step == 1)
+      this.stepTitle = 'Select Subject';
+    else if(this.step == 2)
+      this.stepTitle = 'Select Package';
+    else if(this.step == 3)
+      this.stepTitle = 'Payment';
   }
 
 }
