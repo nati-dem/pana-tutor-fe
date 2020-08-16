@@ -51,6 +51,11 @@ const routes: Routes = [
     loadChildren: () =>
       import("./profile/profile.module").then((m) => m.ProfileModule),
   },
+  {
+    path: "contactus",
+    loadChildren: () =>
+      import("./contact-us/contact-us.module").then((m) => m.ContactUsModule),
+  },
   { path: "**", component: PageNotFoundComponent }, // Wildcard route for a 404 page
 ];
 

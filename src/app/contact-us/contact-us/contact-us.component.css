@@ -1,0 +1,121 @@
+.contactus-form input {
+  outline: none;
+  border: none;
+  width: 100%;
+  position: relative;
+  border-bottom: 0.5px solid black;
+  margin: 8px 0px 0px 0px;
+  padding: 10px;
+
+  height: 2em;
+  /* font-family: Arial; */
+  font-size: 1em;
+  font-size-adjust: 1;
+  padding-top: 0.1em;
+  padding-bottom: 0.1em;
+}
+
+textarea {
+  outline: none;
+  border: none;
+  width: 100%;
+  position: relative;
+  border-bottom: 0.5px solid black;
+  margin: 8px 2px 2px 2px;
+  padding: 10px;
+  /* height: 1.5em; */
+  /* font-family: Arial; */
+  font-size: 1em;
+  font-size-adjust: 1;
+  padding-top: 0.1em;
+  padding-bottom: 0.1em;
+}
+input {
+  outline: none;
+}
+div.contactus-form {
+  margin-bottom: 2.5rem;
+}
+.contactus-form input:focus {
+  outline: none;
+  border-bottom: 2px solid rgb(68, 241, 68);
+}
+
+textarea:focus {
+  outline: none;
+  border-bottom: 2px solid limegreen;
+}
+label {
+  text-align: right;
+  justify-self: right;
+}
+
+.submitbtn {
+  background-color: limegreen;
+  border-radius: 2rem;
+  border: limegreen;
+  font-size: 1.1rem;
+  /* padding: 1rem; */
+  width: 8rem;
+  margin-top: 1rem;
+}
+.p-title {
+  padding: 2rem;
+}
+.banner {
+  background: url("/assets/images/imgmap.png");
+  /* background-color: rgba(0, 0, 0, 0.3); */
+  -webkit-background-size: cover;
+  -moz-background-size: cover;
+  -o-background-size: cover;
+  background-size: cover;
+  /* margin-top: -5rem; */
+}
+
+.title-banner {
+  background: url("/assets/images/typing-on-laptop- (1).jpg");
+  -webkit-background-size: cover;
+  -moz-background-size: cover;
+  -o-background-size: cover;
+  background-size: cover;
+  margin-top: 1rem;
+  padding: 1rem;
+  color: white;
+}
+.contanctus-col {
+  padding: 12rem;
+}
+h4,
+p {
+  text-align: center;
+}
+.form-container {
+  background-color: white;
+  padding: 2rem;
+}
+.darkbg {
+  background-color: rgba(0, 0, 0, 0.3);
+  /* height: 100%; */
+}
+app-form-validation-template {
+  position: absolute;
+  font-size: 0.85rem;
+  /* top: 100%;
+    left: 0;
+    width: 100%; */
+}
+@media (max-width: 780px) {
+  label {
+    text-align: start;
+  }
+
+  .contanctus-col {
+    padding: 2rem;
+  }
+}
+
+@media (min-width: 768px) and (max-width: 991px) {
+  .contanctus-col {
+    padding: 8rem;
+  }
+}

@@ -14,6 +14,59 @@
         >
           sign up with Google
         </button>
+
+        <!-- <ng-template #passwordcontent let-modal>
+          <div class="modal-header">
+            <h4 class="modal-title" id="modal-basic-title">password</h4>
+            <button
+              type="button"
+              class="close"
+              aria-label="Close"
+              (click)="modal.dismiss('Cross click')"
+            >
+              <span aria-hidden="true">&times;</span>
+            </button>
+          </div>
+          <div class="modal-body">
+            <form [formGroup]="passwordForm" (ngSubmit)="submit()">
+              <div class="form-group">
+                <label for="dateOfBirth">password</label>
+                <div class="input-group">
+                  <input
+                    id="password"
+                    formControlName="password"
+                    class="form-control"
+                    placeholder="Enter Password"
+                    name="password"
+                  />
+                </div>
+              </div>
+              <div class="form-group">
+                <label for="dateOfBirth">Confirm your password</label>
+                <div class="input-group">
+                  <input
+                    id="confirmpassword"
+                    class="form-control"
+                    placeholder="Confirm Password"
+                    name="confirmpassword"
+                    formControlName="password2"
+                  />
+                  <div class="input-group-append">
+                    <button
+                      class="btn btn-outline-secondary calendar"
+                      type="button"
+                    ></button>
+                  </div>
+                </div>
+              </div>
+            </form>
+          </div>
+          <div class="modal-footer">
+            <button type="submit" class="btn btn-outline-dark">
+              Save
+            </button>
+          </div>
+        </ng-template> -->
         <div class="form-container">
           <form
             [formGroup]="signupForm"
@@ -30,7 +83,7 @@
               <div
                 class="form-group signup-form inputWithIcon has-feedback has-feedback-left"
               >
-                <i class="fa fa-user-o icon"></i>
+                <!-- <i class="fa fa-user-o icon"></i> -->
                 <input
                   formControlName="name"
                   type="text"

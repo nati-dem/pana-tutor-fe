@@ -1,0 +1,171 @@
+<div class="banner">
+  <div class="darkbg">
+    <div class="container contactUs-container">
+      <div class="col contanctus-col">
+        <div class="content">
+          <div class="title-banner row justify-content-center">
+            <div class="d-flex flex-column p-title">
+              <div class="">
+                <h4>Contact Us</h4>
+              </div>
+              <div class=""><p>Feel free to drop us a line below</p></div>
+            </div>
+          </div>
+        </div>
+        <div class="container form-container">
+          <div class="form-container">
+            <form
+              [formGroup]="contactusForm"
+              (ngSubmit)="onSubmit()"
+              class="contactus-form"
+            >
+              <div
+                class="cross-validation"
+                [class.cross-validation-error]="
+                  contactusForm.errors?.identityRevealed &&
+                  (contactusForm.touched || contactusForm.dirty)
+                "
+              >
+                <div class="form-group row">
+                  <label for="staticEmail" class="col-sm-3 col-form-label"
+                    >Full Name:
+                  </label>
+                  <div class="col-sm-8">
+                    <input
+                      type="text"
+                      formControlName="full_name"
+                      placeholder="Enter your fullname"
+                      class="form-control-plaintext"
+                    />
+                    <app-form-validation-template
+                      [formControlsInp]="formControls.full_name"
+                    ></app-form-validation-template>
+                  </div>
+                </div>
+                <div class="form-group row">
+                  <label for="staticEmail" class="col-sm-3 col-form-label"
+                    >Email:</label
+                  >
+                  <div class="col-sm-8">
+                    <input
+                      type="text"
+                      formControlName="email"
+                      placeholder="Enter email addres"
+                      class="form-control-plaintext"
+                      id="staticEmail"
+                    />
+                    <app-form-validation-template
+                      [formControlsInp]="formControls.email"
+                    ></app-form-validation-template>
+                  </div>
+                </div>
+                <div class="form-group row">
+                  <label for="staticEmail" class="col-sm-3 col-form-label"
+                    >Phone:</label
+                  >
+                  <div class="col-sm-8">
+                    <input
+                      type="text"
+                      formControlName="phone"
+                      placeholder="Enter phone number"
+                      class="form-control-plaintext"
+                      id="staticEmail"
+                    />
+                    <app-form-validation-template
+                      [formControlsInp]="formControls.phone"
+                    ></app-form-validation-template>
+                  </div>
+                </div>
+                <div class="form-group row">
+                  <label for="staticEmail" class="col-sm-3 col-form-label"
+                    >Message:</label
+                  >
+                  <div class="col-sm-8">
+                    <textarea
+                      formControlName="message"
+                      name=""
+                      id=""
+                      cols="30"
+                      placeholder="Your Comments"
+                      rows="5"
+                    ></textarea>
+                    <app-form-validation-template
+                      [formControlsInp]="formControls.message"
+                    ></app-form-validation-template>
+                  </div>
+                </div>
+                <div class="row">
+                  <div class="col-sm-3"><div></div></div>
+                  <div class="col-sm-8">
+                    <button
+                      type="submit"
+                      class="btn btn-primary float-left submitbtn"
+                    >
+                      Submit ->
+                    </button>
+                  </div>
+                </div>
+              </div>
+            </form>
+          </div>
+
+          <!-- <form class="contactus-form justify-content-center">
+                      <div class="row mx-md-n2 justify-content-center">
+                        <div class="col px-md-8 justify-content-center">
+                          <div class="p-1">
+                            <div class="form-group">
+                              <div class="row mx-md justify-content-center">
+                                <div class="px-md-2">
+                                  <label for="">Full Name</label>
+                                </div>
+                                <div class="col px-md-6">
+                                  <input
+                                    formControlName="post_title"
+                                    type="text"
+                                    placeholder="Title"
+                                  />
+                                </div>
+                              </div>
+                            </div>
+                            <div class="form-group">
+                              <div class="row mx-md">
+                                <div class="px-md-2">
+                                  <label for="">Email</label>
+                                </div>
+                                <div class="col px-md-6">
+                                  <input
+                                    formControlName="post_title"
+                                    type="text"
+                                    placeholder="Title"
+                                  />
+                                </div>
+                              </div>
+                            </div>
+                            <div class="form-group justify-content-center">
+                              <div class="row mx-md">
+                                <div class="px-md-2">
+                                  <label for="">Phone</label>
+                                </div>
+                                <div class="col px-md-6">
+                                  <input
+                                    formControlName="post_title"
+                                    type="text"
+                                    placeholder="Title"
+                                  />
+                                </div>
+                              </div>
+                            </div>
+                            <div class="row mx-md add-btn-area">
+                              <div class="px-md-4">
+                                <button class="btn btn-light add-btn">Add</button>
+                              </div>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                    </form> -->
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

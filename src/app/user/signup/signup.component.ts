@@ -1,5 +1,6 @@
 import { Component, OnInit } from "@angular/core";
 import { FormControl, FormGroup, Validators } from "@angular/forms";
+import { NgbModal } from "@ng-bootstrap/ng-bootstrap";
 import { UserSignupRequest } from "./../../../../../pana-tutor-lib/model/user/user-auth.interface";
 import { AuthService } from "../../service/auth.service";
 import { Router } from "@angular/router";
@@ -34,10 +35,16 @@ export class SignupComponent extends BaseFormGroup implements OnInit {
     phone: new FormControl("", [Validators.required, Validators.minLength(4)]),
   });
 
+  // passwordForm = new FormGroup({
+  //   password: new FormControl("", [Validators.required]),
+  //   password2: new FormControl("", [Validators.required]),
+  // });
+
   constructor(
     private socialAuthService: SocialAuthService,
     private authService: AuthService,
-    private router: Router
+    private router: Router,
+    private modalService: NgbModal
   ) {
     super();
     console.log("inside signupcomp const");
@@ -81,12 +88,13 @@ export class SignupComponent extends BaseFormGroup implements OnInit {
     } as UserSignupRequest;
   }
 
+  submit() {}
   //
 
   mapGoogleData(): UserSignupRequest {
     return {
       email: this.user.email,
-      // password: "melkam",
+      // password: this.passwordForm.value.password.trim(),
       first_name: this.user.firstName,
       last_name: this.user.lastName,
       username: this.user.name,
@@ -100,7 +108,7 @@ export class SignupComponent extends BaseFormGroup implements OnInit {
       .signIn(GoogleLoginProvider.PROVIDER_ID)
       .then((res) => {
         console.log("google login", res);
-
+        // this.openVerticallyCentered(targetModal);
         this.user = res;
 
         let signupReq: UserSignupRequest = this.mapGoogleData();
@@ -128,5 +136,14 @@ export class SignupComponent extends BaseFormGroup implements OnInit {
 
   signOut(): void {
     this.socialAuthService.signOut();
+  }
+
+  openVerticallyCentered(targetModal) {
+    this.modalService.open(targetModal, {
+      centered: false,
+      size: "xl",
+      backdrop: "static",
+      keyboard: false,
+    }); //scrollable:true
   }
 }

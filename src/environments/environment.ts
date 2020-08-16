@@ -51,7 +51,8 @@ export const environment = {
   validateCourseBookingRequest: "/tutor-booking/validate-course/<courseId>",
   putTutorBookingRequest: "/tutor-booking/booking-request/<courseId>",
   generatePaymentInfo: "/payment/generate-payment-info",
-  verifyPayment: "/payment/ypay-pdt/verify-and-finalize-booking"
+  verifyPayment: "/payment/ypay-pdt/verify-and-finalize-booking",
+  addContactusMessage: "contactus/savemessage",
 };
 
 /*
