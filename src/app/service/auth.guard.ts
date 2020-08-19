@@ -7,21 +7,20 @@ import {
 } from "@angular/router";
 import { Observable } from "rxjs";
 import { AuthService } from "./auth.service";
+import { ToastrService } from 'ngx-toastr';
 
 @Injectable({
   providedIn: "root",
 })
 export class AuthGuard implements CanActivate {
-  constructor(private authService: AuthService) {}
+  
+  constructor(private authService: AuthService, private toastr: ToastrService) {}
 
-  canActivate(
-    next: ActivatedRouteSnapshot,
-    state: RouterStateSnapshot
-  ):
-    | Observable<boolean | UrlTree>
-    | Promise<boolean | UrlTree>
-    | boolean
-    | UrlTree {
-    return this.authService.isTokenValid();
+  canActivate( next: ActivatedRouteSnapshot, state: RouterStateSnapshot ): | Observable<boolean | UrlTree> | Promise<boolean | UrlTree> | boolean | UrlTree {
+    const isTokenValid = this.authService.isTokenValid() 
+    if(!isTokenValid){
+      this.toastr.error('Login Required for access!');
+    }
+    return isTokenValid;
   }
 }

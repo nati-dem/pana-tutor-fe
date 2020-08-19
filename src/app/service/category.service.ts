@@ -7,14 +7,16 @@ import { Complexity } from "../../../../pana-tutor-lib/enum/common.enum";
 import { environment as env } from "./../../environments/environment";
 import { filter, find, tap } from "lodash";
 import { catchError } from "rxjs/operators";
-
-//import {CategoryModule} from '../category.module'
+import { BaseHttpService } from './base.http.service';
 
 @Injectable({
   providedIn: "root",
 })
-export class CategoryService {
-  constructor(private http: HttpClient) {}
+export class CategoryService  extends BaseHttpService  {
+
+  constructor(private http: HttpClient) {
+    super();
+  }
 
   findCategories(): Observable<any> {
     return this.http.get<any>(env.userApiBaseUrl + env.categoryUrl);
@@ -39,24 +41,35 @@ export class CategoryService {
     const url = `${env.userApiBaseUrl + env.courseByCategoryIdUrl}/${id}`;
     return this.http.get<any>(url);
   }
-
-  storeCourseInCahce(courses) {
-    courses.forEach((course) => {
+  
+  storeCourseInCahce(course) {
       localStorage.setItem(
         env.localCoursePrefix + course.id,
         JSON.stringify(course)
       );
+  }
+
+  storeCoursesInCahce(courses) {
+    courses.forEach((course) => {
+      this.storeCourseInCahce(course);
     });
   }
 
   getCourseFromCahce(id) {
-    return JSON.parse(localStorage.getItem(env.localCoursePrefix + id));
+    const courseFromCache = localStorage.getItem(env.localCoursePrefix + id);
+    if(courseFromCache)
+      return JSON.parse(courseFromCache);
+    return null;
   }
 
   getCourseSummary(id: number): Observable<any> {
-    return of(this.getCourseFromCahce(id));
-    //const url = `${env.userApiBaseUrl + env.courseSummary}/${id}`;
-    //return this.http.get<any>(url);
+    const courseFromCache = this.getCourseFromCahce(id);
+    
+    if(courseFromCache)
+      return of(courseFromCache);
+    
+    const url = `${env.userApiBaseUrl + env.courseSummary}/${id}`;
+    return this.http.get<any>(url,  super.httpOptionsWithAuth());
   }
 
   getImages(id: number): Observable<any> {

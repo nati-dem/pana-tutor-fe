@@ -11,7 +11,7 @@ const routes: Routes = [
   { path: "", component: CourseSearchComponent },
   //{ path: "", component: CategoryListComponent },
   { path: "courses/:cat-id", component: CourseListComponent },
-  { path: "course-summary/:course-id", component: CourseSummaryComponent },
+  //{ path: "course-summary/:course-id", component: CourseSummaryComponent },
   // { path: "detail/:cat-id", component: CourseDetailComponent },
 ];
 

@@ -21,32 +21,20 @@
             class="rounded-circle logo_image m-3"
             src="/assets/images/Tutor-web.png"
             alt=""/>
-  
+          <!--
           <div class="card-title">
             <span class="pointer"  routerLink="/categories/course-summary/{{ course.id }}">
+              <h3>{{ course.title.rendered }}</h3></span>
+          </div>-->
+          <div class="card-title">
+            <span class="pointer"  routerLink="/course/home/{{ course.id }}">
               <h3>{{ course.title.rendered }}</h3></span>
           </div>
         </div>
         <div class="row my-row">
-          <div class="col-4">
+          <div class="col-12">
             <div class="card-body">
-              <p>course subtitle</p>
-              <p>course subtitle</p>
-              <p>course subtitle</p>
-            </div>
-          </div>
-          <div class="col-4">
-            <div class="card-body">
-              <p>course subtitle</p>
-              <p>course subtitle</p>
-              <p>course subtitle</p>
-            </div>
-          </div>
-          <div class="col-4">
-            <div class="card-body">
-              <p>course subtitle</p>
-              <p>course subtitle</p>
-              <p>course subtitle</p>
+              <p [innerHTML]="course.content.rendered"></p>
             </div>
           </div>
         </div>

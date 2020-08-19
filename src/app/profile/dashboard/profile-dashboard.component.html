@@ -2,6 +2,28 @@
 <hr />
 
   <div class="row mx-md-n5">
+    
+    <div class="" *ngFor="let course of courses">
+      <div class="col px-md-5">
+        <div class="p-3">
+          <h4>{{ course.title.raw }}</h4>
+          <p>Progress</p>
+          <p>
+            <ngb-progressbar
+              [showValue]="true"
+              type="warning"
+              [value]="40"
+              height="2rem"
+            ></ngb-progressbar>
+          </p>
+          <div class="text-center">
+            <button routerLink="/course/home/{{ course.id }}" class="btn btn-primary resume-btn">Resume</button>
+          </div>
+        </div>
+      </div>
+    </div>
+    
+    <!--
     <div class="col px-md-5">
       <div class="p-3">
         <h4>MATHEMATICS GRADE 5</h4>
@@ -35,31 +57,6 @@
           <button class="btn btn-primary resume-btn">Resume</button>
         </div>
       </div>
-    </div>
+    </div> -->
   </div>
-  <!-- <div class="row">
-    <div class="col-4 m-3 course">
-      <h4>math</h4>
-      <p>Progress</p>
-      <p>
-        <ngb-progressbar
-          [showValue]="true"
-          type="success"
-          [value]="25"
-          height="2rem"
-        ></ngb-progressbar>
-      </p>
-    </div>
-    <div class="col-4 m-3">
-      <h4>English</h4>
-      <p>Progress</p>
-      <p>
-        <ngb-progressbar
-          [showValue]="true"
-          type="success"
-          [value]="25"
-          height="2rem"
-        ></ngb-progressbar>
-      </p>
-    </div>
-  </div> -->
+

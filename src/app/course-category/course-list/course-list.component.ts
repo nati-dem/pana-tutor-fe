@@ -33,7 +33,7 @@ export class CourseListComponent implements OnInit {
     console.log("getting courses by cat-id: ", id);
     this.categoryService.getService(id).subscribe((res) => {
       this.courses = res;
-      this.categoryService.storeCourseInCahce(res);
+      this.categoryService.storeCoursesInCahce(res);
       console.log(this.courses);
     });
   }
